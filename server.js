@@ -7,18 +7,27 @@ const { Pool } = require('pg');
 
 const app = express();
 
-// Middleware
+// 1. Enable CORS for all origins & preflight OPTIONS requests
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+// Handle pre-flight requests across all endpoints
+app.options('*', cors());
+
+// 2. Middleware to parse incoming JSON payloads
 app.use(express.json());
-app.use(cors());
 
 // Serve static frontend files if hosted alongside Express
 app.use(express.static(path.join(__dirname)));
 
-// Supabase PostgreSQL Connection Pool
+// 3. Supabase PostgreSQL Connection Pool
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false // Required for Supabase SSL connection on cloud hosts like Render
+    rejectUnauthorized: false // Required for Supabase SSL connections on Render
   }
 });
 
@@ -31,7 +40,7 @@ pool.connect((err) => {
   }
 });
 
-// 1. Endpoint: Register User & Save to Supabase
+// 4. Endpoint: Register User & Save to Supabase
 app.post('/api/register', async (req, res) => {
   const { phone, pin, plan, payment_method } = req.body;
 
@@ -70,7 +79,7 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
-// 2. Endpoint: Authenticate User Login
+// 5. Endpoint: Authenticate User Login
 app.post('/api/login', async (req, res) => {
   const { phone, pin } = req.body;
 
@@ -112,7 +121,7 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// Start Server
+// 6. Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
