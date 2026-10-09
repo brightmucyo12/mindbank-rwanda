@@ -7,15 +7,12 @@ const { Pool } = require('pg');
 
 const app = express();
 
-// 1. Enable CORS for all origins & preflight OPTIONS requests
+// 1. Enable CORS for all origins (cors middleware handles OPTIONS preflight automatically)
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
-
-// Handle pre-flight requests across all endpoints
-app.options('*', cors());
 
 // 2. Middleware to parse incoming JSON payloads
 app.use(express.json());
