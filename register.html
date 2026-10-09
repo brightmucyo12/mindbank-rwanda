@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - MINDbank Rwanda</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Inline Status Message Styling */
+    .status-msg {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      display: none;
+    }
+    .status-msg.error {
+      background-color: #FEE2E2;
+      color: #991B1B;
+      border: 1px solid #FCA5A5;
+      display: block;
+    }
+    .status-msg.success {
+      background-color: #DCFCE7;
+      color: #166534;
+      border: 1px solid #86EFAC;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header-bar">
+    <a href="index.html" class="brand-logo">MIND BANK</a>
+  </header>
+
+  <h1 class="register-title">Register</h1>
+
+  <div class="register-container">
+    <form id="registrationForm" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+      <div class="register-card">
+        
+        <!-- Status Notification Banner -->
+        <div id="statusBanner" class="status-msg"></div>
+
+        <div class="form-group">
+          <label class="form-label" for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" class="form-input" placeholder="078XXXXXXX" maxlength="10" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="pin">PIN</label>
+          <input type="password" id="pin" name="pin" maxlength="4" placeholder="XXXX" class="form-input" required>
+        </div>
+
+        <p class="pin-helper-text">PIN should be four digits</p>
+
+        <div class="form-group">
+          <label class="form-label" for="re-pin">Re enter PIN</label>
+          <input type="password" id="re-pin" name="re_pin" maxlength="4" placeholder="XXXX" class="form-input" required>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section-subtitle">Select Plan</div>
+        <div class="plan-grid">
+          <label class="plan-option">
+            <input type="radio" name="plan" value="daily" checked required>
+            <div class="plan-box">
+              <div class="plan-name">Daily</div>
+              <div class="plan-price">500 RWF</div>
+            </div>
+          </label>
+
+          <label class="plan-option">
+            <input type="radio" name="plan" value="monthly" required>
+            <div class="plan-box">
+              <div class="plan-name">Monthly</div>
+              <div class="plan-price">1,000 RWF</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="section-subtitle">Select Payment Method</div>
+        <div class="payment-grid">
+          <label class="payment-option">
+            <input type="radio" name="payment_method" value="mtn" checked required>
+            <div class="payment-box">MTN MoMo</div>
+          </label>
+
+          <label class="payment-option">
+            <input type="radio" name="payment_method" value="airtel" required>
+            <div class="payment-box">Airtel Money</div>
+          </label>
+        </div>
+
+        <button type="submit" id="submitBtn" class="register-btn">REGISTER & PAY</button>
+
+      </div>
+    </form>
+
+    <a href="login.html" class="login-link">Login if you have an account</a>
+  </div>
+
+  <script>
+    document.getElementById('registrationForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const statusBanner = document.getElementById('statusBanner');
+      const submitBtn = document.getElementById('submitBtn');
+
+      const phone = document.getElementById('phone').value.trim();
+      const pin = document.getElementById('pin').value.trim();
+      const rePin = document.getElementById('re-pin').value.trim();
+      
+      const planElement = document.querySelector('input[name="plan"]:checked');
+      const plan = planElement ? planElement.value : '';
+
+      const paymentElement = document.querySelector('input[name="payment_method"]:checked');
+      const payment_method = paymentElement ? paymentElement.value : '';
+
+      // Reset banner state
+      statusBanner.className = 'status-msg';
+      statusBanner.textContent = '';
+
+      // Verify PIN match
+      if (pin !== rePin) {
+        statusBanner.className = 'status-msg error';
+        statusBanner.textContent = 'PINs do not match. Please enter matching 4-digit PINs.';
+        return;
+      }
+
+      // Disable button to prevent multi-clicking
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'REGISTERING...';
+
+      try {
+        const response = await fetch('http://localhost:5000/api/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ phone, pin, plan, payment_method })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // Show non-blocking success message
+          statusBanner.className = 'status-msg success';
+          statusBanner.textContent = 'Registration successful! Redirecting to login...';
+
+          localStorage.setItem('userPhone', phone);
+
+          // Automatically redirect to login page after 1.5 seconds
+          setTimeout(() => {
+            window.location.href = 'login.html';
+          }, 1500);
+
+        } else {
+          statusBanner.className = 'status-msg error';
+          statusBanner.textContent = data.error || 'Registration failed.';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'REGISTER & PAY';
+        }
+      } catch (err) {
+        console.error('Fetch error:', err);
+        statusBanner.className = 'status-msg error';
+        statusBanner.textContent = 'Failed to connect to server. Ensure node server.js is running.';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'REGISTER & PAY';
+      }
+    });
+  </script>
+
+</body>
+</html>

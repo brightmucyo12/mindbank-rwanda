@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mindbank</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        /* Benefits Card Fill D9D9D9 22% & Radius 45px on desktop, slightly tighter on mobile */
+        .benefit-card {
+            background-color: rgba(217, 217, 217, 0.22);
+            border-radius: 28px;
+        }
+        @media (min-width: 768px) {
+            .benefit-card {
+                border-radius: 45px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 min-h-screen p-2 sm:p-4 md:p-6 flex flex-col items-center relative">
+
+    <!-- ================= STICKY HEADER (LOGIN / SIGN UP ON ALL SCREENS) ================= -->
+    <div id="sticky-header" class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-md shadow-md z-50 transition-all duration-300 transform -translate-y-full px-4 sm:px-8 md:px-12 py-3 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Mindbank Logo -->
+            <a href="index.html" class="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-[#041a18] hover:opacity-90 transition">
+                mindbank
+            </a>
+
+            <!-- Central Nav Links Badge (Desktop Only) -->
+            <div class="hidden md:flex items-center gap-6 bg-gray-100 px-6 py-2 rounded-full border border-gray-200 text-sm text-gray-700 font-medium">
+                <a href="#features" class="hover:text-[#059669] transition">Features</a>
+                <a href="#pricing" class="hover:text-[#059669] transition">Pricing</a>
+                <a href="#questions" class="hover:text-[#059669] transition">Questions</a>
+                <a href="#whats-new" class="hover:text-[#059669] transition">What's new</a>
+            </div>
+
+            <!-- Login & Sign Up Action Buttons (Visible on Mobile & Desktop during scroll) -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <a href="login.html" class="bg-[#0b332f] hover:bg-[#0f403b] text-white text-xs sm:text-sm px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full transition font-medium">
+                    Login
+                </a>
+                <a href="register.html" class="bg-[#059669] hover:bg-[#10b981] text-white text-xs sm:text-sm px-4 sm:px-6 py-1.5 sm:py-2 rounded-full font-medium transition">
+                    Sign up
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 1. HERO SECTION (FULL SCREEN WITH ROUNDED EDGES & SMALL MARGIN) ================= -->
+    <header id="hero-header" class="w-full bg-[#041a18] text-white p-5 sm:p-8 md:p-12 border-2 border-[#1080d0] rounded-[1.25rem] sm:rounded-[2rem] md:rounded-[2.5rem] shadow-2xl relative overflow-hidden mb-12 sm:mb-16">
+        
+        <div class="max-w-7xl mx-auto w-full">
+            <!-- Navigation Bar -->
+            <nav id="nav-bar-row" class="flex items-center justify-between relative w-full">
+                <!-- Logo (Extreme Top Left) -->
+                <a href="index.html" class="text-2xl sm:text-3xl font-bold tracking-tight text-white hover:opacity-90 transition">
+                    mindbank
+                </a>
+
+                <!-- Central Nav Links Badge (Desktop Only) -->
+                <div class="hidden md:flex items-center gap-6 bg-[#0a2e2b] px-6 py-2 rounded-full border border-[#13423d] text-sm text-gray-300">
+                    <a href="#features" class="hover:text-white transition">Features</a>
+                    <a href="#pricing" class="hover:text-white transition">Pricing</a>
+                    <a href="#questions" class="hover:text-white transition">Questions</a>
+                    <a href="#whats-new" class="hover:text-white transition">What's new</a>
+                </div>
+
+                <!-- Header Action Buttons (Desktop) & Hamburger Toggle (Mobile) -->
+                <div class="flex items-center gap-3">
+                    <!-- Desktop Action Buttons -->
+                    <div class="hidden md:flex items-center gap-3">
+                        <a href="login.html" class="bg-[#0b332f] hover:bg-[#0f403b] text-gray-200 text-sm px-5 py-2 rounded-full border border-[#13423d] transition">
+                            Login
+                        </a>
+                        <a href="register.html" class="bg-[#0b332f] hover:bg-[#0f403b] text-gray-200 text-sm px-6 py-2 rounded-full border border-[#13423d] transition">
+                            Sign up
+                        </a>
+                    </div>
+
+                    <!-- Hamburger Button (Mobile Only) -->
+                    <button id="menu-toggle" aria-label="Toggle Navigation" class="md:hidden text-white focus:outline-none p-2 rounded-lg bg-[#0b332f] border border-[#13423d]">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Dropdown -->
+                <div id="mobile-menu" class="hidden md:hidden flex-col gap-3 absolute top-12 right-0 bg-[#0a2e2b] p-4 rounded-2xl border border-[#13423d] z-50 w-48 shadow-lg text-xs text-gray-300">
+                    <a href="#features" class="hover:text-white transition py-1">Features</a>
+                    <a href="#pricing" class="hover:text-white transition py-1">Pricing</a>
+                    <a href="#questions" class="hover:text-white transition py-1">Questions</a>
+                    <a href="#whats-new" class="hover:text-white transition py-1">What's new</a>
+                    <div class="pt-2 border-t border-[#13423d] flex flex-col gap-2">
+                        <a href="login.html" class="text-center bg-[#0b332f] text-gray-200 py-1.5 rounded-full border border-[#13423d]">Login</a>
+                        <a href="register.html" class="text-center bg-[#0b332f] text-gray-200 py-1.5 rounded-full border border-[#13423d]">Sign up</a>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Hero Content Area -->
+            <div class="mt-8 sm:mt-12 md:mt-16 flex flex-col items-center text-center">
+                <!-- Subtitle Badge -->
+                <div class="bg-[#072a26] text-[#2dd4bf] text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-full border border-[#10423c] mb-6 sm:mb-8 font-medium max-w-full">
+                    Prepare for your Provisional Driving License Today
+                </div>
+
+                <!-- Main Heading -->
+                <h1 class="max-w-3xl text-lg sm:text-2xl lg:text-3xl font-bold leading-relaxed sm:leading-relaxed text-white tracking-wide">
+                    Pass your theory test on the first try. Master real provisional driving license questions with our free, bite-sized practice quizzes and hit the road sooner.
+                </h1>
+
+                <!-- Clickable Central Call-to-Action Box (Vibrant Green) -->
+                <a href="register.html" class="mt-8 sm:mt-10 w-full max-w-lg h-24 sm:h-32 md:h-36 bg-[#059669] hover:bg-[#10b981] active:scale-95 rounded-2xl border-2 border-[#34d399] shadow-xl shadow-[#059669]/30 transition-all duration-200 ease-in-out flex items-center justify-center p-4 group cursor-pointer">
+                    <span class="text-white font-bold text-xl sm:text-2xl md:text-3xl tracking-wide flex items-center gap-3 drop-shadow-md">
+                        Start Free Practice Test
+                        <svg class="w-7 h-7 sm:w-8 sm:h-8 transform group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- ================= 2. BENEFITS SECTION ================= -->
+    <main class="w-full max-w-7xl px-3 sm:px-6 md:px-12 mb-16 sm:mb-20">
+        
+        <!-- Section Intro Heading -->
+        <h2 class="text-base sm:text-lg md:text-xl font-semibold text-black mb-6">
+            With over 300+ questions and their answers, Mind bank brings you these benefits:
+        </h2>
+
+        <!-- Cards Container -->
+        <div class="flex flex-col gap-4 sm:gap-6">
+
+            <!-- Card 1 (15 words) -->
+            <div class="benefit-card p-5 sm:p-8 md:p-10 text-black text-sm sm:text-base md:text-lg leading-relaxed">
+                <div class="flex items-start gap-2.5 sm:gap-3">
+                    <span class="text-lg sm:text-xl leading-none mt-1">&#9679;</span>
+                    <p class="m-0">
+                        Take twenty-question practice tests with real-time automated scoring and immediate detailed performance breakdown.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 2 (15 words) -->
+            <div class="benefit-card p-5 sm:p-8 md:p-10 text-black text-base md:text-lg leading-relaxed">
+                <div class="flex items-start gap-2.5 sm:gap-3">
+                    <span class="text-lg sm:text-xl leading-none mt-1">&#9679;</span>
+                    <p class="m-0">
+                        Enjoy an intuitive, affordable platform featuring a dynamic dashboard that visually tracks daily study progress.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 3 (15 words) -->
+            <div class="benefit-card p-5 sm:p-8 md:p-10 text-black text-sm sm:text-base md:text-lg leading-relaxed">
+                <div class="flex items-start gap-2.5 sm:gap-3">
+                    <span class="text-lg sm:text-xl leading-none mt-1">&#9679;</span>
+                    <p class="m-0">
+                        Access over three hundred meticulously structured questions with instant feedback to guarantee exam success.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ================= 3. PRICING MODEL SECTION ================= -->
+    <section id="pricing" class="w-full max-w-7xl px-3 sm:px-6 md:px-12 mb-16 sm:mb-20 flex flex-col items-center">
+        
+        <!-- Section Header -->
+        <h2 class="text-lg sm:text-xl md:text-2xl font-medium text-black text-center mb-6 sm:mb-8">
+            Pricing Model
+        </h2>
+
+        <!-- Pricing Cards Grid -->
+        <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            
+            <!-- Basic Card -->
+            <div class="bg-[#fde2e4] border-2 border-[#1080d0] h-[320px] sm:h-[420px] p-6 text-[#726367] text-lg sm:text-xl font-normal">
+                Basic
+            </div>
+
+            <!-- Standard Card -->
+            <div class="bg-[#c8f7c5] h-[320px] sm:h-[420px] p-6 text-[#5b8758] text-lg sm:text-xl font-normal">
+                Standard
+            </div>
+
+            <!-- Premium Card -->
+            <div class="bg-[#9eeaf3] h-[320px] sm:h-[420px] p-6 text-[#356e75] text-lg sm:text-xl font-bold">
+                Premium
+            </div>
+
+        </div>
+
+        <!-- Bottom Gray Centered Card -->
+        <div class="w-full max-w-md h-[280px] sm:h-[380px] bg-[#d9d9d9]"></div>
+
+    </section>
+
+    <!-- ================= 4. FAQ SECTION ================= -->
+    <section id="questions" class="w-full max-w-7xl px-3 sm:px-6 md:px-12 mb-16 sm:mb-20">
+        
+        <h2 class="text-lg sm:text-xl md:text-2xl font-bold text-black mb-6 sm:mb-8">
+            Frequently asked Questions
+        </h2>
+
+        <div class="flex flex-col gap-5 sm:gap-6 text-black font-semibold text-sm sm:text-base md:text-lg">
+            
+            <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
+                <span>What is MindBank</span>
+                <span class="text-base sm:text-lg">+</span>
+            </div>
+
+            <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
+                <span>What is included in my paid subscription?</span>
+                <span class="text-base sm:text-lg">+</span>
+            </div>
+
+            <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
+                <span>How much is the subscription, and how can I pay?</span>
+                <span class="text-base sm:text-lg">+</span>
+            </div>
+
+            <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
+                <span>Do you offer a free trial and what is included</span>
+                <span class="text-base sm:text-lg">+</span>
+            </div>
+
+        </div>
+
+    </section>
+
+   <!-- ================= 5. FOOTER SECTION ================= -->
+    <footer class="w-full bg-[#041a18] text-white p-6 sm:p-10 md:p-14 flex flex-col items-center rounded-[1.25rem] sm:rounded-[2rem] md:rounded-[2.5rem]">
+        
+        <div class="max-w-7xl w-full flex flex-col items-center">
+            <!-- Desktop Grid (3 columns) / Mobile Layout -->
+            <div class="w-full md:grid md:grid-cols-3 gap-8 md:gap-16 mb-12 sm:mb-16">
+                
+                <!-- Mobile Row: About Us (Left) & Discover (Far Right) -->
+                <div class="flex flex-row justify-between items-start w-full md:contents mb-8 md:mb-0">
+                    
+                    <!-- Column 1: About us -->
+                    <div class="flex flex-col gap-3 sm:gap-4 text-left">
+                        <h3 class="text-lg sm:text-xl md:text-2xl font-serif">About us</h3>
+                        <a href="#privacy" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Privacy Policy</a>
+                        <a href="#terms" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Terms and Conditions</a>
+                    </div>
+
+                    <!-- Column 2: Discover (Far right on mobile) -->
+                    <div class="flex flex-col gap-3 sm:gap-4 text-right md:text-left">
+                        <h3 class="text-lg sm:text-xl md:text-2xl font-serif">Discover</h3>
+                        <a href="#faq" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">FAQ</a>
+                        <a href="#features" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Features</a>
+                        <a href="#pricing" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Pricing</a>
+                    </div>
+
+                </div>
+
+                <!-- Column 3: Connect with Us (Centered on mobile, standard left-align on desktop) -->
+                <div class="flex flex-col gap-3 sm:gap-4 text-center md:text-left items-center md:items-start">
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-serif">Connect with Us</h3>
+                    <a href="#facebook" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Facebook</a>
+                    <a href="#instagram" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Instagram</a>
+                    <a href="#twitter" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Twitter</a>
+                </div>
+
+            </div>
+
+            <!-- Copyright Note -->
+            <div class="text-gray-300 font-serif text-sm sm:text-base md:text-xl text-center">
+                © 2026 MindBank . All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Hero Mobile Hamburger Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        // Instant Scroll Observer Trigger
+        const navBarRow = document.getElementById('nav-bar-row');
+        const stickyHeader = document.getElementById('sticky-header');
+
+        window.addEventListener('scroll', () => {
+            const navRowBottom = navBarRow.getBoundingClientRect().bottom;
+            if (navRowBottom < 0) {
+                stickyHeader.classList.remove('-translate-y-full');
+                stickyHeader.classList.add('translate-y-0');
+            } else {
+                stickyHeader.classList.remove('translate-y-0');
+                stickyHeader.classList.add('-translate-y-full');
+            }
+        });
+    </script>
+</body>
+</html>

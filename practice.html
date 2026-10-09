@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="rw" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Test - MindBank</title>
+  
+  <!-- Tailwind CSS & Inter Font -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #0f172a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Figma exact color palette tokens */
+    .bg-figma-gray {
+      background-color: #d1d5db; /* Gray outer container fill matching design */
+    }
+    
+    .bg-figma-card {
+      background-color: #e5e7eb; /* Slight tint inner panel */
+    }
+
+    .bg-figma-badge {
+      background-color: #993333; /* Dark reddish-brown badge color from wireframe */
+    }
+
+    .bg-figma-timer-panel {
+      background-color: #c83e18; /* Rich reddish-orange right panel */
+    }
+
+    /* Option hover & selection effects */
+    .option-row {
+      transition: all 0.2s ease;
+    }
+    .option-row:hover {
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+    .option-row.selected {
+      background-color: #ffffff;
+      border-color: #993333;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col">
+
+  <!-- Top Navigation Header -->
+  <header class="w-full flex justify-between items-center px-6 md:px-12 py-4 bg-white text-slate-900 border-b border-slate-200">
+    <a href="index.html" class="text-xl md:text-2xl font-semibold tracking-tight text-slate-900 hover:opacity-80 transition cursor-pointer">
+      MindBank
+    </a>
+
+    <div>
+      <button id="langToggleBtn" onclick="toggleLanguage()" class="text-sm md:text-base font-medium text-slate-800 hover:text-black cursor-pointer bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-lg transition">
+        Hindura Ururimi / Change language
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Grid Layout (Split Screen: Left Content Area + Right Timer Panel) -->
+  <main class="flex-grow w-full flex flex-col md:flex-row min-h-[calc(100vh-65px)]">
+
+    <!-- LEFT SIDE: Question Content Panel (Gray Container) -->
+    <section class="w-full md:w-3/5 lg:w-2/3 bg-figma-gray p-4 md:p-8 flex flex-col items-center justify-between min-h-[600px]">
+      
+      <div class="w-full max-w-2xl flex flex-col items-center">
+        <!-- White Banner Title -->
+        <div class="w-full bg-white py-4 px-6 text-center shadow-sm rounded-sm mb-6">
+          <h1 id="ui-quiz-title" class="text-lg md:text-2xl font-normal text-slate-900">
+            Provisional Driving Test Practice Quiz
+          </h1>
+        </div>
+
+        <!-- Question Badge (Dark Reddish Brown) -->
+        <div class="bg-figma-badge text-white px-8 py-3 rounded-md text-lg md:text-xl font-normal tracking-wide shadow-sm mb-8 text-center min-w-[200px]">
+          <span id="ui-question-badge">Question 1/20</span>
+        </div>
+
+        <!-- Question Text & Options Container -->
+        <div class="w-full px-2 md:px-6 mb-6">
+          <h2 id="questionText" class="text-base md:text-lg font-normal text-slate-900 mb-6 leading-snug">
+            Loading question...
+          </h2>
+
+          <!-- Choice Options with a), b), c), d) labels -->
+          <div id="optionsContainer" class="space-y-3">
+            <!-- Options populated dynamically via JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Controls & Numbered Questions Buttons -->
+      <div class="w-full max-w-2xl px-2 md:px-6 mt-4">
+        
+        <!-- Previous / Next Action Row -->
+        <div class="flex justify-between items-center mb-8">
+          <button id="prevBtn" onclick="navigateQuestion(-1)" class="px-5 py-2 text-base font-normal text-slate-900 bg-white hover:bg-slate-100 rounded border border-slate-300 transition cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">
+            previous
+          </button>
+
+          <button id="submitBtn" onclick="confirmSubmit()" class="px-5 py-2 text-sm md:text-base font-semibold text-white bg-emerald-700 hover:bg-emerald-800 rounded shadow transition cursor-pointer">
+            Submit Test
+          </button>
+
+          <button id="nextBtn" onclick="navigateQuestion(1)" class="px-5 py-2 text-base font-normal text-slate-900 bg-white hover:bg-slate-100 rounded border border-slate-300 transition cursor-pointer">
+            next
+          </button>
+        </div>
+
+        <!-- Questions Matrix Section -->
+        <div class="text-center">
+          <div class="text-xs md:text-sm font-bold tracking-wider uppercase text-slate-800 mb-3">
+            QUESTIONS
+          </div>
+          
+          <div id="questionGrid" class="grid grid-cols-10 gap-2 max-w-md mx-auto">
+            <!-- Question buttons 1 to 20 dynamically rendered -->
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- RIGHT SIDE: Prominent Full-height Timer Panel (Reddish Orange) -->
+    <section class="w-full md:w-2/5 lg:w-1/3 bg-figma-timer-panel flex flex-col items-center justify-center p-8 text-white min-h-[250px] md:min-h-full">
+      <div class="text-center">
+        <!-- 20:00 Prominent Live Display -->
+        <div id="timerDisplay" class="text-5xl md:text-7xl lg:text-8xl font-normal tracking-tight">
+          20:00
+        </div>
+        <div id="ui-timer-subtext" class="mt-4 text-xs md:text-sm uppercase tracking-widest text-orange-200/90 font-medium">
+          Time Remaining
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Results / Performance Review Modal -->
+  <div id="resultModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
+      
+      <!-- Modal Header -->
+      <div id="modalHeaderBg" class="bg-slate-900 text-white p-6 text-center">
+        <h2 id="modalResultTitle" class="text-2xl font-bold">Incamake y'Ibizami</h2>
+        <p id="modalResultSubtitle" class="text-sm text-slate-300 mt-1">Umusaruro w'isuzuma ryawe</p>
+      </div>
+
+      <!-- Score Summary Banner -->
+      <div class="p-6 bg-slate-50 border-b border-slate-200 flex justify-around items-center gap-4 text-center">
+        <div>
+          <div id="ui-modal-score-label" class="text-xs font-bold text-slate-500 uppercase tracking-wider">Amanota Yabonetse</div>
+          <div id="scoreVal" class="text-3xl font-black text-slate-900 mt-1">0 / 20</div>
+        </div>
+
+        <div>
+          <div id="ui-modal-percentage-label" class="text-xs font-bold text-slate-500 uppercase tracking-wider">Ajanma (%)</div>
+          <div id="percentageVal" class="text-3xl font-black text-slate-900 mt-1">0%</div>
+        </div>
+
+        <div>
+          <div id="ui-modal-status-label" class="text-xs font-bold text-slate-500 uppercase tracking-wider">Icyemezo</div>
+          <div id="statusBadge" class="inline-block px-4 py-1.5 rounded-full text-sm font-extrabold uppercase mt-1">
+            --
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Review List -->
+      <div class="p-6 overflow-y-auto space-y-4 flex-grow bg-white" id="reviewContainer">
+        <!-- Detailed review items inserted dynamically -->
+      </div>
+
+      <!-- Modal Footer Actions -->
+      <div class="p-4 bg-slate-100 border-t border-slate-200 flex justify-between items-center gap-4">
+        <button id="ui-home-btn" onclick="location.reload()" class="px-5 py-2 bg-slate-200 text-slate-800 font-bold rounded hover:bg-slate-300 transition text-sm cursor-pointer">
+          Subira ku Mfashanyigisho
+        </button>
+        <button id="ui-retry-btn" onclick="resetQuiz()" class="px-6 py-2 bg-emerald-800 text-white font-bold rounded shadow hover:bg-emerald-900 transition text-sm cursor-pointer">
+          Ongera Ugerageze
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Global Application State
+    let currentLang = 'en'; // Default to English as shown in Figma mock
+    let currentQuestionIdx = 0;
+    let userAnswers = new Array(20).fill(null);
+    let quizTimeSeconds = 20 * 60; // 20 Minutes
+    let timerInterval = null;
+    let isSubmitted = false;
+
+    // Bilingual Interface Translations
+    const uiTranslations = {
+      rw: {
+        quizTitle: "Ibizami by'Imyitozo - Amategeko y'Umuhanda",
+        qBadgePrefix: "Ikibazo",
+        prev: "inyuma",
+        next: "ibyakurikiye",
+        submit: "Ohereza Ibizami",
+        timerSubtext: "Igihe Usigaranye",
+        questionsHeading: "IBIBAZO",
+        resTitle: "Incamake y'Ibizami",
+        resSubtitle: "Incamake n'ibisubizo by'isuzuma ryawe",
+        scoreLabel: "Amanota Yabonetse",
+        percentLabel: "Ajanma (%)",
+        statusLabel: "Icyemezo",
+        passText: "WATSINZE! 🎉",
+        failText: "NTUWATSINZE ❌",
+        homeBtn: "Subira ku Mfashanyigisho",
+        retryBtn: "Ongera Ugerageze",
+        yourAns: "Igisubizo cyawe:",
+        correctAns: "Igisubizo cy'ukuri:",
+        explanation: "Sobanukirwa:",
+        unanswered: "Nta gisubizo watanze"
+      },
+      en: {
+        quizTitle: "Provisional Driving Test Practice Quiz",
+        qBadgePrefix: "Question",
+        prev: "previous",
+        next: "next",
+        submit: "Submit Test",
+        timerSubtext: "Time Remaining",
+        questionsHeading: "QUESTIONS",
+        resTitle: "Test Results Summary",
+        resSubtitle: "Performance breakdown and answers review",
+        scoreLabel: "Total Score",
+        percentLabel: "Percentage",
+        statusLabel: "Status",
+        passText: "PASSED! 🎉",
+        failText: "FAILED ❌",
+        homeBtn: "Back to Start",
+        retryBtn: "Try Again",
+        yourAns: "Your answer:",
+        correctAns: "Correct answer:",
+        explanation: "Explanation:",
+        unanswered: "Not answered"
+      }
+    };
+
+    // Full 20 Questions Database with Kinyarwanda & English
+    const questions = [
+      {
+        id: 1,
+        en: {
+          q: "Why should you avoid using high-beam headlights in dense fog or heavy rain?",
+          options: [
+            "High beams drain the car battery too quickly",
+            "The light reflects off fog droplets back into your eyes, reducing visibility",
+            "High beams irritate nearby pedestrians only",
+            "It is against fuel economy regulations"
+          ],
+          exp: "High beams reflect off dense moisture droplets in fog or heavy rain, creating blinding glare."
+        },
+        rw: {
+          q: "Koresha amatara y'urunyabiziga (High Beam / Phares) mu bihe bifite ibihu cyangwa imvura nyinshi:",
+          options: [
+            "Ni byiza kuko atanga urumuri rwinshi",
+            "Ni bibi kuko urumuri rwikubita mu bihu rukakugarukira mu maso",
+            "Bikoreshwa ku manwa gusa",
+            "Bifasha abandi kunyuranaho"
+          ],
+          exp: "Amatara maremare mu ibihu arikubita mu bitonyanga akaguhumya; hakoreshwa amatara magufi (low beams)."
+        },
+        correct: 1
+      },
+      {
+        id: 2,
+        en: {
+          q: "What does a circular sign with a red border containing a motor vehicle symbol inside indicate?",
+          options: [
+            "Priority right of way ahead",
+            "No entry for all power-driven vehicles",
+            "Mandatory parking area for heavy trucks",
+            "Speed limit warning zone"
+          ],
+          exp: "Circular road signs with red borders signify mandatory prohibitions or restrictions."
+        },
+        rw: {
+          q: "Icyapa cy'uruziga gifite umuzenguruko utukura n'agashusho k'ikinyabiziga gishushanyijwe imbere gisobanura iki?",
+          options: [
+            "Asezeranya gutambuka mbere",
+            "Inzira ibujijwe ibinyabiziga byose biyinjiramo",
+            "Icyapa kibyiganira ibinyabiziga no guhagarara",
+            "Ahabuzwa kwiruka gusagamba"
+          ],
+          exp: "Ibyapa by'uruziga bifite umuzenguruko utukura biba bifite ubusobanuro bwo KUBUTSA cyangwa KUBUZWA."
+        },
+        correct: 1
+      },
+      {
+        id: 3,
+        en: {
+          q: "When approaching a roundabout in Rwanda, who has the right of way?",
+          options: [
+            "Vehicles entering from the right-hand side",
+            "Vehicles already circulating inside the roundabout",
+            "Vehicles exiting at high speed",
+            "Public transport buses and taxis"
+          ],
+          exp: "Traffic already inside the roundabout has legal priority over vehicles attempting to enter it."
+        },
+        rw: {
+          q: "Iyo umushoferi agera mu masangano y'imihanda na 'Roundabout' (Uruziga), ni nde ufite uburenganzira bwo gutambuka mbere?",
+          options: [
+            "Ikinyabiziga kituruka mu kuboko kw'iburyo bukurikira",
+            "Ikinyabiziga tayari kiri imbere mu uruziga (Roundabout)",
+            "Ikinyabiziga gishaka kuva mu uruziga n'umuvuduko munini",
+            "Ikinyabiziga kinini cya tagisi"
+          ],
+          exp: "Mu uruziga (roundabout), ibinyabiziga birimo imbere bifite uburenganzira bwo gutambuka mbere y'ibyo birikwazi kwinjiramo."
+        },
+        correct: 1
+      },
+      {
+        id: 4,
+        en: {
+          q: "What is the standard maximum legal speed limit in built-up urban areas in Rwanda unless indicated otherwise?",
+          options: [
+            "40 km/h",
+            "50 km/h",
+            "60 km/h",
+            "80 km/h"
+          ],
+          exp: "The statutory speed limit in urban built-up areas in Rwanda is 50 km/h."
+        },
+        rw: {
+          q: "Umuvuduko ukabije ushobora gukoreshwa mu mijyi n'ibice bituwe mu Rwanda utarenze ngaho ni ufe?",
+          options: [
+            "40 km/h",
+            "50 km/h",
+            "60 km/h",
+            "80 km/h"
+          ],
+          exp: "Umuvuduko w'akabije mu mijyi n'utubande tutuwe mu Rwanda ni 50 km/h keretse k'ibyapa bindi bitangaje."
+        },
+        correct: 1
+      },
+      {
+        id: 5,
+        en: {
+          q: "On which side of the road must vehicles drive in Rwanda?",
+          options: [
+            "Right side of the road",
+            "Left side of the road",
+            "Center lane at all times",
+            "Whichever lane is clearest"
+          ],
+          exp: "Rwanda strictly adheres to right-hand traffic rules."
+        },
+        rw: {
+          q: "Ni rufe ruhande rw'umuhanda rwakoreshwa n'ibinyabiziga mu gihugu cy'u Rwanda?",
+          options: [
+            "Iburyo bwo kugenda",
+            "Ibumoso bwo kugenda",
+            "Hagati mu muhanda",
+            "Aho umushoferi ahisemo kuko ibipimo bihuje"
+          ],
+          exp: "Mu Rwanda ibinyabiziga bihinguranya kandi bigendera mu ruhande rw'iburyo."
+        },
+        correct: 0
+      },
+      {
+        id: 6,
+        en: {
+          q: "What does a continuous solid white line along the center of the road mean?",
+          options: [
+            "Overtaking is allowed if clear",
+            "It is strictly prohibited to cross or drive over it",
+            "It is only applicable at night time",
+            "It indicates a parking boundary line"
+          ],
+          exp: "A continuous solid line acts as an impassable barrier prohibiting overtaking or turning across lanes."
+        },
+        rw: {
+          q: "Umurongo w'umweru udacitse (Umurongo ushashe) ku muhanda usobanura iki?",
+          options: [
+            "Ushobora kuwurenga iyo unyura ku kinyabiziga",
+            "Ubibujijwe kuwurenga cyangwa kuwugenderaho",
+            "Nta cyo uvuze mu bihe by'amanywa",
+            "Ahabuzwa kubyiganira gusa"
+          ],
+          exp: "Umurongo w'umweru ushashe (udacitse) ubuza umushoferi kuwurenga cyangwa kuwugendaho mu buryo bwose."
+        },
+        correct: 1
+      },
+      {
+        id: 7,
+        en: {
+          q: "When encountering a solid RED traffic light signal, what action must the driver take?",
+          options: [
+            "Slow down and proceed with caution",
+            "Come to a complete stop before the stop line",
+            "Honk the horn and proceed quickly",
+            "Make an immediate U-turn"
+          ],
+          exp: "A steady red light demands an immediate complete stop before entering the intersection."
+        },
+        rw: {
+          q: "Iyo itara ry'umuhanda ari UMUTUKURA, umushoferi agomba gukora iki?",
+          options: [
+            "Kugabanya umuvuduko agatambuka buhoro",
+            "Guhagarara neza imbere y'umurongo w'inyuma wa 'stop'",
+            "Kuvuza ihoni no gukomeza gutambuka",
+            "Guhindura icyerekezo akoresheje akagere"
+          ],
+          exp: "Itara ritukura risobanura GUHAGARARA neza mbere y'umurongo wa Stop."
+        },
+        correct: 1
+      },
+      {
+        id: 8,
+        en: {
+          q: "In normal driving conditions in Rwanda, on which side are you required to overtake another vehicle?",
+          options: [
+            "On the left-hand side",
+            "On the right-hand side",
+            "On whichever side is wider",
+            "On the shoulder of the road"
+          ],
+          exp: "In right-hand traffic systems like Rwanda, overtaking must always be executed on the left side."
+        },
+        rw: {
+          q: "Ni ryari umushoferi yemerewe kunyura ku kindi kinyabiziga mu ruhande rw'ibumoso?",
+          options: [
+            "Iyo ikinyabiziga cy'imbere cyakoresheje ikibando cyerekana guhindukira mu buryo bw'iburyo",
+            "Mu bihe bisanzwe kuko kunyuranaho biba ibumoso mu Rwanda",
+            "Iyo uri ku biraro cyangwa n'ibimanuka gusa",
+            "Nta na ryari biba byemewe"
+          ],
+          exp: "Ubusanzwe mu buryo bwo gutwara mu Rwanda, kunyuranaho biba mu ruhande rw'ibumoso."
+        },
+        correct: 0
+      },
+      {
+        id: 9,
+        en: {
+          q: "When a pedestrian is on a designated pedestrian crossing (zebra crossing), you must:",
+          options: [
+            "Honk to warn them to clear the lane",
+            "Slow down and stop to grant them priority",
+            "Accelerate to clear the crossing before them",
+            "Flash your high beam lights continuously"
+          ],
+          exp: "Pedestrians on designated zebra crossings always hold statutory right-of-way over motor vehicles."
+        },
+        rw: {
+          q: "Iyo umunyamaguru ari mu murongo wa Zebra Crossing (Ahabugenewe abanyamaguru), umushoferi agomba gukora iki?",
+          options: [
+            "Kuvuza ihoni kugira ngo ahunge mu muhanda",
+            "Kugabanya umuvuduko no guhagarara akamuha inzira",
+            "Kwiruka cyane akamutanga gutambuka",
+            "Mumuhamagaza akoresheje amaboko"
+          ],
+          exp: "Abanyamaguru bari mu murongo wa Zebra crossing bafite uburenganzira bwo gutambuka mbere."
+        },
+        correct: 1
+      },
+      {
+        id: 10,
+        en: {
+          q: "An inverted triangular road sign with its apex pointing downwards indicates:",
+          options: [
+            "Give way / Yield priority to oncoming traffic",
+            "Mandatory Stop ahead",
+            "End of two-way highway",
+            "No parking zone"
+          ],
+          exp: "An inverted triangle is the internationally recognized sign requiring drivers to Give Way or Yield."
+        },
+        rw: {
+          q: "Icyapa cy'agapande k'utatandatu (Triangle) gasongoye hasi gisobanura iki?",
+          options: [
+            "Uguha inzira ibinyabiziga bije (Cede / Give Way)",
+            "Guhagarara akabyiganira (Stop)",
+            "Umuhanda urangiye",
+            "Ahabuzwa kuva mu muhanda"
+          ],
+          exp: "Icyapa cy'utatandatu gasongoye hasi gisobanura Tanga Inzira (Give Way / Yield)."
+        },
+        correct: 0
+      },
+      {
+        id: 11,
+        en: {
+          q: "What is the minimum passing score required to pass the Rwandan Provisional Driving License Exam?",
+          options: [
+            "10 out of 20",
+            "12 out of 20",
+            "15 out of 20",
+            "18 out of 20"
+          ],
+          exp: "A minimum score of 12 correct answers out of 20 (60%) is required to pass the provisional driving test."
+        },
+        rw: {
+          q: "Amanota y'ifatizo required yo gutsindira urushya rwo gutwara ibinyabiziga by'agateganyo mu Rwanda ni ayafe?",
+          options: [
+            "10 / 20",
+            "12 / 20",
+            "15 / 20",
+            "18 / 20"
+          ],
+          exp: "Amanota yo gutsinda ikizami gipima ubumenyi bw'amategeko y'umuhanda mu Rwanda ni 12/20 (60%)."
+        },
+        correct: 1
+      },
+      {
+        id: 12,
+        en: {
+          q: "At what minimum distance must a reflective warning triangle be placed behind a broken-down vehicle on a public road?",
+          options: [
+            "At least 5 meters away",
+            "At least 25 meters away",
+            "At least 100 meters away",
+            "Directly on top of the rear trunk"
+          ],
+          exp: "Warning triangles must be placed at least 25 meters behind a stalled vehicle to give oncoming traffic safe reaction time."
+        },
+        rw: {
+          q: "Umushoferi ategetswe gushyira ikiranga kinyabiziga (Triangle de présignalisation) mu ntera ingana iki kure y'ikinyabiziga cyagize ikibazo?",
+          options: [
+            "Meto 5 nibura",
+            "Meto 25 nibura ku muhanda usanzwe",
+            "Meto 100 kure",
+            "Ku ruruhande rw'umuryango w'ikinyabiziga"
+          ],
+          exp: "Gushyira icyapa cy'inyatatu z'ubutabazi mu ntera ya meto 25 nibura ku muhanda usanzwe bifasha kurinda impanuka."
+        },
+        correct: 1
+      },
+      {
+        id: 13,
+        en: {
+          q: "Which institution is responsible for traffic enforcement and driving examinations in Rwanda?",
+          options: [
+            "RURA",
+            "Rwanda National Police - Traffic & Road Safety Department",
+            "REG",
+            "WASAC"
+          ],
+          exp: "The Traffic and Road Safety Department of the Rwanda National Police oversees driving examinations and enforcement."
+        },
+        rw: {
+          q: "Ni iki kigo gishinzwe imihanda n'ibizami mu Rwanda?",
+          options: [
+            "RURA",
+            "Ishami rya Polisi rishinzwe Umutekano wo mu Muhanda (Traffic Police Department)",
+            "REG",
+            "MINICT"
+          ],
+          exp: "Ishami ry'Umutekano wo mu muhanda rya Polisi y'u Rwanda (Traffic Police) niyo ishinzwe imihanda n'ibizami."
+        },
+        correct: 1
+      },
+      {
+        id: 14,
+        en: {
+          q: "What are the legal consequences for driving under the influence of alcohol in Rwanda?",
+          options: [
+            "Verbal warning only",
+            "Substantial statutory fine, vehicle impoundment, and temporary detention",
+            "Mandatory vehicle color repaint",
+            "No penalty if it occurs on weekends"
+          ],
+          exp: "Drunk driving attracts severe legal penalties including heavy fines, vehicle impoundment, and temporary detention."
+        },
+        rw: {
+          q: "Niba umushoferi anyoye inzoga ikirenga ku rugero rwihariye mu amaraso, icyemezo kibaho ni iki?",
+          options: [
+            "Ahabwa umwarningi gusa",
+            "Guhabwa amande, gufungwa no gufatanwa urushya rwo gutwara ikinyabiziga",
+            "Guhinduzwa amatandiko ya moteri",
+            "Nta kintu na kimwe biba ari iminsi mikuru"
+          ],
+          exp: "Gutwara ikinyabiziga wasinze mu Rwanda bihanishwa amande ateganijwe, gufungwa no gukurwaho urushya."
+        },
+        correct: 1
+      },
+      {
+        id: 15,
+        en: {
+          q: "Carrying a certified First Aid Kit in a passenger motor vehicle in Rwanda is:",
+          options: [
+            "Optional at the driver's discretion",
+            "Mandatory under road safety regulations",
+            "Only required for rural travel",
+            "Only required during rainy seasons"
+          ],
+          exp: "Road safety laws mandate that passenger vehicles carry essential safety equipment including first aid kits."
+        },
+        rw: {
+          q: "Agasanduku k'Ubutabazi bw'Ibanze (First Aid Kit) mu kinyabiziga gitwara abantu:",
+          options: [
+            "Ni ku bushake bw'umushoferi",
+            "Ni itegeko kuri ibyo ibinyabiziga",
+            "Bikoreshwa gusa iyo uri kure y'umugi",
+            "Bikoreshwa mu ijoro gusa"
+          ],
+          exp: "Agasanduku k'ubutabazi bw'ibanze ni itegeko ry'umutekano ku binyabiziga mu Rwanda."
+        },
+        correct: 1
+      },
+      {
+        id: 16,
+        en: {
+          q: "Using a hand-held mobile phone while driving a vehicle is:",
+          options: [
+            "Permitted if driving under 30 km/h",
+            "Strictly prohibited as it causes severe distraction and safety hazards",
+            "Allowed only for receiving urgent text messages",
+            "Permitted during heavy traffic jams"
+          ],
+          exp: "Hand-held mobile phone usage while driving is strictly illegal due to cognitive and physical distraction risks."
+        },
+        rw: {
+          q: "Gukoresha telefone igendanwa uyitwaye mu ntoki unagendera mu muhanda:",
+          options: [
+            "Biremewe iyo ugenda buhoro",
+            "Bibujijwe kuko biteza uburangare n'impanuka",
+            "Biremewe gusa iyo bitabiriye impuruza",
+            "Biremewe mu masangano azengurutse"
+          ],
+          exp: "Gukoresha telefone mu ntoki mu gihe utwaye ikinyabiziga ni icyaha kizwi ku burangare."
+        },
+        correct: 1
+      },
+      {
+        id: 17,
+        en: {
+          q: "Alternating black and white painted stripes across a traffic lane designate:",
+          options: [
+            "Bicycle parking spots",
+            "Pedestrian zebra crossing lane",
+            "Commercial freight loading zone",
+            "No overtaking boundaries"
+          ],
+          exp: "Striped zebra markings designate designated priority walking paths for pedestrians."
+        },
+        rw: {
+          q: "Umutambiko w'umweru n'umukara unyura mu muhanda wagenewe iki?",
+          options: [
+            "Ahabugenewe guharara kw'amagare",
+            "Umurongo w'abanyamaguru bambukiramo (Zebra crossing)",
+            "Ahabugenewe gupakirwa ibicuruzwa",
+            "Inzira y'inyamaswa nini"
+          ],
+          exp: "Umurongo w'umweru n'umukara mu muhanda wagenewe abanyamaguru bambukiramo mu mutekano."
+        },
+        correct: 1
+      },
+      {
+        id: 18,
+        en: {
+          q: "A circular road sign with a red border enclosing the number '80' indicates:",
+          options: [
+            "Minimum mandatory speed of 80 km/h",
+            "Maximum allowed speed limit of 80 km/h",
+            "Keep a minimum distance of 80 meters",
+            "Maximum vehicle weight limit of 80 tons"
+          ],
+          exp: "A red circle enclosing a numerical value specifies the absolute maximum speed limit allowed."
+        },
+        rw: {
+          q: "Icyapa gishushanyijeho umubare '80' mu uruziga rufite umuzenguruko utukura gishatse kuvuga iki?",
+          options: [
+            "Umuvuduko muto usabwa ni 80 km/h",
+            "Umuvuduko ntarengwa wemewe ni 80 km/h",
+            "Intera ya meto 80 hagati y'ibinyabiziga",
+            "Ingano y'uburemere bwa toni 80"
+          ],
+          exp: "Umubare mu uruziga utukura utanga umuvuduko NTARENGWA mu kinyabiziga."
+        },
+        correct: 1
+      },
+      {
+        id: 19,
+        en: {
+          q: "When an emergency vehicle (ambulance, fire engine, or police convoy) approaches with active sirens:",
+          options: [
+            "Maintain position and accelerate",
+            "Safely yield the right-of-way immediately by pulling over",
+            "Stop abruptly in the middle of the active lane",
+            "Sound your horn continuously to alert others"
+          ],
+          exp: "Drivers must immediately pull over safely to yield right-of-way to emergency vehicles operating sirens."
+        },
+        rw: {
+          q: "Mu gihe amatsinda y'abatabazi cyangwa Imodoka z'Abarwayi (Ambulance/Police) zivuza inzogera z'impuruza biyegereza:",
+          options: [
+            "Kuba imbere yazo ugakomeza umuvuduko",
+            "Kugabanya umuvuduko no guhara inzira vuba bishoboka",
+            "Guhagarara neza hagati mu muhanda",
+            "Kuvuza ihoni vuba vuba"
+          ],
+          exp: "Ibipimo by'ubutabazi bisaba guhara inzira vuba ku binyabiziga birimo inzogera z'impuruza."
+        },
+        correct: 1
+      },
+      {
+        id: 20,
+        en: {
+          q: "Fastening seat belts for drivers and front-seat passengers is:",
+          options: [
+            "Mandatory at all times to prevent severe injury in collisions",
+            "Required only during high-speed highway driving",
+            "Solely intended for aesthetic police compliance",
+            "Optional in compact saloon cars"
+          ],
+          exp: "Wearing seatbelts is legally mandated for safety and drastically reduces injury severity during collisions."
+        },
+        rw: {
+          q: "Umukandara w'umutekano (Seat belt) ku mushoferi n'pasengeri w'imbere:",
+          options: [
+            "Ni itegeko mu gufasha kurokora ubuzima mu mpanuka",
+            "Ushobora gukoreshwa gusa iyo uri ku muhanda munini",
+            "Kugirango ugaragare neza ku bapolisi gusa",
+            "Si ngombwa ku binyabiziga bito"
+          ],
+          exp: "Gukoresha umukandara w'umutekano ni itegeko kuri wese wicaye imbere kuko urinda ibikomere mu mpanuka."
+        },
+        correct: 0
+      }
+    ];
+
+    // Initialize application on window load
+    window.onload = function() {
+      updateLangUI();
+      renderQuestionGrid();
+      loadQuestion(0);
+      startTimer();
+    };
+
+    // Switch between Kinyarwanda and English
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'rw' : 'en';
+      updateLangUI();
+      loadQuestion(currentQuestionIdx);
+
+      if (isSubmitted) {
+        renderReviewList();
+      }
+    }
+
+    // Refresh layout string translation labels
+    function updateLangUI() {
+      const txt = uiTranslations[currentLang];
+      
+      document.getElementById('ui-quiz-title').innerText = txt.quizTitle;
+      document.getElementById('prevBtn').innerText = txt.prev;
+      document.getElementById('nextBtn').innerText = txt.next;
+      document.getElementById('submitBtn').innerText = txt.submit;
+      document.getElementById('ui-timer-subtext').innerText = txt.timerSubtext;
+
+      // Modal strings
+      document.getElementById('modalResultTitle').innerText = txt.resTitle;
+      document.getElementById('modalResultSubtitle').innerText = txt.resSubtitle;
+      document.getElementById('ui-modal-score-label').innerText = txt.scoreLabel;
+      document.getElementById('ui-modal-percentage-label').innerText = txt.percentLabel;
+      document.getElementById('ui-modal-status-label').innerText = txt.statusLabel;
+      document.getElementById('ui-home-btn').innerText = txt.homeBtn;
+      document.getElementById('ui-retry-btn').innerText = txt.retryBtn;
+    }
+
+    // Render 1 to 20 Numbered Grid Matrix
+    function renderQuestionGrid() {
+      const grid = document.getElementById('questionGrid');
+      grid.innerHTML = '';
+
+      for (let i = 0; i < questions.length; i++) {
+        const btn = document.createElement('button');
+        btn.id = `grid-btn-${i}`;
+        btn.innerText = i + 1;
+        btn.className = `w-7 h-7 flex items-center justify-center rounded text-xs font-semibold transition cursor-pointer ${getGridBtnStyle(i)}`;
+        btn.onclick = function() {
+          loadQuestion(i);
+        };
+        grid.appendChild(btn);
+      }
+    }
+
+    // Style logic for interactive question number buttons
+    function getGridBtnStyle(idx) {
+      if (idx === currentQuestionIdx) {
+        return 'bg-figma-badge text-white font-bold ring-2 ring-red-900 shadow';
+      }
+      if (userAnswers[idx] !== null) {
+        return 'bg-slate-700 text-white font-bold';
+      }
+      return 'bg-white text-slate-800 border border-slate-300 hover:bg-slate-200';
+    }
+
+    // Load dynamic question into view
+    function loadQuestion(idx) {
+      currentQuestionIdx = idx;
+      const q = questions[idx][currentLang];
+      const txt = uiTranslations[currentLang];
+      const optionLabels = ['a)', 'b)', 'c)', 'd)'];
+
+      // Update badge label
+      document.getElementById('ui-question-badge').innerText = `${txt.qBadgePrefix} ${idx + 1}/20`;
+      document.getElementById('questionText').innerText = q.q;
+
+      // Populate multiple choices with a), b), c), d) prefixes
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+
+      q.options.forEach((optText, optionIdx) => {
+        const isSelected = userAnswers[idx] === optionIdx;
+        
+        const label = document.createElement('label');
+        label.className = `option-row flex items-start gap-3 p-3.5 rounded border border-transparent cursor-pointer ${
+          isSelected ? 'selected' : ''
+        }`;
+
+        label.innerHTML = `
+          <input type="radio" name="qChoice" value="${optionIdx}" ${isSelected ? 'checked' : ''} 
+                 onchange="selectOption(${idx}, ${optionIdx})" 
+                 class="mt-1 w-4 h-4 text-red-800 focus:ring-red-700 border-slate-400 cursor-pointer">
+          <span class="text-sm md:text-base font-medium text-slate-900 leading-snug">
+            <strong class="mr-1.5 font-normal">${optionLabels[optionIdx]}</strong> ${optText}
+          </span>
+        `;
+        container.appendChild(label);
+      });
+
+      // Pagination controls
+      document.getElementById('prevBtn').disabled = idx === 0;
+      document.getElementById('nextBtn').disabled = idx === questions.length - 1;
+
+      renderQuestionGrid();
+    }
+
+    // Save answer choice
+    function selectOption(qIdx, optionIdx) {
+      userAnswers[qIdx] = optionIdx;
+      renderQuestionGrid();
+      loadQuestion(qIdx);
+    }
+
+    // Next / Previous Navigation
+    function navigateQuestion(step) {
+      const target = currentQuestionIdx + step;
+      if (target >= 0 && target < questions.length) {
+        loadQuestion(target);
+      }
+    }
+
+    // Timer logic
+    function startTimer() {
+      const timerDisplay = document.getElementById('timerDisplay');
+
+      timerInterval = setInterval(() => {
+        quizTimeSeconds--;
+
+        const mins = Math.floor(quizTimeSeconds / 60);
+        const secs = quizTimeSeconds % 60;
+
+        timerDisplay.innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+        if (quizTimeSeconds <= 0) {
+          clearInterval(timerInterval);
+          submitQuiz(true);
+        }
+      }, 1000);
+    }
+
+    // Submit Trigger Confirmation
+    function confirmSubmit() {
+      const unanswered = userAnswers.filter(a => a === null).length;
+      if (unanswered > 0) {
+        const msg = currentLang === 'rw' 
+          ? `Ufite ibibazo ${unanswered} utarasubiza. Wifuza ko twohereza ibizami no kuguma ku musaruro?` 
+          : `You have ${unanswered} unanswered question(s). Are you sure you want to submit your test now?`;
+        if (!confirm(msg)) return;
+      }
+      submitQuiz(false);
+    }
+
+    // Process Test Results
+    function submitQuiz(timedOut = false) {
+      if (isSubmitted) return;
+      isSubmitted = true;
+
+      clearInterval(timerInterval);
+
+      let score = 0;
+      for (let i = 0; i < questions.length; i++) {
+        if (userAnswers[i] === questions[i].correct) {
+          score++;
+        }
+      }
+
+      const percentage = Math.round((score / questions.length) * 100);
+      const isPassed = score >= 12;
+
+      const txt = uiTranslations[currentLang];
+      document.getElementById('scoreVal').innerText = `${score} / ${questions.length}`;
+      document.getElementById('percentageVal').innerText = `${percentage}%`;
+
+      const badge = document.getElementById('statusBadge');
+      const headerBg = document.getElementById('modalHeaderBg');
+
+      if (isPassed) {
+        badge.innerText = txt.passText;
+        badge.className = "inline-block px-4 py-1.5 rounded-full text-sm font-extrabold uppercase mt-1 bg-emerald-100 text-emerald-800 border border-emerald-300";
+        headerBg.className = "bg-emerald-800 text-white p-6 text-center";
+      } else {
+        badge.innerText = txt.failText;
+        badge.className = "inline-block px-4 py-1.5 rounded-full text-sm font-extrabold uppercase mt-1 bg-rose-100 text-rose-800 border border-rose-300";
+        headerBg.className = "bg-slate-900 text-white p-6 text-center";
+      }
+
+      renderReviewList();
+      document.getElementById('resultModal').classList.remove('hidden');
+
+      if (timedOut) {
+        alert(currentLang === 'rw' ? 'Igihe cyakuvanyeho! Ibizami byoherejwe mu buryo bwikora.' : 'Time is up! Your practice test has been automatically submitted.');
+      }
+    }
+
+    // Modal detailed review generator
+    function renderReviewList() {
+      const reviewContainer = document.getElementById('reviewContainer');
+      const txt = uiTranslations[currentLang];
+      const optionLabels = ['a)', 'b)', 'c)', 'd)'];
+      reviewContainer.innerHTML = '';
+
+      questions.forEach((qObj, idx) => {
+        const langData = qObj[currentLang];
+        const userChoice = userAnswers[idx];
+        const correctChoice = qObj.correct;
+        const isCorrect = userChoice === correctChoice;
+
+        const card = document.createElement('div');
+        card.className = `p-4 rounded-xl border ${isCorrect ? 'border-emerald-200 bg-emerald-50/40' : 'border-rose-200 bg-rose-50/40'}`;
+
+        const userAnsText = userChoice !== null ? `${optionLabels[userChoice]} ${langData.options[userChoice]}` : `<i>${txt.unanswered}</i>`;
+        const correctAnsText = `${optionLabels[correctChoice]} ${langData.options[correctChoice]}`;
+
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-2 mb-2">
+            <span class="text-xs font-black uppercase tracking-wider text-slate-500">${txt.qBadgePrefix} #${idx + 1}</span>
+            <span class="text-xs font-extrabold px-2.5 py-0.5 rounded ${isCorrect ? 'bg-emerald-200 text-emerald-900' : 'bg-rose-200 text-rose-900'}">
+              ${isCorrect ? (currentLang === 'rw' ? '✓ Sawa' : '✓ Correct') : (currentLang === 'rw' ? '✗ Icyinyoma' : '✗ Incorrect')}
+            </span>
+          </div>
+          <h4 class="font-extrabold text-slate-900 text-sm md:text-base mb-3">${langData.q}</h4>
+          
+          <div class="space-y-1 text-xs md:text-sm">
+            <p class="${isCorrect ? 'text-emerald-800 font-semibold' : 'text-rose-800 font-semibold'}">
+              <strong>${txt.yourAns}</strong> ${userAnsText}
+            </p>
+            ${!isCorrect ? `<p class="text-emerald-800 font-semibold"><strong>${txt.correctAns}</strong> ${correctAnsText}</p>` : ''}
+          </div>
+
+          <div class="mt-3 pt-2 border-t border-slate-200/60 text-xs text-slate-600 italic">
+            <strong>${txt.explanation}</strong> ${langData.exp}
+          </div>
+        `;
+
+        reviewContainer.appendChild(card);
+      });
+    }
+
+    // Reset Quiz Engine
+    function resetQuiz() {
+      currentQuestionIdx = 0;
+      userAnswers = new Array(20).fill(null);
+      quizTimeSeconds = 20 * 60;
+      isSubmitted = false;
+
+      document.getElementById('resultModal').classList.add('hidden');
+      
+      updateLangUI();
+      renderQuestionGrid();
+      loadQuestion(0);
+      
+      clearInterval(timerInterval);
+      startTimer();
+    }
+  </script>
+</body>
+</html>

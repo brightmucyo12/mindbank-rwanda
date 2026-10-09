@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - MINDbank Rwanda</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, rgba(220, 233, 250, 0.9) 0%, rgba(195, 218, 245, 0.85) 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 20px 40px;
+      color: #000000;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      width: 100%;
+      max-width: 1100px;
+      padding: 25px 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      font-size: 20px;
+      font-weight: 900;
+      color: #000000;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .lang-toggle {
+      background: transparent;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: #000000;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .dashboard-container {
+      width: 100%;
+      max-width: 1100px;
+      margin-top: 30px;
+    }
+
+    .dashboard-title {
+      font-size: 32px;
+      font-weight: 900;
+      font-style: italic;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .dashboard-subtitle {
+      font-size: 16px;
+      font-weight: 500;
+      color: #374151;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      width: 100%;
+    }
+
+    .dash-card {
+      background-color: #FFFFFF;
+      border-radius: 8px;
+      padding: 32px 26px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .dash-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-badge {
+      align-self: flex-start;
+      background-color: #E0E7FF;
+      color: #3730A3;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 15px;
+    }
+
+    .card-badge.free {
+      background-color: #DCFCE7;
+      color: #166534;
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: 800;
+      font-style: italic;
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    .card-description {
+      font-size: 14px;
+      line-height: 1.55;
+      color: #4B5563;
+      margin-bottom: 28px;
+    }
+
+    .card-btn {
+      display: block;
+      text-align: center;
+      background-color: #006400;
+      color: #FFFFFF;
+      font-weight: 800;
+      font-style: italic;
+      text-transform: uppercase;
+      padding: 14px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+    }
+
+    .card-btn:hover {
+      background-color: #004d00;
+    }
+
+    .card-btn.outline {
+      background-color: transparent;
+      border: 2px solid #006400;
+      color: #006400;
+    }
+
+    .card-btn.outline:hover {
+      background-color: #F0FDF4;
+    }
+
+    @media (max-width: 640px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="brand-logo">MindBank</a>
+    <button class="lang-toggle" id="lang-toggle-btn" onclick="toggleLanguage()">Hindura Ururimi / Change language</button>
+  </header>
+
+  <main class="dashboard-container">
+    <h1 class="dashboard-title" id="dash-title">Ikibaho Cy'Amasomo</h1>
+    <p class="dashboard-subtitle" id="dash-subtitle">Hitamo igice cy'imyitozo wifuza kwigaho uyu munsi</p>
+
+    <div class="cards-grid">
+      
+      <!-- Option 1: 300+ Question Bank -->
+      <div class="dash-card">
+        <div>
+          <div class="card-badge" id="badge-pro">FULL ACCESS</div>
+          <h2 class="card-title" id="card1-title">300+ Question Bank</h2>
+          <p class="card-description" id="card1-desc">
+            Baza ubumenyi bwawe mu bibazo 300+ byose bijyanye n'amategeko y'umuhanda n'ibyapa mu Rwanda.
+          </p>
+        </div>
+        <a href="login.html" class="card-btn" id="card1-btn">Open 300+ Questions</a>
+      </div>
+
+      <!-- Option 2: Traffic Signs and Road Rules -->
+      <div class="dash-card">
+        <div>
+          <div class="card-badge" id="badge-rules">AMATEGEKO</div>
+          <h2 class="card-title" id="card2-title">Traffic Signs & Road Rules</h2>
+          <p class="card-description" id="card2-desc">
+            Wige kandi umenye ibyapa byose by'umuhanda mu Rwanda n'amategeko abyerekeyeho mu buryo bworoshye.
+          </p>
+        </div>
+        <a href="rules.html" class="card-btn outline" id="card2-btn">View Traffic Signs</a>
+      </div>
+
+      <!-- Option 3: Free Practice Test -->
+      <div class="dash-card">
+        <div>
+          <div class="card-badge free" id="badge-free">KUBUNTU</div>
+          <h2 class="card-title" id="card3-title">Free Practice Test</h2>
+          <p class="card-description" id="card3-desc">
+            Kora ikizami cy'imyitozo cy'ibibazo 20 hamwe n'isaha y'iminota 20 ubashe kureba urwego rwawe.
+          </p>
+        </div>
+        <a href="practice.html" class="card-btn" id="card3-btn">Start Free Test</a>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    let currentLang = localStorage.getItem('preferredLang') || 'rw';
+
+    const translations = {
+      rw: {
+        title: "Ikibaho Cy'Amasomo",
+        subtitle: "Hitamo igice cy'imyitozo wifuza kwigaho uyu munsi",
+        card1Title: "300+ Question Bank",
+        card1Desc: "Baza ubumenyi bwawe mu bibazo 300+ byose bijyanye n'amategeko y'umuhanda n'ibyapa mu Rwanda.",
+        card1Btn: "Open 300+ Questions",
+        card2Title: "Traffic Signs & Road Rules",
+        card2Desc: "Wige kandi umenye ibyapa byose by'umuhanda mu Rwanda n'amategeko abyerekeyeho mu buryo bworoshye.",
+        card2Btn: "View Traffic Signs",
+        card3Title: "Free Practice Test",
+        card3Desc: "Kora ikizami cy'imyitozo cy'ibibazo 20 hamwe n'isaha y'iminota 20 ubashe kureba urwego rwawe.",
+        card3Btn: "Start Free Test",
+        badgeFree: "KUBUNTU"
+      },
+      en: {
+        title: "Free Tier Dashboard",
+        subtitle: "Select an option below to start practicing for your driving license exam",
+        card1Title: "300+ Question Bank",
+        card1Desc: "Access over 300 practice questions covering all Rwandan traffic rules, warnings, and road regulations.",
+        card1Btn: "Open 300+ Questions",
+        card2Title: "Traffic Signs & Road Rules",
+        card2Desc: "Study and master all official Rwandan traffic signs, warnings, mandatory rules, and road guidelines.",
+        card2Btn: "View Traffic Signs",
+        card3Title: "Free Practice Test",
+        card3Desc: "Take a realistic timed practice test with 20 questions and a 20-minute countdown timer.",
+        card3Btn: "Start Free Test",
+        badgeFree: "FREE TIER"
+      }
+    };
+
+    function updateLanguageUI() {
+      const t = translations[currentLang];
+      document.getElementById('dash-title').innerText = t.title;
+      document.getElementById('dash-subtitle').innerText = t.subtitle;
+      document.getElementById('card1-title').innerText = t.card1Title;
+      document.getElementById('card1-desc').innerText = t.card1Desc;
+      document.getElementById('card1-btn').innerText = t.card1Btn;
+      document.getElementById('card2-title').innerText = t.card2Title;
+      document.getElementById('card2-desc').innerText = t.card2Desc;
+      document.getElementById('card2-btn').innerText = t.card2Btn;
+      document.getElementById('card3-title').innerText = t.card3Title;
+      document.getElementById('card3-desc').innerText = t.card3Desc;
+      document.getElementById('card3-btn').innerText = t.card3Btn;
+      document.getElementById('badge-free').innerText = t.badgeFree;
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'rw' ? 'en' : 'rw';
+      localStorage.setItem('preferredLang', currentLang);
+      updateLanguageUI();
+    }
+
+    updateLanguageUI();
+  </script>
+
+</body>
+</html>

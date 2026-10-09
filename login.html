@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - MINDbank Rwanda</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    /* CLEAR SEMI-TRANSPARENT BLUE PAGE BACKGROUND */
+    body {
+      background: linear-gradient(135deg, rgba(220, 233, 250, 0.9) 0%, rgba(195, 218, 245, 0.85) 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 20px 40px;
+      color: #000000;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .header-bar {
+      width: 100%;
+      padding: 30px 20px 10px 40px;
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .brand-logo {
+      font-size: 15px;
+      font-weight: 600;
+      color: #000000;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .login-title {
+      font-size: 22px;
+      font-weight: 800;
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #000000;
+    }
+
+    /* Standard Light Gray Card */
+    .login-card {
+      background-color: #F3F4F6;
+      width: 100%;
+      max-width: 480px;
+      padding: 35px 30px;
+      margin-bottom: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-radius: 4px;
+    }
+
+    .form-group {
+      width: 100%;
+      margin-bottom: 22px;
+      text-align: center;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 16px;
+      font-weight: 800;
+      font-style: italic;
+      color: #000000;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .form-input {
+      width: 100%;
+      height: 48px;
+      background-color: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      padding: 0 16px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #000000;
+      outline: none;
+      text-align: center;
+    }
+
+    .form-input::placeholder {
+      color: #9CA3AF;
+      font-weight: 500;
+      letter-spacing: 2px;
+    }
+
+    .login-btn {
+      display: inline-block;
+      background-color: #55E55B;
+      color: #000000;
+      font-size: 16px;
+      font-weight: 900;
+      font-style: italic;
+      text-transform: uppercase;
+      padding: 14px 45px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      margin-top: 10px;
+    }
+
+    .login-btn:hover {
+      background-color: #4BD851;
+    }
+
+    .register-link {
+      font-size: 16px;
+      font-weight: 900;
+      font-style: italic;
+      color: #8B0000;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-align: center;
+    }
+
+    .register-link:hover {
+      color: #600000;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header-bar">
+    <a href="index.html" class="brand-logo">MIND BANK</a>
+  </header>
+
+  <h1 class="login-title">Sign In</h1>
+
+  <form action="#" method="POST" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+    <div class="login-card">
+      <div class="form-group">
+        <label class="form-label" for="phone">Phone number</label>
+        <input type="tel" id="phone" name="phone" class="form-input" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="pin">PIN</label>
+        <input type="password" id="pin" name="pin" maxlength="4" placeholder="XXXX" class="form-input" required>
+      </div>
+
+      <button type="submit" class="login-btn">SIGN IN</button>
+    </div>
+  </form>
+
+  <a href="register.html" class="register-link">Register if you don't have an account</a>
+
+</body>
+</html>
