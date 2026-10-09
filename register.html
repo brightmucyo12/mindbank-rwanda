@@ -143,7 +143,8 @@
       submitBtn.textContent = 'REGISTERING...';
 
       try {
-        const response = await fetch('http://localhost:5000/api/register', {
+        // Pointing directly to your live Render backend service
+        const response = await fetch('https://mindbank-rwanda.onrender.com/api/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -174,7 +175,7 @@
       } catch (err) {
         console.error('Fetch error:', err);
         statusBanner.className = 'status-msg error';
-        statusBanner.textContent = 'Failed to connect to server. Ensure node server.js is running.';
+        statusBanner.textContent = 'Failed to connect to server. Please try again in a few moments.';
         submitBtn.disabled = false;
         submitBtn.textContent = 'REGISTER & PAY';
       }
