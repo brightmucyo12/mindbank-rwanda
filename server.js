@@ -7,14 +7,27 @@ const { Pool } = require('pg');
 
 const app = express();
 
-// 1. Enable CORS for all origins (cors middleware handles OPTIONS preflight automatically)
+// 1. Configure CORS
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  credentials: true
 }));
 
-// 2. Middleware to parse incoming JSON payloads
+// Manual preflight interceptor to guarantee Access-Control headers on OPTIONS requests
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+  
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
+
+// 2. Body Parsing Middleware
 app.use(express.json());
 
 // Serve static frontend files if hosted alongside Express
@@ -24,7 +37,7 @@ app.use(express.static(path.join(__dirname)));
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false // Required for Supabase SSL connections on Render
+    rejectUnauthorized: false // Required for Supabase SSL connection on cloud hosts like Render
   }
 });
 
