@@ -11,10 +11,15 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Serve static frontend files if hosted alongside Express
+app.use(express.static(path.join(__dirname)));
+
 // Supabase PostgreSQL Connection Pool
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: false // Disabled SSL for Supabase connection pooler on port 6543
+  ssl: {
+    rejectUnauthorized: false // Required for Supabase SSL connection on cloud hosts like Render
+  }
 });
 
 // Test Database Connection
@@ -110,5 +115,5 @@ app.post('/api/login', async (req, res) => {
 // Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
