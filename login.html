@@ -168,7 +168,8 @@
 
   <h1 class="login-title">Sign In</h1>
 
-  <form id="loginForm" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+  <!-- Added method="POST" attribute to prevent native browser GET fallback -->
+  <form id="loginForm" method="POST" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
     <div class="login-card">
       <div id="statusBanner" class="status-msg"></div>
 
@@ -192,23 +193,29 @@
     // Pre-fill phone if coming from registration
     const savedPhone = localStorage.getItem('userPhone');
     if (savedPhone) {
-      document.getElementById('phone').value = savedPhone;
+      const phoneInput = document.getElementById('phone');
+      if (phoneInput) phoneInput.value = savedPhone;
     }
 
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      // 1. Immediately prevent default browser navigation / GET submission
       e.preventDefault();
 
       const statusBanner = document.getElementById('statusBanner');
       const submitBtn = document.getElementById('submitBtn');
 
-      const phone = document.getElementById('phone').value.trim();
-      const pin = document.getElementById('pin').value.trim();
+      const phone = document.getElementById('phone')?.value.trim() || '';
+      const pin = document.getElementById('pin')?.value.trim() || '';
 
-      statusBanner.className = 'status-msg';
-      statusBanner.textContent = '';
+      if (statusBanner) {
+        statusBanner.className = 'status-msg';
+        statusBanner.textContent = '';
+      }
 
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'SIGNING IN...';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'SIGNING IN...';
+      }
 
       try {
         const response = await fetch('https://mindbank-rwanda-api.onrender.com/api/login', {
@@ -222,27 +229,39 @@
         const data = await response.json();
 
         if (response.ok) {
-          statusBanner.className = 'status-msg success';
-          statusBanner.textContent = 'Login successful! Redirecting...';
+          if (statusBanner) {
+            statusBanner.className = 'status-msg success';
+            statusBanner.textContent = 'Login successful! Redirecting...';
+          }
 
-          localStorage.setItem('user', JSON.stringify(data.user));
+          if (data.user) {
+            localStorage.setItem('user', JSON.stringify(data.user));
+          }
 
           setTimeout(() => {
-            window.location.href = 'dashboard.html'; // Adjust to target dashboard or index page
+            window.location.href = 'dashboard.html';
           }, 1000);
 
         } else {
-          statusBanner.className = 'status-msg error';
-          statusBanner.textContent = data.error || 'Invalid phone number or PIN.';
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'SIGN IN';
+          if (statusBanner) {
+            statusBanner.className = 'status-msg error';
+            statusBanner.textContent = data.error || 'Invalid phone number or PIN.';
+          }
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'SIGN IN';
+          }
         }
       } catch (err) {
         console.error('Fetch error:', err);
-        statusBanner.className = 'status-msg error';
-        statusBanner.textContent = 'Failed to connect to server. Please try again in a few moments.';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'SIGN IN';
+        if (statusBanner) {
+          statusBanner.className = 'status-msg error';
+          statusBanner.textContent = 'Failed to connect to server. Please try again in a few moments.';
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'SIGN IN';
+        }
       }
     });
   </script>
