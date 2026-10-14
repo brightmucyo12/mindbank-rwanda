@@ -131,12 +131,9 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// 6. Endpoint: Fetch 20 Random Questions (Supports Language Query ?lang=rw)
-
 // 6. Endpoint: Fetch 20 Random Questions
 app.get('/api/questions', async (req, res) => {
   try {
-    // RANDOM() ensures a different batch of 20 questions is picked on every request
     const result = await pool.query(
       'SELECT id, question_text, option_a, option_b, option_c, option_d, correct_answer, category FROM questions ORDER BY RANDOM() LIMIT 20'
     );
@@ -151,7 +148,7 @@ app.get('/api/questions', async (req, res) => {
   }
 });
 
-// 8. Endpoint: Fetch Last 5 Test Results for User
+// 7. Endpoint: Fetch Last 5 Test Results for User
 app.get('/api/results/:userId', async (req, res) => {
   const { userId } = req.params;
 
@@ -182,6 +179,15 @@ app.get('/api/results/:userId', async (req, res) => {
     console.error('Error fetching results:', err);
     return res.status(500).json({ error: 'Internal server error.' });
   }
+});
+
+// 8. Explicit PWA Icon Routes
+app.get('/icon-192.png', (req, res) => {
+  res.sendFile(path.join(__dirname, 'icon-192.png'));
+});
+
+app.get('/icon-512.png', (req, res) => {
+  res.sendFile(path.join(__dirname, 'icon-512.png'));
 });
 
 // 9. Start Server
