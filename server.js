@@ -131,7 +131,24 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// 6. Start Server
+// 6. Endpoint: Fetch Questions for Quiz & Practice Tests
+app.get('/api/questions', async (req, res) => {
+  try {
+    const result = await pool.query(
+      'SELECT id, question_text, option_a, option_b, option_c, option_d, correct_answer, category FROM questions ORDER BY id ASC'
+    );
+    
+    return res.json({
+      success: true,
+      questions: result.rows
+    });
+  } catch (err) {
+    console.error('Error fetching questions:', err);
+    return res.status(500).json({ error: 'Internal server error.' });
+  }
+});
+
+// 7. Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
