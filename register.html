@@ -45,7 +45,7 @@
   <h1 class="register-title">Register</h1>
 
   <div class="register-container">
-    <form id="registrationForm" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+    <form id="registrationForm" method="POST" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
       <div class="register-card">
         
         <!-- Status Notification Banner -->
@@ -112,24 +112,27 @@
 
   <script>
     document.getElementById('registrationForm').addEventListener('submit', async (e) => {
+      // 1. Immediately block browser native form submission
       e.preventDefault();
 
       const statusBanner = document.getElementById('statusBanner');
       const submitBtn = document.getElementById('submitBtn');
 
-      const phone = document.getElementById('phone').value.trim();
-      const pin = document.getElementById('pin').value.trim();
-      const rePin = document.getElementById('re-pin').value.trim();
+      // Reset banner state safely
+      if (statusBanner) {
+        statusBanner.className = 'status-msg';
+        statusBanner.textContent = '';
+      }
+
+      const phone = document.getElementById('phone')?.value.trim() || '';
+      const pin = document.getElementById('pin')?.value.trim() || '';
+      const rePin = document.getElementById('re-pin')?.value.trim() || '';
       
       const planElement = document.querySelector('input[name="plan"]:checked');
       const plan = planElement ? planElement.value : '';
 
       const paymentElement = document.querySelector('input[name="payment_method"]:checked');
       const payment_method = paymentElement ? paymentElement.value : '';
-
-      // Reset banner state
-      statusBanner.className = 'status-msg';
-      statusBanner.textContent = '';
 
       // Verify PIN match
       if (pin !== rePin) {
@@ -143,7 +146,6 @@
       submitBtn.textContent = 'REGISTERING...';
 
       try {
-        // Updated URL pointing to your active backend host
         const response = await fetch('https://mindbank-rwanda-api.onrender.com/api/register', {
           method: 'POST',
           headers: {
