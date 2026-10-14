@@ -55,7 +55,8 @@
     </div>
 
     <!-- ================= 1. HERO SECTION (FULL SCREEN WITH ROUNDED EDGES & SMALL MARGIN) ================= -->
-    <header id="hero-header" class="w-full bg-[#041a18] text-white p-5 sm:p-8 md:p-12 border-2 border-[#1080d0] rounded-[1.25rem] sm:rounded-[2rem] md:rounded-[2.5rem] shadow-2xl relative overflow-hidden mb-12 sm:mb-16">
+    <!-- Added min-h-[85vh] sm:min-h-[90vh] and flex flex-col justify-between to stretch nicely -->
+    <header id="hero-header" class="w-full min-h-[85vh] sm:min-h-[90vh] bg-[#041a18] text-white p-5 sm:p-8 md:p-12 border-2 border-[#1080d0] rounded-[1.25rem] sm:rounded-[2rem] md:rounded-[2.5rem] shadow-2xl relative overflow-hidden mb-12 sm:mb-16 flex flex-col justify-between">
         
         <div class="max-w-7xl mx-auto w-full">
             <!-- Navigation Bar -->
@@ -105,30 +106,33 @@
                     </div>
                 </div>
             </nav>
-
-            <!-- Hero Content Area -->
-            <div class="mt-8 sm:mt-12 md:mt-16 flex flex-col items-center text-center">
-                <!-- Subtitle Badge -->
-                <div class="bg-[#072a26] text-[#2dd4bf] text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-full border border-[#10423c] mb-6 sm:mb-8 font-medium max-w-full">
-                    Prepare for your Provisional Driving License Today
-                </div>
-
-                <!-- Main Heading -->
-                <h1 class="max-w-3xl text-lg sm:text-2xl lg:text-3xl font-bold leading-relaxed sm:leading-relaxed text-white tracking-wide">
-                    Pass your theory test on the first try. Master real provisional driving license questions with our free, bite-sized practice quizzes and hit the road sooner.
-                </h1>
-
-                <!-- Clickable Central Call-to-Action Box (Vibrant Green) -->
-                <a href="register.html" class="mt-8 sm:mt-10 w-full max-w-lg h-24 sm:h-32 md:h-36 bg-[#059669] hover:bg-[#10b981] active:scale-95 rounded-2xl border-2 border-[#34d399] shadow-xl shadow-[#059669]/30 transition-all duration-200 ease-in-out flex items-center justify-center p-4 group cursor-pointer">
-                    <span class="text-white font-bold text-xl sm:text-2xl md:text-3xl tracking-wide flex items-center gap-3 drop-shadow-md">
-                        Start Free Practice Test
-                        <svg class="w-7 h-7 sm:w-8 sm:h-8 transform group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                        </svg>
-                    </span>
-                </a>
-            </div>
         </div>
+
+        <!-- Hero Content Area (Centered Vertically within the expanded space) -->
+        <div class="max-w-7xl mx-auto w-full my-auto flex flex-col items-center text-center py-8">
+            <!-- Subtitle Badge -->
+            <div class="bg-[#072a26] text-[#2dd4bf] text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-full border border-[#10423c] mb-6 sm:mb-8 font-medium max-w-full">
+                Prepare for your Provisional Driving License Today
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="max-w-3xl text-lg sm:text-2xl lg:text-3xl font-bold leading-relaxed sm:leading-relaxed text-white tracking-wide">
+                Pass your theory test on the first try. Master real provisional driving license questions with our free, bite-sized practice quizzes and hit the road sooner.
+            </h1>
+
+            <!-- Clickable Central Call-to-Action Box (Vibrant Green) -->
+            <a href="register.html" class="mt-8 sm:mt-10 w-full max-w-lg h-24 sm:h-32 md:h-36 bg-[#059669] hover:bg-[#10b981] active:scale-95 rounded-2xl border-2 border-[#34d399] shadow-xl shadow-[#059669]/30 transition-all duration-200 ease-in-out flex items-center justify-center p-4 group cursor-pointer">
+                <span class="text-white font-bold text-xl sm:text-2xl md:text-3xl tracking-wide flex items-center gap-3 drop-shadow-md">
+                    Start Free Practice Test
+                    <svg class="w-7 h-7 sm:w-8 sm:h-8 transform group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </span>
+            </a>
+        </div>
+
+        <!-- Empty spacer div to balance bottom padding nicely in flex layout -->
+        <div></div>
 
     </header>
 
