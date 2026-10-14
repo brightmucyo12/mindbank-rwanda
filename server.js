@@ -131,18 +131,39 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-
-// Endpoint: Fetch 20 Random Questions for a Practice Test
+// 6. Endpoint: Fetch 20 Random Questions (Supports Language Query ?lang=rw)
 app.get('/api/questions', async (req, res) => {
+  const lang = req.query.lang || 'en';
+
   try {
     // RANDOM() ensures a different batch of 20 questions is picked on every request
     const result = await pool.query(
-      'SELECT id, question_text, option_a, option_b, option_c, option_d, correct_answer, category FROM questions ORDER BY RANDOM() LIMIT 20'
+      'SELECT id, question_text, option_a, option_b, option_c, option_d, correct_answer, category, question_text_rw, option_a_rw, option_b_rw, option_c_rw, option_d_rw FROM questions ORDER BY RANDOM() LIMIT 20'
     );
     
+    const formattedQuestions = result.rows.map(q => {
+      // Fallback if dedicated Kinyarwanda columns exist, otherwise serve main question data
+      const questionText = (lang === 'rw' && q.question_text_rw) ? q.question_text_rw : q.question_text;
+      const optA = (lang === 'rw' && q.option_a_rw) ? q.option_a_rw : q.option_a;
+      const optB = (lang === 'rw' && q.option_b_rw) ? q.option_b_rw : q.option_b;
+      const optC = (lang === 'rw' && q.option_c_rw) ? q.option_c_rw : q.option_c;
+      const optD = (lang === 'rw' && q.option_d_rw) ? q.option_d_rw : q.option_d;
+
+      return {
+        id: q.id,
+        category: q.category || 'Amategeko Rusange',
+        question_text: questionText,
+        option_a: optA,
+        option_b: optB,
+        option_c: optC,
+        option_d: optD,
+        correct_answer: q.correct_answer
+      };
+    });
+
     return res.json({
       success: true,
-      questions: result.rows
+      questions: formattedQuestions
     });
   } catch (err) {
     console.error('Error fetching random questions:', err);
@@ -150,9 +171,7 @@ app.get('/api/questions', async (req, res) => {
   }
 });
 
-// 7. Start Server
-const PORT = process.env.PORT || 5000;
-// Endpoint: Save Test Result
+// 7. Endpoint: Save Test Result
 app.post('/api/results', async (req, res) => {
   const { user_id, score, total_questions } = req.body;
 
@@ -174,12 +193,11 @@ app.post('/api/results', async (req, res) => {
   }
 });
 
-// Endpoint: Fetch Last 5 Test Results for User
+// 8. Endpoint: Fetch Last 5 Test Results for User
 app.get('/api/results/:userId', async (req, res) => {
   const { userId } = req.params;
 
   try {
-    // Get last 5 tests
     const history = await pool.query(
       `SELECT score, total_questions, created_at 
        FROM test_results 
@@ -189,7 +207,6 @@ app.get('/api/results/:userId', async (req, res) => {
       [userId]
     );
 
-    // Get aggregated overall stats
     const stats = await pool.query(
       `SELECT COUNT(*) as total_tests, AVG(score) as avg_score 
        FROM test_results 
@@ -208,6 +225,9 @@ app.get('/api/results/:userId', async (req, res) => {
     return res.status(500).json({ error: 'Internal server error.' });
   }
 });
+
+// 9. Start Server
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

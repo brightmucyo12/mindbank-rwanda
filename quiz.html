@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Provisional Mock Exam - MindBank Rwanda</title>
-    <!-- Tailwind CSS -->
+    <title>Mock Exam - MindBank Rwanda</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
@@ -13,101 +14,156 @@
 </head>
 <body class="min-h-screen flex flex-col text-gray-900">
 
-    <!-- Top Bar Navigation with Timer -->
+    <!-- TOP HEADER BAR -->
     <header class="bg-[#041a18] text-white shadow-md sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
-            <a href="dashboard.html" class="text-sm font-bold text-white flex items-center gap-2 hover:text-emerald-400 transition">
-                <span>&larr;</span> Exit Exam
+            <a href="dashboard.html" class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                <span>mindbank</span>
             </a>
             
-            <div class="flex items-center gap-3">
-                <span id="timerDisplay" class="text-xs sm:text-sm font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                    ⏱️ <span id="timeLeft">20:00</span>
-                </span>
-                <span id="progressText" class="text-xs sm:text-sm bg-[#0b332f] px-3 py-1.5 rounded-full text-gray-200 border border-[#13423d]">
-                    Loading...
-                </span>
+            <div class="flex items-center gap-4">
+                <!-- 20 Minute Countdown Timer -->
+                <div class="bg-[#0b332f] border border-[#13423d] px-3.5 py-1.5 rounded-full text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+                    <span>⏱️</span>
+                    <span id="timerDisplay">20:00</span>
+                </div>
+
+                <a href="dashboard.html" id="btnExit" class="text-xs bg-red-600/80 hover:bg-red-600 text-white font-medium px-3.5 py-1.5 rounded-full transition">
+                    Exit Exam
+                </a>
             </div>
         </div>
     </header>
 
-    <!-- Main Quiz Container -->
-    <main class="flex-grow max-w-2xl w-full mx-auto px-4 py-8 flex flex-col justify-center">
-        
-        <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100">
+    <!-- MAIN QUIZ CONTAINER -->
+    <main class="flex-grow max-w-3xl w-full mx-auto px-4 py-8 flex flex-col justify-center">
+
+        <!-- Loading Screen -->
+        <div id="loadingState" class="bg-white rounded-3xl p-10 shadow-sm border border-gray-100 text-center">
+            <div class="inline-block animate-spin rounded-full h-10 w-10 border-4 border-emerald-500 border-t-transparent mb-4"></div>
+            <p id="txtLoading" class="text-gray-600 font-medium text-sm">Preparing your randomized 20-question mock exam...</p>
+        </div>
+
+        <!-- Question Box -->
+        <div id="questionContainer" class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100 hidden">
             
-            <!-- Loading State -->
-            <div id="loadingState" class="text-center py-12">
-                <div class="w-8 h-8 border-4 border-[#059669] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                <p class="text-gray-500 font-medium">Generating your random 20-question exam...</p>
+            <!-- Progress Bar & Category Badge -->
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+                <span id="categoryBadge" class="bg-emerald-50 text-[#059669] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                    General
+                </span>
+                <span id="progressText" class="text-xs font-bold text-gray-400 uppercase tracking-wider">
+                    Question 1 of 20
+                </span>
             </div>
 
-            <!-- Question & Options Section -->
-            <div id="questionContainer" class="hidden">
-                <div class="flex items-center justify-between mb-4">
-                    <span id="categoryBadge" class="text-xs font-bold uppercase tracking-wider bg-emerald-50 text-[#059669] px-3 py-1 rounded-full">
-                        Category
-                    </span>
-                    <span id="scoreTracker" class="text-sm font-semibold text-gray-500">
-                        Score: 0
-                    </span>
-                </div>
+            <!-- Question Text -->
+            <h2 id="questionText" class="text-lg sm:text-xl font-bold text-gray-900 mb-8 leading-snug">
+                Question text will load here...
+            </h2>
 
-                <h2 id="questionText" class="text-lg sm:text-xl font-bold text-gray-900 mb-6 leading-relaxed">
-                    <!-- Question text injected here -->
-                </h2>
-
-                <div id="optionsContainer" class="flex flex-col gap-3 mb-8">
-                    <!-- Option buttons injected here -->
-                </div>
-
-                <div class="flex justify-end pt-4 border-t border-gray-100">
-                    <button id="nextBtn" class="hidden bg-[#059669] hover:bg-[#10b981] text-white font-bold px-8 py-3 rounded-2xl shadow-md transition transform active:scale-95">
-                        Next Question &rarr;
-                    </button>
-                </div>
+            <!-- Answer Options -->
+            <div id="optionsContainer" class="space-y-3.5 mb-8">
+                <!-- Dynamically populated options -->
             </div>
 
-            <!-- Quiz Results State -->
-            <div id="resultContainer" class="hidden text-center py-8">
-                <div id="resultIcon" class="w-20 h-20 bg-emerald-100 text-[#059669] rounded-full flex items-center justify-center mx-auto text-3xl font-extrabold mb-4">
-                    ✓
-                </div>
-                <h2 id="resultTitle" class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">Exam Completed!</h2>
-                <p id="finalScoreText" class="text-gray-600 text-lg mb-8">You scored 0 out of 20</p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="location.reload()" class="bg-[#059669] hover:bg-[#10b981] text-white font-bold px-6 py-3 rounded-2xl transition">
-                        Try Another Test
-                    </button>
-                    <a href="dashboard.html" class="bg-[#041a18] hover:bg-black text-white font-bold px-6 py-3 rounded-2xl transition">
-                        Return to Dashboard
-                    </a>
-                </div>
+            <!-- Next Question Action Button -->
+            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                <span id="scoreTracker" class="text-xs font-bold text-gray-500">
+                    Score: 0
+                </span>
+                <button id="nextBtn" onclick="nextQuestion()" class="hidden bg-[#059669] hover:bg-[#10b981] text-white font-bold text-sm px-6 py-3 rounded-2xl shadow-sm transition">
+                    Next Question →
+                </button>
             </div>
 
         </div>
 
+        <!-- Test Complete Results Screen -->
+        <div id="resultContainer" class="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-gray-100 text-center hidden">
+            <div id="resultIcon" class="text-5xl mb-4">🎉</div>
+            <h2 id="resultTitle" class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">
+                Exam Completed!
+            </h2>
+            <p id="finalScoreText" class="text-lg text-gray-600 font-medium mb-8">
+                You scored 0 out of 20
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="window.location.reload()" id="btnTryAgain" class="bg-[#059669] hover:bg-[#10b981] text-white font-bold text-sm px-8 py-3.5 rounded-2xl shadow-md transition">
+                    Try Another Test
+                </button>
+                <a href="dashboard.html" id="btnReturnDashboard" class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-sm px-8 py-3.5 rounded-2xl transition">
+                    Return to Dashboard
+                </a>
+            </div>
+        </div>
+
     </main>
 
+    <!-- Translations & Exam Logic -->
     <script>
-        // Check if user is logged in
-        const storedUser = localStorage.getItem('user');
-        if (!storedUser) {
-            window.location.href = 'login.html';
-        }
+        const i18n = {
+            en: {
+                exit: "Exit Exam",
+                loading: "Preparing your randomized 20-question mock exam...",
+                scoreLabel: "Score:",
+                nextBtn: "Next Question →",
+                tryAgain: "Try Another Test",
+                dashboard: "Return to Dashboard",
+                completed: "Exam Completed!",
+                timeUp: "Time's Up!",
+                qProgress: "Question",
+                of: "of"
+            },
+            rw: {
+                exit: "Sohoka",
+                loading: "Gukoresha ibibazo 20 by'agateganyo...",
+                scoreLabel: "Amanota:",
+                nextBtn: "Ikibazo Gikurikira →",
+                tryAgain: "Ongera Ugerageze",
+                dashboard: "Subira ku Mpagarara",
+                completed: "Ikizamini Kirangiye!",
+                timeUp: "Igihe Cyarangiye!",
+                qProgress: "Ikibazo",
+                of: "kuri"
+            }
+        };
+
+        const currentLang = localStorage.getItem('lang') || 'en';
+        const t = i18n[currentLang] || i18n.en;
 
         let questions = [];
         let currentIndex = 0;
         let score = 0;
         let answered = false;
-        let timerInterval;
-        let totalSeconds = 20 * 60; // 20 minutes
+        let timerInterval = null;
+        let timeLeft = 20 * 60; // 20 minutes in seconds
+        let currentCorrectKey = '';
 
+        // Apply UI translations
+        document.getElementById('btnExit').textContent = t.exit;
+        document.getElementById('txtLoading').textContent = t.loading;
+        document.getElementById('nextBtn').textContent = t.nextBtn;
+        document.getElementById('btnTryAgain').textContent = t.tryAgain;
+        document.getElementById('btnReturnDashboard').textContent = t.dashboard;
+
+        // Shuffle Options Array Randomly
+        function shuffleArray(array) {
+            let cur = array.length, rand;
+            while (cur !== 0) {
+                rand = Math.floor(Math.random() * cur);
+                cur--;
+                [array[cur], array[rand]] = [array[rand], array[cur]];
+            }
+            return array;
+        }
+
+        // Fetch Questions from API
         async function fetchQuestions() {
             try {
-                const response = await fetch('/api/questions');
-                const data = await response.json();
+                const res = await fetch(`/api/questions?lang=${currentLang}`);
+                const data = await res.json();
 
                 if (data.success && data.questions.length > 0) {
                     questions = data.questions;
@@ -116,34 +172,35 @@
                     startTimer();
                     loadQuestion();
                 } else {
-                    document.getElementById('loadingState').innerHTML = '<p class="text-red-500 font-medium">No questions found in database.</p>';
+                    alert('Failed to load questions. Please refresh.');
                 }
             } catch (err) {
-                console.error('Fetch error:', err);
-                document.getElementById('loadingState').innerHTML = '<p class="text-red-500 font-medium">Failed to connect to backend server.</p>';
+                console.error('Error fetching questions:', err);
             }
         }
 
+        // Timer Countdown
         function startTimer() {
+            const timerDisplay = document.getElementById('timerDisplay');
             timerInterval = setInterval(() => {
-                if (totalSeconds <= 0) {
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (timeLeft <= 0) {
                     clearInterval(timerInterval);
-                    finishTest(true); // Time's up submission
-                    return;
+                    finishTest(true);
                 }
-                totalSeconds--;
-                const minutes = Math.floor(totalSeconds / 60);
-                const seconds = totalSeconds % 60;
-                document.getElementById('timeLeft').textContent = 
-                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             }, 1000);
         }
 
+        // Load Question View
         function loadQuestion() {
             answered = false;
             const q = questions[currentIndex];
 
-            document.getElementById('progressText').textContent = `Question ${currentIndex + 1} of ${questions.length}`;
+            document.getElementById('progressText').textContent = `${t.qProgress} ${currentIndex + 1} ${t.of} ${questions.length}`;
             document.getElementById('categoryBadge').textContent = q.category || 'General';
             document.getElementById('questionText').textContent = q.question_text;
             document.getElementById('nextBtn').classList.add('hidden');
@@ -151,24 +208,33 @@
             const optionsContainer = document.getElementById('optionsContainer');
             optionsContainer.innerHTML = '';
 
-            const options = [
-                { key: 'A', text: q.option_a },
-                { key: 'B', text: q.option_b },
-                { key: 'C', text: q.option_c },
-                { key: 'D', text: q.option_d }
+            // Map standard options
+            let options = [
+                { text: q.option_a, isCorrect: q.correct_answer === 'A' },
+                { text: q.option_b, isCorrect: q.correct_answer === 'B' },
+                { text: q.option_c, isCorrect: q.correct_answer === 'C' },
+                { text: q.option_d, isCorrect: q.correct_answer === 'D' }
             ];
 
-            options.forEach(opt => {
+            // Shuffle option positions on the fly
+            options = shuffleArray(options);
+
+            const displayKeys = ['A', 'B', 'C', 'D'];
+            
+            options.forEach((opt, index) => {
+                const key = displayKeys[index];
+                if (opt.isCorrect) currentCorrectKey = key;
+
                 const btn = document.createElement('button');
                 btn.className = 'w-full text-left p-4 rounded-2xl border border-gray-200 hover:border-[#059669] hover:bg-emerald-50/50 font-medium text-gray-800 transition flex items-center justify-between';
-                btn.innerHTML = `<span><strong class="mr-2 text-[#059669]">${opt.key}.</strong> ${opt.text}</span>`;
-                
-                btn.onclick = () => selectAnswer(opt.key, btn, q.correct_answer);
+                btn.innerHTML = `<span><strong class="mr-2 text-[#059669]">${key}.</strong> ${opt.text}</span>`;
+                btn.onclick = () => selectAnswer(key, opt.isCorrect);
                 optionsContainer.appendChild(btn);
             });
         }
 
-        function selectAnswer(selectedKey, selectedBtn, correctKey) {
+        // Answer Selection Logic
+        function selectAnswer(selectedKey, isCorrect) {
             if (answered) return;
             answered = true;
 
@@ -178,65 +244,68 @@
                 btn.disabled = true;
                 const key = btn.querySelector('strong').textContent.replace('.', '').trim();
                 
-                if (key === correctKey) {
+                if (key === currentCorrectKey) {
                     btn.className = 'w-full text-left p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50 font-semibold text-emerald-900';
-                } else if (key === selectedKey && key !== correctKey) {
+                } else if (key === selectedKey && !isCorrect) {
                     btn.className = 'w-full text-left p-4 rounded-2xl border-2 border-red-500 bg-red-50 font-semibold text-red-900';
                 } else {
                     btn.className = 'w-full text-left p-4 rounded-2xl border border-gray-200 opacity-50 font-medium text-gray-500';
                 }
             });
 
-            if (selectedKey === correctKey) {
+            if (isCorrect) {
                 score++;
-                document.getElementById('scoreTracker').textContent = `Score: ${score}`;
+                document.getElementById('scoreTracker').textContent = `${t.scoreLabel} ${score}`;
             }
 
             document.getElementById('nextBtn').classList.remove('hidden');
         }
 
-        document.getElementById('nextBtn').onclick = () => {
+        // Advance to Next Question
+        function nextQuestion() {
             currentIndex++;
             if (currentIndex < questions.length) {
                 loadQuestion();
             } else {
                 finishTest(false);
             }
-        };
-
-       async function finishTest(timeUp) {
-    clearInterval(timerInterval);
-    document.getElementById('questionContainer').classList.add('hidden');
-    document.getElementById('resultContainer').classList.remove('hidden');
-    document.getElementById('progressText').textContent = 'Test Complete';
-
-    if (timeUp) {
-        document.getElementById('resultTitle').textContent = "Time's Up!";
-        document.getElementById('resultIcon').textContent = "⌛";
-    }
-
-    document.getElementById('finalScoreText').textContent = `You scored ${score} out of ${questions.length}`;
-
-    // Save result to Supabase
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.id) {
-        try {
-            await fetch('/api/results', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    user_id: user.id,
-                    score: score,
-                    total_questions: questions.length
-                })
-            });
-        } catch (err) {
-            console.error('Error saving score:', err);
         }
-    }
-}
 
-        // Start fetching questions on load
+        // Complete Exam & Persist Score
+        async function finishTest(timeUp) {
+            clearInterval(timerInterval);
+            document.getElementById('questionContainer').classList.add('hidden');
+            document.getElementById('resultContainer').classList.remove('hidden');
+
+            if (timeUp) {
+                document.getElementById('resultTitle').textContent = t.timeUp;
+                document.getElementById('resultIcon').textContent = "⌛";
+            } else {
+                document.getElementById('resultTitle').textContent = t.completed;
+            }
+
+            document.getElementById('finalScoreText').textContent = `${t.scoreLabel} ${score} / ${questions.length}`;
+
+            // Save Score to Supabase
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user && user.id) {
+                try {
+                    await fetch('/api/results', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            user_id: user.id,
+                            score: score,
+                            total_questions: questions.length
+                        })
+                    });
+                } catch (err) {
+                    console.error('Error saving score:', err);
+                }
+            }
+        }
+
+        // Start Exam on Page Load
         fetchQuestions();
     </script>
 </body>
