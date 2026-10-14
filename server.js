@@ -131,11 +131,13 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// 6. Endpoint: Fetch Questions for Quiz & Practice Tests
+
+// Endpoint: Fetch 20 Random Questions for a Practice Test
 app.get('/api/questions', async (req, res) => {
   try {
+    // RANDOM() ensures a different batch of 20 questions is picked on every request
     const result = await pool.query(
-      'SELECT id, question_text, option_a, option_b, option_c, option_d, correct_answer, category FROM questions ORDER BY id ASC'
+      'SELECT id, question_text, option_a, option_b, option_c, option_d, correct_answer, category FROM questions ORDER BY RANDOM() LIMIT 20'
     );
     
     return res.json({
@@ -143,7 +145,7 @@ app.get('/api/questions', async (req, res) => {
       questions: result.rows
     });
   } catch (err) {
-    console.error('Error fetching questions:', err);
+    console.error('Error fetching random questions:', err);
     return res.status(500).json({ error: 'Internal server error.' });
   }
 });

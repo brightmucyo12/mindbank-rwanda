@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Practice Quiz - MindBank Rwanda</title>
+    <title>Provisional Mock Exam - MindBank Rwanda</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -12,30 +13,36 @@
 </head>
 <body class="min-h-screen flex flex-col text-gray-900">
 
-    <!-- Navbar -->
+    <!-- Top Bar Navigation with Timer -->
     <header class="bg-[#041a18] text-white shadow-md sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
-            <a href="dashboard.html" class="text-lg font-bold text-white flex items-center gap-2">
-                <span>&larr;</span> Back to Dashboard
+            <a href="dashboard.html" class="text-sm font-bold text-white flex items-center gap-2 hover:text-emerald-400 transition">
+                <span>&larr;</span> Exit Exam
             </a>
-            <span id="progressText" class="text-xs sm:text-sm bg-[#0b332f] px-3 py-1.5 rounded-full text-gray-200 border border-[#13423d]">
-                Loading...
-            </span>
+            
+            <div class="flex items-center gap-3">
+                <span id="timerDisplay" class="text-xs sm:text-sm font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                    ⏱️ <span id="timeLeft">20:00</span>
+                </span>
+                <span id="progressText" class="text-xs sm:text-sm bg-[#0b332f] px-3 py-1.5 rounded-full text-gray-200 border border-[#13423d]">
+                    Loading...
+                </span>
+            </div>
         </div>
     </header>
 
-    <!-- Quiz Card Container -->
+    <!-- Main Quiz Container -->
     <main class="flex-grow max-w-2xl w-full mx-auto px-4 py-8 flex flex-col justify-center">
         
         <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100">
             
-            <!-- Loading Screen -->
+            <!-- Loading State -->
             <div id="loadingState" class="text-center py-12">
                 <div class="w-8 h-8 border-4 border-[#059669] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                <p class="text-gray-500 font-medium">Fetching provisional exam questions...</p>
+                <p class="text-gray-500 font-medium">Generating your random 20-question exam...</p>
             </div>
 
-            <!-- Question Screen -->
+            <!-- Question & Options Section -->
             <div id="questionContainer" class="hidden">
                 <div class="flex items-center justify-between mb-4">
                     <span id="categoryBadge" class="text-xs font-bold uppercase tracking-wider bg-emerald-50 text-[#059669] px-3 py-1 rounded-full">
@@ -47,11 +54,11 @@
                 </div>
 
                 <h2 id="questionText" class="text-lg sm:text-xl font-bold text-gray-900 mb-6 leading-relaxed">
-                    <!-- Question injected via JS -->
+                    <!-- Question text injected here -->
                 </h2>
 
                 <div id="optionsContainer" class="flex flex-col gap-3 mb-8">
-                    <!-- Options injected via JS -->
+                    <!-- Option buttons injected here -->
                 </div>
 
                 <div class="flex justify-end pt-4 border-t border-gray-100">
@@ -61,17 +68,17 @@
                 </div>
             </div>
 
-            <!-- Completion Screen -->
+            <!-- Quiz Results State -->
             <div id="resultContainer" class="hidden text-center py-8">
-                <div class="w-20 h-20 bg-emerald-100 text-[#059669] rounded-full flex items-center justify-center mx-auto text-3xl font-extrabold mb-4">
+                <div id="resultIcon" class="w-20 h-20 bg-emerald-100 text-[#059669] rounded-full flex items-center justify-center mx-auto text-3xl font-extrabold mb-4">
                     ✓
                 </div>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">Practice Completed!</h2>
-                <p id="finalScoreText" class="text-gray-600 text-lg mb-8">You scored 0 out of 0</p>
+                <h2 id="resultTitle" class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">Exam Completed!</h2>
+                <p id="finalScoreText" class="text-gray-600 text-lg mb-8">You scored 0 out of 20</p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <button onclick="location.reload()" class="bg-[#059669] hover:bg-[#10b981] text-white font-bold px-6 py-3 rounded-2xl transition">
-                        Retake Test
+                        Try Another Test
                     </button>
                     <a href="dashboard.html" class="bg-[#041a18] hover:bg-black text-white font-bold px-6 py-3 rounded-2xl transition">
                         Return to Dashboard
@@ -84,7 +91,7 @@
     </main>
 
     <script>
-        // Check session authentication
+        // Check if user is logged in
         const storedUser = localStorage.getItem('user');
         if (!storedUser) {
             window.location.href = 'login.html';
@@ -94,6 +101,8 @@
         let currentIndex = 0;
         let score = 0;
         let answered = false;
+        let timerInterval;
+        let totalSeconds = 20 * 60; // 20 minutes
 
         async function fetchQuestions() {
             try {
@@ -104,6 +113,7 @@
                     questions = data.questions;
                     document.getElementById('loadingState').classList.add('hidden');
                     document.getElementById('questionContainer').classList.remove('hidden');
+                    startTimer();
                     loadQuestion();
                 } else {
                     document.getElementById('loadingState').innerHTML = '<p class="text-red-500 font-medium">No questions found in database.</p>';
@@ -112,6 +122,21 @@
                 console.error('Fetch error:', err);
                 document.getElementById('loadingState').innerHTML = '<p class="text-red-500 font-medium">Failed to connect to backend server.</p>';
             }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (totalSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    finishTest(true); // Time's up submission
+                    return;
+                }
+                totalSeconds--;
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = totalSeconds % 60;
+                document.getElementById('timeLeft').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
         }
 
         function loadQuestion() {
@@ -175,13 +200,26 @@
             if (currentIndex < questions.length) {
                 loadQuestion();
             } else {
-                document.getElementById('questionContainer').classList.add('hidden');
-                document.getElementById('resultContainer').classList.remove('hidden');
-                document.getElementById('progressText').textContent = 'Test Complete';
-                document.getElementById('finalScoreText').textContent = `You scored ${score} out of ${questions.length}`;
+                finishTest(false);
             }
         };
 
+        function finishTest(timeUp) {
+            clearInterval(timerInterval);
+            document.getElementById('questionContainer').classList.add('hidden');
+            document.getElementById('resultContainer').classList.remove('hidden');
+            document.getElementById('progressText').textContent = 'Test Complete';
+
+            if (timeUp) {
+                document.getElementById('resultTitle').textContent = "Time's Up!";
+                document.getElementById('resultIcon').textContent = "⌛";
+            }
+
+            const passed = score >= 12; // Provisional exam passing mark rule example (or adjust as needed)
+            document.getElementById('finalScoreText').textContent = `You scored ${score} out of ${questions.length}`;
+        }
+
+        // Start fetching questions on load
         fetchQuestions();
     </script>
 </body>
