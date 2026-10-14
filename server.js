@@ -152,6 +152,62 @@ app.get('/api/questions', async (req, res) => {
 
 // 7. Start Server
 const PORT = process.env.PORT || 5000;
+// Endpoint: Save Test Result
+app.post('/api/results', async (req, res) => {
+  const { user_id, score, total_questions } = req.body;
+
+  if (!user_id || score === undefined) {
+    return res.status(400).json({ error: 'User ID and score are required.' });
+  }
+
+  try {
+    const result = await pool.query(
+      `INSERT INTO test_results (user_id, score, total_questions) 
+       VALUES ($1, $2, $3) RETURNING id, score, total_questions, created_at`,
+      [user_id, score, total_questions || 20]
+    );
+
+    return res.status(201).json({ success: true, result: result.rows[0] });
+  } catch (err) {
+    console.error('Error saving result:', err);
+    return res.status(500).json({ error: 'Internal server error.' });
+  }
+});
+
+// Endpoint: Fetch Last 5 Test Results for User
+app.get('/api/results/:userId', async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    // Get last 5 tests
+    const history = await pool.query(
+      `SELECT score, total_questions, created_at 
+       FROM test_results 
+       WHERE user_id = $1 
+       ORDER BY created_at DESC 
+       LIMIT 5`,
+      [userId]
+    );
+
+    // Get aggregated overall stats
+    const stats = await pool.query(
+      `SELECT COUNT(*) as total_tests, AVG(score) as avg_score 
+       FROM test_results 
+       WHERE user_id = $1`,
+      [userId]
+    );
+
+    return res.json({
+      success: true,
+      history: history.rows,
+      total_tests: parseInt(stats.rows[0].total_tests || 0),
+      avg_score: parseFloat(stats.rows[0].avg_score || 0).toFixed(1)
+    });
+  } catch (err) {
+    console.error('Error fetching results:', err);
+    return res.status(500).json({ error: 'Internal server error.' });
+  }
+});
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

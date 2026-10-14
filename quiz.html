@@ -204,20 +204,37 @@
             }
         };
 
-        function finishTest(timeUp) {
-            clearInterval(timerInterval);
-            document.getElementById('questionContainer').classList.add('hidden');
-            document.getElementById('resultContainer').classList.remove('hidden');
-            document.getElementById('progressText').textContent = 'Test Complete';
+       async function finishTest(timeUp) {
+    clearInterval(timerInterval);
+    document.getElementById('questionContainer').classList.add('hidden');
+    document.getElementById('resultContainer').classList.remove('hidden');
+    document.getElementById('progressText').textContent = 'Test Complete';
 
-            if (timeUp) {
-                document.getElementById('resultTitle').textContent = "Time's Up!";
-                document.getElementById('resultIcon').textContent = "⌛";
-            }
+    if (timeUp) {
+        document.getElementById('resultTitle').textContent = "Time's Up!";
+        document.getElementById('resultIcon').textContent = "⌛";
+    }
 
-            const passed = score >= 12; // Provisional exam passing mark rule example (or adjust as needed)
-            document.getElementById('finalScoreText').textContent = `You scored ${score} out of ${questions.length}`;
+    document.getElementById('finalScoreText').textContent = `You scored ${score} out of ${questions.length}`;
+
+    // Save result to Supabase
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.id) {
+        try {
+            await fetch('/api/results', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    user_id: user.id,
+                    score: score,
+                    total_questions: questions.length
+                })
+            });
+        } catch (err) {
+            console.error('Error saving score:', err);
         }
+    }
+}
 
         // Start fetching questions on load
         fetchQuestions();
