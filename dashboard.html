@@ -17,12 +17,17 @@
     <!-- TOP NAVIGATION BAR -->
     <header class="bg-[#041a18] text-white shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href="index.html" class="text-xl sm:text-2xl font-bold tracking-tight text-white">
+            <a href="index.html" id="navBrand" class="text-xl sm:text-2xl font-bold tracking-tight text-white">
                 mindbank
             </a>
             
-            <div class="flex items-center gap-4">
-                <span id="userPhoneDisplay" class="text-xs sm:text-sm bg-[#0b332f] px-3 py-1.5 rounded-full border border-[#13423d] text-gray-200">
+            <div class="flex items-center gap-3">
+                <!-- Language Toggle Button -->
+                <button id="langToggleBtn" onclick="toggleLanguage()" class="bg-[#0b332f] hover:bg-[#13423d] text-emerald-300 border border-[#13423d] text-xs font-bold px-3 py-1.5 rounded-full transition">
+                    🇷🇼 Kinyarwanda
+                </button>
+
+                <span id="userPhoneDisplay" class="text-xs sm:text-sm bg-[#0b332f] px-3 py-1.5 rounded-full border border-[#13423d] text-gray-200 hidden sm:inline">
                     Loading...
                 </span>
                 <button id="logoutBtn" class="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm px-4 py-1.5 rounded-full font-medium transition">
@@ -41,15 +46,15 @@
                 <span id="planBadge" class="inline-block bg-[#059669] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
                     Active Plan: ...
                 </span>
-                <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">
+                <h1 id="txtWelcomeTitle" class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">
                     Welcome back to your Study Hub!
                 </h1>
-                <p class="text-gray-300 text-sm sm:text-base mt-2 max-w-xl">
+                <p id="txtWelcomeSub" class="text-gray-300 text-sm sm:text-base mt-2 max-w-xl">
                     You have full access to over 300+ provisional driving test questions. Practice daily to guarantee your success on the first try.
                 </p>
             </div>
             <div class="relative z-10 w-full md:w-auto">
-                <a href="quiz.html" class="block text-center bg-[#059669] hover:bg-[#10b981] text-white font-bold text-base px-8 py-3.5 rounded-2xl shadow-lg transition transform active:scale-95">
+                <a href="quiz.html" id="txtStartExamBtn" class="block text-center bg-[#059669] hover:bg-[#10b981] text-white font-bold text-base px-8 py-3.5 rounded-2xl shadow-lg transition transform active:scale-95">
                     Start Practice Test
                 </a>
             </div>
@@ -61,7 +66,7 @@
             <!-- Stat Card 1 -->
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
                 <div>
-                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Tests Completed</span>
+                    <span id="txtTestsCompletedLabel" class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Tests Completed</span>
                     <h3 id="statTotalTests" class="text-3xl font-extrabold text-[#041a18] mt-2">0</h3>
                 </div>
                 <div class="mt-4 text-xs text-emerald-600 font-medium">
@@ -72,7 +77,7 @@
             <!-- Stat Card 2 -->
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
                 <div>
-                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Average Score</span>
+                    <span id="txtAvgScoreLabel" class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Average Score</span>
                     <h3 id="statAvgScore" class="text-3xl font-extrabold text-[#041a18] mt-2">-- / 20</h3>
                 </div>
                 <div class="mt-4 text-xs text-gray-500 font-medium">
@@ -83,7 +88,7 @@
             <!-- Stat Card 3 -->
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
                 <div>
-                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Account Status</span>
+                    <span id="txtAccountStatusLabel" class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Account Status</span>
                     <h3 id="accountStatusText" class="text-xl font-bold text-emerald-600 mt-2">Active</h3>
                 </div>
                 <div class="mt-4 text-xs text-gray-500 font-medium">
@@ -97,12 +102,12 @@
         <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 mb-12">
             <div class="flex items-center justify-between mb-6">
                 <div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-gray-900">
+                    <h2 id="txtResultsTitle" class="text-xl sm:text-2xl font-bold text-gray-900">
                         Results
                     </h2>
-                    <p class="text-xs sm:text-sm text-gray-500 mt-1">Your last 5 exam attempts</p>
+                    <p id="txtResultsSub" class="text-xs sm:text-sm text-gray-500 mt-1">Your last 5 exam attempts</p>
                 </div>
-                <span class="text-xs font-bold bg-emerald-50 text-[#059669] px-3 py-1.5 rounded-full">
+                <span id="txtHistoryBadge" class="text-xs font-bold bg-emerald-50 text-[#059669] px-3 py-1.5 rounded-full">
                     History
                 </span>
             </div>
@@ -111,10 +116,10 @@
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="border-b border-gray-100 text-xs font-bold uppercase text-gray-400 tracking-wider">
-                            <th class="py-3 px-4">Date</th>
-                            <th class="py-3 px-4">Score</th>
-                            <th class="py-3 px-4">Percentage</th>
-                            <th class="py-3 px-4 text-right">Status</th>
+                            <th id="thDate" class="py-3 px-4">Date</th>
+                            <th id="thScore" class="py-3 px-4">Score</th>
+                            <th id="thPercentage" class="py-3 px-4">Percentage</th>
+                            <th id="thStatus" class="py-3 px-4 text-right">Status</th>
                         </tr>
                     </thead>
                     <tbody id="resultsList" class="divide-y divide-gray-50 text-sm">
@@ -128,7 +133,7 @@
 
         <!-- PRACTICE MODULES SECTION -->
         <div id="quiz-section" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100">
-            <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
+            <h2 id="txtModulesTitle" class="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
                 Provisional License Modules
             </h2>
 
@@ -138,10 +143,10 @@
                 <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#059669] transition flex flex-col justify-between">
                     <div>
                         <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center font-bold justify-center mb-4 text-lg">01</div>
-                        <h3 class="font-bold text-lg text-gray-900 mb-2">Road Signs & Signals</h3>
-                        <p class="text-sm text-gray-600">Master regulatory signs, warning signs, and priority rules on Rwandan roads.</p>
+                        <h3 id="mod1Title" class="font-bold text-lg text-gray-900 mb-2">Road Signs & Signals</h3>
+                        <p id="mod1Desc" class="text-sm text-gray-600">Master regulatory signs, warning signs, and priority rules on Rwandan roads.</p>
                     </div>
-                    <button onclick="window.location.href='quiz.html'" class="mt-6 w-full bg-gray-900 hover:bg-black text-white py-2.5 rounded-xl font-medium text-sm transition">
+                    <button onclick="window.location.href='quiz.html'" id="mod1Btn" class="mt-6 w-full bg-gray-900 hover:bg-black text-white py-2.5 rounded-xl font-medium text-sm transition">
                         Start Test (20 Questions)
                     </button>
                 </div>
@@ -150,10 +155,10 @@
                 <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#059669] transition flex flex-col justify-between">
                     <div>
                         <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center font-bold justify-center mb-4 text-lg">02</div>
-                        <h3 class="font-bold text-lg text-gray-900 mb-2">Right of Way & Speed</h3>
-                        <p class="text-sm text-gray-600">Learn intersection priorities, speed limits, and overtaking regulations.</p>
+                        <h3 id="mod2Title" class="font-bold text-lg text-gray-900 mb-2">Right of Way & Speed</h3>
+                        <p id="mod2Desc" class="text-sm text-gray-600">Learn intersection priorities, speed limits, and overtaking regulations.</p>
                     </div>
-                    <button onclick="window.location.href='quiz.html'" class="mt-6 w-full bg-gray-900 hover:bg-black text-white py-2.5 rounded-xl font-medium text-sm transition">
+                    <button onclick="window.location.href='quiz.html'" id="mod2Btn" class="mt-6 w-full bg-gray-900 hover:bg-black text-white py-2.5 rounded-xl font-medium text-sm transition">
                         Start Test (20 Questions)
                     </button>
                 </div>
@@ -162,10 +167,10 @@
                 <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#059669] transition flex flex-col justify-between">
                     <div>
                         <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center font-bold justify-center mb-4 text-lg">03</div>
-                        <h3 class="font-bold text-lg text-gray-900 mb-2">Comprehensive Mock Exam</h3>
-                        <p class="text-sm text-gray-600">Full random 20-question timed exam simulating the official provisional test.</p>
+                        <h3 id="mod3Title" class="font-bold text-lg text-gray-900 mb-2">Comprehensive Mock Exam</h3>
+                        <p id="mod3Desc" class="text-sm text-gray-600">Full random 20-question timed exam simulating the official provisional test.</p>
                     </div>
-                    <button onclick="window.location.href='quiz.html'" class="mt-6 w-full bg-[#059669] hover:bg-[#10b981] text-white py-2.5 rounded-xl font-medium text-sm transition">
+                    <button onclick="window.location.href='quiz.html'" id="mod3Btn" class="mt-6 w-full bg-[#059669] hover:bg-[#10b981] text-white py-2.5 rounded-xl font-medium text-sm transition">
                         Take Mock Exam
                     </button>
                 </div>
@@ -176,13 +181,67 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-white border-t border-gray-100 py-6 text-center text-sm text-gray-500">
+    <footer id="footerText" class="bg-white border-t border-gray-100 py-6 text-center text-sm text-gray-500">
         &copy; 2026 MindBank. All Rights Reserved.
     </footer>
 
+    <!-- Load Translations Script -->
+    <script src="translations.js"></script>
+
     <!-- DASHBOARD SESSION & INTERACTION SCRIPT -->
     <script>
-        // 1. Check user session
+        // Language management
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        function updateTexts() {
+            const t = translations[currentLang];
+            if (!t) return;
+
+            document.getElementById('logoutBtn').textContent = t.logout;
+            document.getElementById('txtWelcomeTitle').textContent = t.welcomeTitle;
+            document.getElementById('txtWelcomeSub').textContent = t.welcomeSub;
+            document.getElementById('txtStartExamBtn').textContent = t.startExamBtn;
+            document.getElementById('txtTestsCompletedLabel').textContent = t.testsCompleted;
+            document.getElementById('txtAvgScoreLabel').textContent = t.avgScore;
+            document.getElementById('txtAccountStatusLabel').textContent = t.accountStatus;
+            document.getElementById('accountStatusText').textContent = t.activeStatusText;
+            document.getElementById('txtResultsTitle').textContent = t.resultsTitle;
+            document.getElementById('txtResultsSub').textContent = t.resultsSub;
+            document.getElementById('txtHistoryBadge').textContent = t.historyLabel;
+            document.getElementById('thDate').textContent = t.tableDate;
+            document.getElementById('thScore').textContent = t.tableScore;
+            document.getElementById('thPercentage').textContent = t.tablePercentage;
+            document.getElementById('thStatus').textContent = t.tableStatus;
+            document.getElementById('txtModulesTitle').textContent = t.modulesTitle;
+            document.getElementById('mod1Title').textContent = t.mod1Title;
+            document.getElementById('mod1Desc').textContent = t.mod1Desc;
+            document.getElementById('mod1Btn').textContent = t.mod1Btn;
+            document.getElementById('mod2Title').textContent = t.mod2Title;
+            document.getElementById('mod2Desc').textContent = t.mod2Desc;
+            document.getElementById('mod2Btn').textContent = t.mod2Btn;
+            document.getElementById('mod3Title').textContent = t.mod3Title;
+            document.getElementById('mod3Desc').textContent = t.mod3Desc;
+            document.getElementById('mod3Btn').textContent = t.mod3Btn;
+            document.getElementById('footerText').innerHTML = t.footerText;
+
+            const btn = document.getElementById('langToggleBtn');
+            if (currentLang === 'rw') {
+                btn.textContent = "🇬🇧 English";
+            } else {
+                btn.textContent = "🇷🇼 Kinyarwanda";
+            }
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'rw' : 'en';
+            localStorage.setItem('lang', currentLang);
+            updateTexts();
+        }
+
+        // Initialize language on load
+        updateTexts();
+
+        // Check user session
         const storedUser = localStorage.getItem('user');
         
         if (!storedUser) {
@@ -190,7 +249,6 @@
         } else {
             try {
                 const user = JSON.parse(storedUser);
-                
                 const phoneDisplay = document.getElementById('userPhoneDisplay');
                 const planBadge = document.getElementById('planBadge');
 
@@ -200,10 +258,9 @@
 
                 if (planBadge && user.plan) {
                     const formattedPlan = user.plan.charAt(0).toUpperCase() + user.plan.slice(1);
-                    planBadge.textContent = `Active Plan: ${formattedPlan}`;
+                    planBadge.textContent = `${translations[currentLang].activePlan} ${formattedPlan}`;
                 }
 
-                // Fetch test history from Supabase
                 fetchUserResults(user.id);
 
             } catch (err) {
@@ -213,7 +270,6 @@
             }
         }
 
-        // 2. Fetch scores and update Dashboard
         async function fetchUserResults(userId) {
             try {
                 const res = await fetch(`/api/results/${userId}`);
@@ -243,7 +299,7 @@
                         });
 
                         const percentage = Math.round((item.score / item.total_questions) * 100);
-                        const passed = item.score >= 12; // Standard 60% pass threshold
+                        const passed = item.score >= 12;
 
                         const tr = document.createElement('tr');
                         tr.className = 'hover:bg-gray-50/80 transition';
@@ -253,7 +309,7 @@
                             <td class="py-3 px-4 font-semibold text-gray-600">${percentage}%</td>
                             <td class="py-3 px-4 text-right">
                                 <span class="px-3 py-1 rounded-full text-xs font-bold ${passed ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}">
-                                    ${passed ? 'PASSED' : 'FAILED'}
+                                    ${passed ? (currentLang === 'rw' ? 'BYATSINZE' : 'PASSED') : (currentLang === 'rw' ? 'BYATSIYE' : 'FAILED')}
                                 </span>
                             </td>
                         `;
@@ -265,7 +321,6 @@
             }
         }
 
-        // 3. Handle Logout Button
         document.getElementById('logoutBtn').addEventListener('click', () => {
             localStorage.removeItem('user');
             localStorage.removeItem('userPhone');
