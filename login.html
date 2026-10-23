@@ -102,6 +102,24 @@
       letter-spacing: 2px;
     }
 
+    .forgot-container {
+      width: 100%;
+      text-align: right;
+      margin-top: -12px;
+      margin-bottom: 20px;
+    }
+
+    .forgot-link {
+      font-size: 13px;
+      font-weight: 700;
+      color: #3B82F6;
+      text-decoration: none;
+    }
+
+    .forgot-link:hover {
+      text-decoration: underline;
+    }
+
     .login-btn {
       display: inline-block;
       background-color: #55E55B;
@@ -163,12 +181,11 @@
 <body>
 
   <header class="header-bar">
-    <a href="index.html" class="brand-logo">MIND BANK</a>
+    <a href="login.html" class="brand-logo">MIND BANK</a>
   </header>
 
   <h1 class="login-title">Sign In</h1>
 
-  <!-- Added method="POST" attribute to prevent native browser GET fallback -->
   <form id="loginForm" method="POST" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
     <div class="login-card">
       <div id="statusBanner" class="status-msg"></div>
@@ -178,9 +195,13 @@
         <input type="tel" id="phone" name="phone" class="form-input" placeholder="078XXXXXXX" maxlength="10" required>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" style="margin-bottom: 5px;">
         <label class="form-label" for="pin">PIN</label>
         <input type="password" id="pin" name="pin" maxlength="4" placeholder="XXXX" class="form-input" required>
+      </div>
+
+      <div class="forgot-container">
+        <a href="forgotpin.html" class="forgot-link">Forgot PIN?</a>
       </div>
 
       <button type="submit" id="submitBtn" class="login-btn">SIGN IN</button>
