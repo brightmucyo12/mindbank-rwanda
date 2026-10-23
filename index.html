@@ -205,26 +205,50 @@
             Frequently asked Questions
         </h2>
 
-        <div class="flex flex-col gap-5 sm:gap-6 text-black font-semibold text-sm sm:text-base md:text-lg">
+        <div class="flex flex-col gap-6 text-black">
             
-            <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
-                <span>What is MindBank</span>
-                <span class="text-base sm:text-lg">+</span>
+            <!-- FAQ Item 1 -->
+            <div class="border-b border-gray-200 pb-4">
+                <div class="faq-toggle flex items-center justify-between cursor-pointer font-bold text-sm sm:text-base md:text-lg hover:text-[#059669] transition">
+                    <span>What is MindBank?</span>
+                    <span class="faq-icon text-xl font-bold">+</span>
+                </div>
+                <div class="faq-content hidden mt-2 text-gray-600 text-sm sm:text-base leading-relaxed">
+                    MindBank Rwanda is an online digital preparation platform designed specifically to help candidates pass their Rwandan provisional driving license theory test on the first try through realistic practice exams and detailed tracking.
+                </div>
             </div>
 
-            <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
-                <span>What is included in my paid subscription?</span>
-                <span class="text-base sm:text-lg">+</span>
+            <!-- FAQ Item 2 -->
+            <div class="border-b border-gray-200 pb-4">
+                <div class="faq-toggle flex items-center justify-between cursor-pointer font-bold text-sm sm:text-base md:text-lg hover:text-[#059669] transition">
+                    <span>What is included in my paid subscription?</span>
+                    <span class="faq-icon text-xl font-bold">+</span>
+                </div>
+                <div class="faq-content hidden mt-2 text-gray-600 text-sm sm:text-base leading-relaxed">
+                    Your subscription gives you full, unlimited access to our bank of over 300+ official provisional test questions, automated 20-question practice mock exams with real-time scoring, and performance history tracking.
+                </div>
             </div>
 
-            <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
-                <span>How much is the subscription, and how can I pay?</span>
-                <span class="text-base sm:text-lg">+</span>
+            <!-- FAQ Item 3 -->
+            <div class="border-b border-gray-200 pb-4">
+                <div class="faq-toggle flex items-center justify-between cursor-pointer font-bold text-sm sm:text-base md:text-lg hover:text-[#059669] transition">
+                    <span>How much is the subscription, and how can I pay?</span>
+                    <span class="faq-icon text-xl font-bold">+</span>
+                </div>
+                <div class="faq-content hidden mt-2 text-gray-600 text-sm sm:text-base leading-relaxed">
+                    We offer two flexible plans: the Biweekly plan for 1,000 RWF and the Monthly plan for 1,500 RWF. You can pay securely and conveniently via MTN Mobile Money (MoMo) or Airtel Money directly from your registration page.
+                </div>
             </div>
 
-            <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
-                <span>Do you offer a free trial and what is included</span>
-                <span class="text-base sm:text-lg">+</span>
+            <!-- FAQ Item 4 -->
+            <div class="border-b border-gray-200 pb-4">
+                <div class="faq-toggle flex items-center justify-between cursor-pointer font-bold text-sm sm:text-base md:text-lg hover:text-[#059669] transition">
+                    <span>Do you offer a free trial and what is included?</span>
+                    <span class="faq-icon text-xl font-bold">+</span>
+                </div>
+                <div class="faq-content hidden mt-2 text-gray-600 text-sm sm:text-base leading-relaxed">
+                    Yes! You can explore our initial practice features and get familiar with the test interface to kickstart your study sessions before upgrading to full subscription access.
+                </div>
             </div>
 
         </div>
@@ -271,6 +295,7 @@
 
     <!-- Interactive Scripts -->
     <script>
+        // Hero Mobile Hamburger Toggle
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         menuToggle.addEventListener('click', () => {
@@ -278,6 +303,7 @@
             mobileMenu.classList.toggle('flex');
         });
 
+        // Sticky Header Scroll Observer
         const navBarRow = document.getElementById('nav-bar-row');
         const stickyHeader = document.getElementById('sticky-header');
 
@@ -290,6 +316,21 @@
                 stickyHeader.classList.remove('translate-y-0');
                 stickyHeader.classList.add('-translate-y-full');
             }
+        });
+
+        // FAQ Accordion Toggle Script
+        document.querySelectorAll('.faq-toggle').forEach(item => {
+            item.addEventListener('click', () => {
+                const content = item.nextElementSibling;
+                const icon = item.querySelector('.faq-icon');
+                
+                content.classList.toggle('hidden');
+                if (content.classList.contains('hidden')) {
+                    icon.textContent = '+';
+                } else {
+                    icon.textContent = '-';
+                }
+            });
         });
     </script>
 </body>
