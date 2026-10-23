@@ -30,8 +30,16 @@ app.use((req, res, next) => {
 // 2. Body Parsing Middleware
 app.use(express.json());
 
-// Serve static frontend files if hosted alongside Express
-app.use(express.static(path.join(__dirname)));
+// Serve static frontend files with no-cache headers for HTML files
+app.use(express.static(path.join(__dirname), {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+    }
+  }
+}));
 
 // 3. Supabase PostgreSQL Connection Pool
 const pool = new Pool({
@@ -142,7 +150,6 @@ app.post('/api/reset-pin', async (req, res) => {
   try {
     const userCheck = await pool.query('SELECT id FROM users WHERE phone_number = $1', [phone]);
     if (userCheck.rows.length > 0) {
-      // Proceed with update
       const saltRounds = 10;
       const newPinHash = await bcrypt.hash(newPin, saltRounds);
 
