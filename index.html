@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#041a18">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mindbank</title>
@@ -30,15 +26,13 @@
 </head>
 <body class="bg-white text-gray-900 min-h-screen p-2 sm:p-4 md:p-6 flex flex-col items-center relative">
 
-    <!-- ================= STICKY HEADER (LOGIN / SIGN UP ON ALL SCREENS) ================= -->
+    <!-- ================= STICKY HEADER ================= -->
     <div id="sticky-header" class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-md shadow-md z-50 transition-all duration-300 transform -translate-y-full px-4 sm:px-8 md:px-12 py-3 border-b border-gray-100">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <!-- Mindbank Logo -->
             <a href="index.html" class="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-[#041a18] hover:opacity-90 transition">
                 mindbank
             </a>
 
-            <!-- Central Nav Links Badge (Desktop Only) -->
             <div class="hidden md:flex items-center gap-6 bg-gray-100 px-6 py-2 rounded-full border border-gray-200 text-sm text-gray-700 font-medium">
                 <a href="#features" class="hover:text-[#059669] transition">Features</a>
                 <a href="#pricing" class="hover:text-[#059669] transition">Pricing</a>
@@ -46,7 +40,6 @@
                 <a href="#whats-new" class="hover:text-[#059669] transition">What's new</a>
             </div>
 
-            <!-- Login & Sign Up Action Buttons (Visible on Mobile & Desktop during scroll) -->
             <div class="flex items-center gap-2 sm:gap-3">
                 <a href="login.html" class="bg-[#0b332f] hover:bg-[#0f403b] text-white text-xs sm:text-sm px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full transition font-medium">
                     Login
@@ -58,18 +51,15 @@
         </div>
     </div>
 
-    <!-- ================= 1. HERO SECTION (APPILIX FORMATTED - NO SEARCH BOX) ================= -->
+    <!-- ================= 1. HERO SECTION ================= -->
     <header id="hero-header" class="w-full min-h-[85vh] sm:min-h-[90vh] bg-[#041a18] text-white p-5 sm:p-8 md:p-12 border-2 border-[#1080d0] rounded-[1.25rem] sm:rounded-[2rem] md:rounded-[2.5rem] shadow-2xl relative overflow-hidden mb-12 sm:mb-16 flex flex-col justify-between">
         
         <div class="max-w-7xl mx-auto w-full">
-            <!-- Navigation Bar -->
             <nav id="nav-bar-row" class="flex items-center justify-between relative w-full">
-                <!-- Logo (Extreme Top Left) -->
                 <a href="index.html" class="text-2xl sm:text-3xl font-bold tracking-tight text-white hover:opacity-90 transition">
                     mindbank
                 </a>
 
-                <!-- Central Nav Links Badge (Desktop Only) -->
                 <div class="hidden md:flex items-center gap-6 bg-[#0a2e2b] px-6 py-2 rounded-full border border-[#13423d] text-sm text-gray-300">
                     <a href="#features" class="hover:text-white transition">Features</a>
                     <a href="#pricing" class="hover:text-white transition">Pricing</a>
@@ -77,9 +67,7 @@
                     <a href="#whats-new" class="hover:text-white transition">What's new</a>
                 </div>
 
-                <!-- Header Action Buttons (Desktop) & Hamburger Toggle (Mobile) -->
                 <div class="flex items-center gap-3">
-                    <!-- Desktop Action Buttons -->
                     <div class="hidden md:flex items-center gap-3">
                         <a href="login.html" class="bg-[#0b332f] hover:bg-[#0f403b] text-gray-200 text-sm px-5 py-2 rounded-full border border-[#13423d] transition">
                             Login
@@ -89,7 +77,6 @@
                         </a>
                     </div>
 
-                    <!-- Hamburger Button (Mobile Only) -->
                     <button id="menu-toggle" aria-label="Toggle Navigation" class="md:hidden text-white focus:outline-none p-2 rounded-lg bg-[#0b332f] border border-[#13423d]">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -97,7 +84,6 @@
                     </button>
                 </div>
 
-                <!-- Mobile Menu Dropdown -->
                 <div id="mobile-menu" class="hidden md:hidden flex-col gap-3 absolute top-12 right-0 bg-[#0a2e2b] p-4 rounded-2xl border border-[#13423d] z-50 w-48 shadow-lg text-xs text-gray-300">
                     <a href="#features" class="hover:text-white transition py-1">Features</a>
                     <a href="#pricing" class="hover:text-white transition py-1">Pricing</a>
@@ -111,19 +97,15 @@
             </nav>
         </div>
 
-        <!-- Hero Content Area -->
         <div class="max-w-3xl mx-auto w-full my-auto flex flex-col items-center text-center py-8">
-            <!-- Subtitle Badge -->
             <div class="bg-[#072a26] text-[#2dd4bf] text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-full border border-[#10423c] mb-6 sm:mb-8 font-medium max-w-full">
                 Prepare for your Provisional Driving License Today
             </div>
 
-            <!-- Main Heading -->
             <h1 class="text-xl sm:text-3xl font-bold leading-relaxed sm:leading-relaxed text-white tracking-wide mb-8">
                 Pass your theory test on the first try. Master real provisional driving license questions with our free practice tests.
             </h1>
 
-            <!-- Clickable Central Call-to-Action Box (Vibrant Green) -->
             <a href="register.html" class="w-full max-w-lg h-20 sm:h-28 bg-[#059669] hover:bg-[#10b981] active:scale-95 rounded-2xl border-2 border-[#34d399] shadow-xl shadow-[#059669]/30 transition-all duration-200 ease-in-out flex items-center justify-center p-4 group cursor-pointer">
                 <span class="text-white font-bold text-base sm:text-xl md:text-2xl tracking-wide flex items-center gap-3 drop-shadow-md">
                     Start Free Practice Tests Today
@@ -185,10 +167,8 @@
             Pricing Model
         </h2>
 
-        <!-- New Pricing Grid (Biweekly & Monthly) -->
         <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             
-            <!-- Biweekly Plan Card -->
             <div class="bg-[#F3F4F6] border-2 border-[#1080d0] p-8 rounded-2xl shadow-md flex flex-col items-center text-center transition hover:shadow-lg">
                 <h3 class="text-xl font-extrabold italic uppercase text-gray-900 mb-2">Biweekly Plan</h3>
                 <div class="text-3xl font-black text-[#166534] mb-4">1,000 RWF</div>
@@ -200,7 +180,6 @@
                 </a>
             </div>
 
-            <!-- Monthly Plan Card -->
             <div class="bg-[#F3F4F6] border-2 border-[#059669] p-8 rounded-2xl shadow-md flex flex-col items-center text-center transition hover:shadow-lg">
                 <h3 class="text-xl font-extrabold italic uppercase text-gray-900 mb-2">Monthly Plan</h3>
                 <div class="text-3xl font-black text-[#166534] mb-4">1,500 RWF</div>
@@ -249,24 +228,20 @@
 
     </section>
 
-   <!-- ================= 5. FOOTER SECTION ================= -->
+    <!-- ================= 5. FOOTER SECTION ================= -->
     <footer class="w-full bg-[#041a18] text-white p-6 sm:p-10 md:p-14 flex flex-col items-center rounded-[1.25rem] sm:rounded-[2rem] md:rounded-[2.5rem]">
         
         <div class="max-w-7xl w-full flex flex-col items-center">
-            <!-- Desktop Grid (3 columns) / Mobile Layout -->
             <div class="w-full md:grid md:grid-cols-3 gap-8 md:gap-16 mb-12 sm:mb-16">
                 
-                <!-- Mobile Row: About Us (Left) & Discover (Far Right) -->
                 <div class="flex flex-row justify-between items-start w-full md:contents mb-8 md:mb-0">
                     
-                    <!-- Column 1: About us -->
                     <div class="flex flex-col gap-3 sm:gap-4 text-left">
                         <h3 class="text-lg sm:text-xl md:text-2xl font-serif">About us</h3>
                         <a href="#privacy" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Privacy Policy</a>
                         <a href="#terms" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Terms and Conditions</a>
                     </div>
 
-                    <!-- Column 2: Discover (Far right on mobile) -->
                     <div class="flex flex-col gap-3 sm:gap-4 text-right md:text-left">
                         <h3 class="text-lg sm:text-xl md:text-2xl font-serif">Discover</h3>
                         <a href="#faq" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">FAQ</a>
@@ -276,7 +251,6 @@
 
                 </div>
 
-                <!-- Column 3: Connect with Us (Centered on mobile, standard left-align on desktop) -->
                 <div class="flex flex-col gap-3 sm:gap-4 text-center md:text-left items-center md:items-start">
                     <h3 class="text-lg sm:text-xl md:text-2xl font-serif">Connect with Us</h3>
                     <a href="#facebook" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Facebook</a>
@@ -286,7 +260,6 @@
 
             </div>
 
-            <!-- Copyright Note -->
             <div class="text-gray-300 font-serif text-sm sm:text-base md:text-xl text-center">
                 © 2026 MindBank . All Rights Reserved
             </div>
@@ -295,7 +268,6 @@
 
     <!-- Interactive Scripts -->
     <script>
-        // Hero Mobile Hamburger Toggle
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         menuToggle.addEventListener('click', () => {
@@ -303,7 +275,6 @@
             mobileMenu.classList.toggle('flex');
         });
 
-        // Instant Scroll Observer Trigger
         const navBarRow = document.getElementById('nav-bar-row');
         const stickyHeader = document.getElementById('sticky-header');
 
@@ -318,14 +289,5 @@
             }
         });
     </script>
-    <script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js')
-                .then(reg => console.log('Service Worker registered successfully:', reg.scope))
-                .catch(err => console.error('Service Worker registration failed:', err));
-        });
-    }
-</script>
 </body>
 </html>

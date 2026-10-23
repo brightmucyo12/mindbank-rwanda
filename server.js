@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname)));
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false // Required for Supabase SSL connection on cloud hosts like Render
+    rejectUnauthorized: false
   }
 });
 
@@ -54,7 +54,6 @@ pool.connect((err) => {
 app.post('/api/register', async (req, res) => {
   const { phone, pin, plan, payment_method } = req.body;
 
-  // Validation
   if (!/^\d{10}$/.test(phone)) {
     return res.status(400).json({ error: 'Phone number must be exactly 10 digits.' });
   }
@@ -63,17 +62,14 @@ app.post('/api/register', async (req, res) => {
   }
 
   try {
-    // Check if phone number is already registered
     const userCheck = await pool.query('SELECT id FROM users WHERE phone_number = $1', [phone]);
     if (userCheck.rows.length > 0) {
       return res.status(400).json({ error: 'Phone number is already registered.' });
     }
 
-    // Securely hash the PIN with bcrypt
     const saltRounds = 10;
     const pinHash = await bcrypt.hash(pin, saltRounds);
 
-    // Insert user into Supabase table
     const insertQuery = `
       INSERT INTO users (phone_number, pin_hash, plan, payment_method)
       VALUES ($1, $2, $3, $4) RETURNING id;
@@ -98,7 +94,6 @@ app.post('/api/login', async (req, res) => {
   }
 
   try {
-    // Find user by phone number
     const result = await pool.query('SELECT * FROM users WHERE phone_number = $1', [phone]);
     
     if (result.rows.length === 0) {
@@ -106,15 +101,12 @@ app.post('/api/login', async (req, res) => {
     }
 
     const user = result.rows[0];
-
-    // Compare provided PIN with hashed PIN in database
     const pinMatch = await bcrypt.compare(pin, user.pin_hash);
 
     if (!pinMatch) {
       return res.status(401).json({ error: 'Invalid phone number or PIN.' });
     }
 
-    // Login successful
     return res.json({
       success: true,
       message: 'Login successful!',
@@ -131,7 +123,7 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// 6. Endpoint: Reset User PIN (Added here)
+// 6. Endpoint: Reset User PIN
 app.post('/api/reset-pin', async (req, res) => {
   const { phone, newPin } = req.body;
 
@@ -148,24 +140,21 @@ app.post('/api/reset-pin', async (req, res) => {
   }
 
   try {
-    // Check if user exists
     const userCheck = await pool.query('SELECT id FROM users WHERE phone_number = $1', [phone]);
-    if (userCheck.rows.length === 0) {
+    if (userCheck.rows.length > 0) {
+      // Proceed with update
+      const saltRounds = 10;
+      const newPinHash = await bcrypt.hash(newPin, saltRounds);
+
+      await pool.query('UPDATE users SET pin_hash = $1 WHERE phone_number = $2', [newPinHash, phone]);
+
+      return res.json({
+        success: true,
+        message: 'PIN reset successful! Redirecting to login...'
+      });
+    } else {
       return res.status(404).json({ error: 'Phone number not found.' });
     }
-
-    // Hash the new PIN securely
-    const saltRounds = 10;
-    const newPinHash = await bcrypt.hash(newPin, saltRounds);
-
-    // Update PIN in database
-    await pool.query('UPDATE users SET pin_hash = $1 WHERE phone_number = $2', [newPinHash, phone]);
-
-    return res.json({
-      success: true,
-      message: 'PIN reset successful! Redirecting to login...'
-    });
-
   } catch (err) {
     console.error('Reset PIN Error:', err);
     return res.status(500).json({ error: 'Internal server error.' });
@@ -222,16 +211,7 @@ app.get('/api/results/:userId', async (req, res) => {
   }
 });
 
-// 9. Explicit PWA Icon Routes
-app.get('/icon-192.png', (req, res) => {
-  res.sendFile(path.join(__dirname, 'icon-192.png'));
-});
-
-app.get('/icon-512.png', (req, res) => {
-  res.sendFile(path.join(__dirname, 'icon-512.png'));
-});
-
-// 10. Start Server
+// 9. Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
