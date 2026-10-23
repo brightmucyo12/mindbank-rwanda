@@ -131,7 +131,48 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// 6. Endpoint: Fetch 20 Random Questions
+// 6. Endpoint: Reset User PIN (Added here)
+app.post('/api/reset-pin', async (req, res) => {
+  const { phone, newPin } = req.body;
+
+  if (!phone || !newPin) {
+    return res.status(400).json({ error: 'Phone number and new PIN are required.' });
+  }
+
+  if (!/^\d{10}$/.test(phone)) {
+    return res.status(400).json({ error: 'Phone number must be exactly 10 digits.' });
+  }
+
+  if (!/^\d{4}$/.test(newPin)) {
+    return res.status(400).json({ error: 'New PIN must be exactly 4 digits.' });
+  }
+
+  try {
+    // Check if user exists
+    const userCheck = await pool.query('SELECT id FROM users WHERE phone_number = $1', [phone]);
+    if (userCheck.rows.length === 0) {
+      return res.status(404).json({ error: 'Phone number not found.' });
+    }
+
+    // Hash the new PIN securely
+    const saltRounds = 10;
+    const newPinHash = await bcrypt.hash(newPin, saltRounds);
+
+    // Update PIN in database
+    await pool.query('UPDATE users SET pin_hash = $1 WHERE phone_number = $2', [newPinHash, phone]);
+
+    return res.json({
+      success: true,
+      message: 'PIN reset successful! Redirecting to login...'
+    });
+
+  } catch (err) {
+    console.error('Reset PIN Error:', err);
+    return res.status(500).json({ error: 'Internal server error.' });
+  }
+});
+
+// 7. Endpoint: Fetch 20 Random Questions
 app.get('/api/questions', async (req, res) => {
   try {
     const result = await pool.query(
@@ -148,7 +189,7 @@ app.get('/api/questions', async (req, res) => {
   }
 });
 
-// 7. Endpoint: Fetch Last 5 Test Results for User
+// 8. Endpoint: Fetch Last 5 Test Results for User
 app.get('/api/results/:userId', async (req, res) => {
   const { userId } = req.params;
 
@@ -181,7 +222,7 @@ app.get('/api/results/:userId', async (req, res) => {
   }
 });
 
-// 8. Explicit PWA Icon Routes
+// 9. Explicit PWA Icon Routes
 app.get('/icon-192.png', (req, res) => {
   res.sendFile(path.join(__dirname, 'icon-192.png'));
 });
@@ -190,7 +231,7 @@ app.get('/icon-512.png', (req, res) => {
   res.sendFile(path.join(__dirname, 'icon-512.png'));
 });
 
-// 9. Start Server
+// 10. Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
