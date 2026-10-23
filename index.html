@@ -54,62 +54,67 @@
         </div>
     </div>
 
-    <!-- ================= 1. HERO SECTION ================= -->
-    <header id="hero-header" class="w-full min-h-[85vh] sm:min-h-[90vh] bg-[#041a18] text-white p-5 sm:p-8 md:p-12 border-2 border-[#1080d0] rounded-[1.25rem] sm:rounded-[2rem] md:rounded-[2.5rem] shadow-2xl relative overflow-hidden mb-12 sm:mb-16 flex flex-col justify-between">
+    <!-- ================= 1. HERO SECTION (WHITE BACKGROUND) ================= -->
+    <header id="hero-header" class="w-full max-w-7xl min-h-[70vh] sm:min-h-[75vh] bg-white text-gray-900 p-5 sm:p-8 md:p-12 mb-12 sm:mb-16 flex flex-col justify-between">
         
-        <div class="max-w-7xl mx-auto w-full">
+        <div class="w-full">
             <nav id="nav-bar-row" class="flex items-center justify-between relative w-full">
-                <a href="index.html" class="text-2xl sm:text-3xl font-bold tracking-tight text-white hover:opacity-90 transition">
+                <!-- Logo -->
+                <a href="index.html" class="text-2xl sm:text-3xl font-bold tracking-tight text-[#041a18] hover:opacity-90 transition">
                     mindbank
                 </a>
 
-                <div class="hidden md:flex items-center gap-6 bg-[#0a2e2b] px-6 py-2 rounded-full border border-[#13423d] text-sm text-gray-300">
-                    <a href="#features" class="hover:text-white transition">Features</a>
-                    <a href="#pricing" class="hover:text-white transition">Pricing</a>
-                    <a href="#questions" class="hover:text-white transition">Questions</a>
-                    <a href="#whats-new" class="hover:text-white transition">What's new</a>
+                <!-- Central Nav Links Badge -->
+                <div class="hidden md:flex items-center gap-6 bg-gray-100 px-6 py-2 rounded-full border border-gray-200 text-sm text-gray-700 font-medium">
+                    <a href="#features" class="hover:text-[#059669] transition">Features</a>
+                    <a href="#pricing" class="hover:text-[#059669] transition">Pricing</a>
+                    <a href="#questions" class="hover:text-[#059669] transition">Questions</a>
+                    <a href="#whats-new" class="hover:text-[#059669] transition">What's new</a>
                 </div>
 
+                <!-- Desktop & Mobile Action Buttons -->
                 <div class="flex items-center gap-3">
                     <div class="hidden md:flex items-center gap-3">
-                        <a href="login.html" class="bg-[#0b332f] hover:bg-[#0f403b] text-gray-200 text-sm px-5 py-2 rounded-full border border-[#13423d] transition">
+                        <a href="login.html" class="bg-[#0b332f] hover:bg-[#0f403b] text-white text-sm px-5 py-2 rounded-full border border-[#0b332f] transition font-medium">
                             Login
                         </a>
-                        <a href="register.html" class="bg-[#0b332f] hover:bg-[#0f403b] text-gray-200 text-sm px-6 py-2 rounded-full border border-[#13423d] transition">
+                        <a href="register.html" class="bg-[#059669] hover:bg-[#10b981] text-white text-sm px-6 py-2 rounded-full transition font-medium">
                             Sign up
                         </a>
                     </div>
 
-                    <button id="menu-toggle" aria-label="Toggle Navigation" class="md:hidden text-white focus:outline-none p-2 rounded-lg bg-[#0b332f] border border-[#13423d]">
+                    <button id="menu-toggle" aria-label="Toggle Navigation" class="md:hidden text-[#041a18] focus:outline-none p-2 rounded-lg bg-gray-100 border border-gray-200">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
 
-                <div id="mobile-menu" class="hidden md:hidden flex-col gap-3 absolute top-12 right-0 bg-[#0a2e2b] p-4 rounded-2xl border border-[#13423d] z-50 w-48 shadow-lg text-xs text-gray-300">
-                    <a href="#features" class="hover:text-white transition py-1">Features</a>
-                    <a href="#pricing" class="hover:text-white transition py-1">Pricing</a>
-                    <a href="#questions" class="hover:text-white transition py-1">Questions</a>
-                    <a href="#whats-new" class="hover:text-white transition py-1">What's new</a>
-                    <div class="pt-2 border-t border-[#13423d] flex flex-col gap-2">
-                        <a href="login.html" class="text-center bg-[#0b332f] text-gray-200 py-1.5 rounded-full border border-[#13423d]">Login</a>
-                        <a href="register.html" class="text-center bg-[#0b332f] text-gray-200 py-1.5 rounded-full border border-[#13423d]">Sign up</a>
+                <!-- Mobile Menu Dropdown -->
+                <div id="mobile-menu" class="hidden md:hidden flex-col gap-3 absolute top-12 right-0 bg-white p-4 rounded-2xl border border-gray-200 z-50 w-48 shadow-xl text-xs text-gray-800">
+                    <a href="#features" class="hover:text-[#059669] transition py-1">Features</a>
+                    <a href="#pricing" class="hover:text-[#059669] transition py-1">Pricing</a>
+                    <a href="#questions" class="hover:text-[#059669] transition py-1">Questions</a>
+                    <a href="#whats-new" class="hover:text-[#059669] transition py-1">What's new</a>
+                    <div class="pt-2 border-t border-gray-100 flex flex-col gap-2">
+                        <a href="login.html" class="text-center bg-[#0b332f] text-white py-1.5 rounded-full font-medium">Login</a>
+                        <a href="register.html" class="text-center bg-[#059669] text-white py-1.5 rounded-full font-medium">Sign up</a>
                     </div>
                 </div>
             </nav>
         </div>
 
+        <!-- Hero Content Area -->
         <div class="max-w-3xl mx-auto w-full my-auto flex flex-col items-center text-center py-8">
-            <div class="bg-[#072a26] text-[#2dd4bf] text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-full border border-[#10423c] mb-6 sm:mb-8 font-medium max-w-full">
+            <div class="bg-emerald-50 text-[#059669] text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-full border border-emerald-200 mb-6 sm:mb-8 font-semibold max-w-full">
                 Prepare for your Provisional Driving License Today
             </div>
 
-            <h1 class="text-xl sm:text-3xl font-bold leading-relaxed sm:leading-relaxed text-white tracking-wide mb-8">
+            <h1 class="text-2xl sm:text-4xl font-extrabold leading-snug sm:leading-tight text-gray-900 tracking-tight mb-8">
                 Pass your theory test on the first try. Master real provisional driving license questions with our free practice tests.
             </h1>
 
-            <a href="register.html" class="w-full max-w-lg h-20 sm:h-28 bg-[#059669] hover:bg-[#10b981] active:scale-95 rounded-2xl border-2 border-[#34d399] shadow-xl shadow-[#059669]/30 transition-all duration-200 ease-in-out flex items-center justify-center p-4 group cursor-pointer">
+            <a href="register.html" class="w-full max-w-lg h-20 sm:h-28 bg-[#059669] hover:bg-[#10b981] active:scale-95 rounded-2xl shadow-xl shadow-[#059669]/20 transition-all duration-200 ease-in-out flex items-center justify-center p-4 group cursor-pointer">
                 <span class="text-white font-bold text-base sm:text-xl md:text-2xl tracking-wide flex items-center gap-3 drop-shadow-md">
                     Start Free Practice Tests Today
                     <svg class="w-6 h-6 sm:w-7 sm:h-7 transform group-hover:translate-x-1.5 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
