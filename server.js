@@ -58,9 +58,30 @@ pool.connect((err) => {
   }
 });
 
-// 4. Endpoint: Register User & Save to Supabase
+// Helper: Get Bearer Token from Pesapal API 3.0
+async function getPesapalAuthToken() {
+  const response = await fetch(`${process.env.PESAPAL_BASE_URL}/api/Auth/RequestToken`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+      consumer_key: process.env.PESAPAL_CONSUMER_KEY,
+      consumer_secret: process.env.PESAPAL_CONSUMER_SECRET
+    })
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.message || 'Failed to authenticate with Pesapal.');
+  }
+  return data.token;
+}
+
+// 4. Endpoint: Register User & Initialize Pesapal Hosted Redirect
 app.post('/api/register', async (req, res) => {
-  const { phone, pin, plan, payment_method } = req.body;
+  const { phone, pin, plan, payment_method, amount } = req.body;
 
   if (!/^\d{10}$/.test(phone)) {
     return res.status(400).json({ error: 'Phone number must be exactly 10 digits.' });
@@ -77,19 +98,62 @@ app.post('/api/register', async (req, res) => {
 
     const saltRounds = 10;
     const pinHash = await bcrypt.hash(pin, saltRounds);
+    const orderId = `MINDBANK_${Date.now()}`;
+    const subscriptionAmount = amount || (plan === 'monthly' ? 1500 : 1000);
 
+    // 1. Insert user into database with a pending payment status
     const insertQuery = `
       INSERT INTO users (phone_number, pin_hash, plan, payment_method)
       VALUES ($1, $2, $3, $4) RETURNING id;
     `;
-    
     await pool.query(insertQuery, [phone, pinHash, plan, payment_method]);
 
-    return res.status(201).json({ success: true, message: 'User registered successfully!' });
+    // 2. Request token from Pesapal API 3.0
+    const pesapalToken = await getPesapalAuthToken();
+
+    // 3. Prepare Pesapal order payload for hosted redirect checkout
+    const orderPayload = {
+      id: orderId,
+      currency: "RWF",
+      amount: subscriptionAmount,
+      description: `MINDbank ${plan ? plan.toUpperCase() : 'BIWEEKLY'} Access`,
+      callback_url: "https://mindbank-rwanda-api.onrender.com/payment-success.html", 
+      notification_id: process.env.PESAPAL_IPN_ID,
+      billing_address: {
+        phone_number: phone,
+        first_name: "MindBank",
+        last_name: "User",
+        email_address: "support@mindbank.rw"
+      }
+    };
+
+    // 4. Submit order request to Pesapal to get redirect URL
+    const pesapalResponse = await fetch(`${process.env.PESAPAL_BASE_URL}/api/Transactions/SubmitOrderRequest`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${pesapalToken}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(orderPayload)
+    });
+
+    const pesapalData = await pesapalResponse.json();
+
+    if (pesapalData.redirect_url) {
+      return res.status(201).json({ 
+        success: true, 
+        message: 'User registered successfully! Redirecting to payment...',
+        redirectUrl: pesapalData.redirect_url,
+        orderId: orderId
+      });
+    } else {
+      return res.status(400).json({ error: 'User registered, but failed to initialize payment redirect.' });
+    }
 
   } catch (err) {
-    console.error('Registration Error:', err);
-    return res.status(500).json({ error: 'Internal server error.' });
+    console.error('Registration & Pesapal Error:', err);
+    return res.status(500).json({ error: 'Internal server error during registration.' });
   }
 });
 
