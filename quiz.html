@@ -98,9 +98,8 @@
     <!-- SUPABASE CLIENT -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // Supabase Initialization (Make sure your keys match your setup)
-        const SUPABASE_URL = 'https://itvheirsaghrmzkeezw.supabase.co';
-
+        // Supabase Initialization
+        const SUPABASE_URL = 'https://itvheirsagxhrmzkeezw.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml0dmhlaXJzYWd4aHJtemtlZXp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE1MjQ2NDgsImV4cCI6MjEwNzEwMDY0OH0.l2aGXnELeLbneM1DDh2zo-nJQNTvNypvpzWSxJ1KijE';
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -115,9 +114,9 @@
 
         let questions = [];
         let currentIndex = 0;
-        let userAnswers = {}; // stores index -> selected option key ('option_a', etc.)
+        let userAnswers = {}; 
         let timerInterval;
-        let timeLeftSeconds = timeLimitMinutes * 60;
+        let timeLeftSeconds = timeLimitMinutes * 60; // Fixed syntax error here
 
         async function initQuiz() {
             try {
@@ -135,7 +134,7 @@
                     return;
                 }
 
-                // Shuffle and slice to required count (10 or 20)
+                // Shuffle and slice to required count
                 const shuffled = data.sort(() => 0.5 - Math.random());
                 questions = shuffled.slice(0, questionCount);
 
@@ -185,7 +184,7 @@
             ];
 
             options.forEach(opt => {
-                if (!opt.text) return; // Skip empty options if any
+                if (!opt.text) return;
 
                 const isSelected = userAnswers[currentIndex] === opt.key;
 
@@ -200,7 +199,7 @@
 
                 label.querySelector('input').addEventListener('change', () => {
                     userAnswers[currentIndex] = opt.key;
-                    renderQuestion(); // Re-render to update active styling
+                    renderQuestion();
                 });
 
                 optionsList.appendChild(label);
@@ -250,8 +249,6 @@
             });
 
             const total = questions.length;
-            const percentage = Math.round((score / total) * 100);
-            // Passing threshold: 60% or standard Rwandan 12/20 rule adjusted for question count
             const passThreshold = Math.ceil(total * 0.6); 
             const passed = score >= passThreshold;
 
