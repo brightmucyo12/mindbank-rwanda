@@ -108,15 +108,23 @@
         const questionCount = parseInt(urlParams.get('count')) || 20;
         const timeLimitMinutes = parseInt(urlParams.get('time')) || 20;
 
-        // Determine Database Language based on user dashboard selection ('en', 'rw', 'fr')
-        let uiLang = localStorage.getItem('lang') || 'en';
-        let dbLang = uiLang === 'rw' ? 'kin' : (uiLang === 'fr' ? 'fr' : 'eng');
+        // Robust Language Mapping to match Supabase database codes ('eng', 'kin', 'fr')
+        let uiLang = localStorage.getItem('lang') || 'eng';
+        let dbLang = 'eng'; // default fallback
+
+        if (uiLang === 'rw' || uiLang === 'kin') {
+            dbLang = 'kin';
+        } else if (uiLang === 'fr') {
+            dbLang = 'fr';
+        } else {
+            dbLang = 'eng';
+        }
 
         let questions = [];
         let currentIndex = 0;
         let userAnswers = {}; 
         let timerInterval;
-        let timeLeftSeconds = timeLimitMinutes * 60; // Fixed syntax error here
+        let timeLeftSeconds = timeLimitMinutes * 60; // Fixed syntax error
 
         async function initQuiz() {
             try {
@@ -129,7 +137,7 @@
                 if (error) throw error;
 
                 if (!data || data.length === 0) {
-                    alert('No questions found for this language.');
+                    alert(`No questions found for language code: ${dbLang}`);
                     window.location.href = 'dashboard.html';
                     return;
                 }
