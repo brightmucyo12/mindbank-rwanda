@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Favicon Tags -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DREXFQGYZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2DREXFQGYZ');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Examen d'Entraînement - MindBank Drive</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        .option-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .option-btn:hover {
+            border-color: #059669;
+            background-color: #f0fdf4;
+        }
+        .option-btn.selected {
+            border-color: #059669;
+            background-color: #ecfdf5;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 min-h-screen p-2 sm:p-4 md:p-6 flex flex-col items-center relative">
+
+    <!-- TOP LANGUAGE BAR -->
+    <div class="w-full max-w-7xl flex justify-end items-center gap-3 py-2 px-4 text-xs font-semibold text-gray-600">
+        <span class="text-gray-400">Language / Ururimi:</span>
+        <a href="practice-kin.html" class="hover:text-[#059669] transition">Kinyarwanda</a>
+        <span class="text-gray-300">|</span>
+        <a href="practice.html" class="hover:text-[#059669] transition">English</a>
+        <span class="text-gray-300">|</span>
+        <a href="practice-fr.html" class="text-[#059669] font-bold underline decoration-2 underline-offset-4">Français</a>
+    </div>
+
+    <!-- HEADER / NAV -->
+    <header class="w-full max-w-7xl border-b border-gray-100 pb-4 mb-6">
+        <div class="flex items-center justify-between px-2 sm:px-4">
+            <a href="index-fr.html" class="flex items-center gap-1 text-2xl sm:text-3xl font-bold tracking-tight text-[#041a18] hover:opacity-90 transition">
+                <img src="apple-touch-icon.png" alt="mindbank logo" class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-contain">
+                <span class="font-extrabold tracking-normal">Drive</span>
+            </a>
+            <div class="flex items-center gap-3">
+                <a href="index-fr.html" class="text-xs sm:text-sm font-medium text-gray-600 hover:text-[#059669] transition px-3 py-1.5 rounded-full border border-gray-200">
+                    Quitter l'examen
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- PRACTICE CONTAINER -->
+    <main class="w-full max-w-3xl px-3 sm:px-6 my-auto flex flex-col items-center">
+        
+        <!-- QUIZ BOARD CARD -->
+        <div id="quiz-card" class="w-full bg-[#F3F4F6] border border-gray-200 rounded-3xl p-5 sm:p-8 shadow-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                <span id="question-badge" class="bg-emerald-100 text-[#059669] text-xs sm:text-sm px-3 py-1 rounded-full font-bold w-fit">
+                    Question 1 sur 20
+                </span>
+                <div class="flex items-center gap-1.5 bg-gray-200 text-gray-800 text-xs sm:text-sm px-3 py-1 rounded-full font-bold w-fit">
+                    <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span id="timer-display">20:00</span>
+                </div>
+            </div>
+
+            <div class="w-full bg-gray-200 h-2.5 rounded-full mb-6 overflow-hidden">
+                <div id="progress-bar" class="bg-[#059669] h-2.5 rounded-full transition-all duration-300" style="width: 5%;"></div>
+            </div>
+
+            <h2 id="question-text" class="text-base sm:text-xl font-bold text-gray-900 mb-6 leading-snug">
+                Chargement du test...
+            </h2>
+
+            <div id="options-container" class="flex flex-col gap-3 mb-8"></div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+                <button id="prev-btn" onclick="prevQuestion()" class="hidden bg-gray-200 hover:bg-gray-300 text-gray-700 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl transition">
+                    Précédent
+                </button>
+                <div class="flex-1"></div>
+                <button id="next-btn" onclick="nextQuestion()" disabled class="bg-gray-300 text-gray-500 cursor-not-allowed text-xs sm:text-sm font-bold px-6 py-2.5 rounded-xl transition">
+                    Question Suivante
+                </button>
+            </div>
+        </div>
+
+        <!-- RESULTS CARD -->
+        <div id="result-card" class="hidden w-full bg-[#F3F4F6] border border-gray-200 rounded-3xl p-6 sm:p-10 shadow-sm text-center mb-10">
+            <div id="result-badge" class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-2xl font-extrabold text-white"></div>
+
+            <h2 id="result-title" class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">
+                Examen Terminé !
+            </h2>
+            <p id="result-summary" class="text-gray-600 text-sm sm:text-base mb-6">
+                Vous avez obtenu <span id="final-score" class="font-bold text-[#059669]">0</span> sur 20.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
+                <a href="register.html" class="w-full sm:w-auto bg-[#55E55B] hover:bg-[#4BD851] text-black font-extrabold italic uppercase py-3 px-8 rounded-xl transition shadow-md text-center">
+                    Payer maintenant pour accéder aux 300+ questions
+                </a>
+                <button onclick="restartTest()" class="w-full sm:w-auto bg-[#059669] hover:bg-[#10b981] text-white font-bold py-3 px-6 rounded-xl transition shadow-md">
+                    Réessayer
+                </button>
+            </div>
+
+            <div class="text-left border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-4">Révision détaillée des questions</h3>
+                <div id="review-container" class="flex flex-col gap-4"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="w-full max-w-7xl text-center text-xs text-gray-400 py-6 mt-12 border-t border-gray-100">
+        © 2026 MindBank (iZiDrive). Tous droits réservés.
+    </footer>
+
+    <script>
+        const questions = [
+            { id: 1, question: "Selon les règles de circulation au Rwanda, quelle est la limitation de vitesse standard pour les voitures de tourisme en zone urbaine sauf indication contraire ?", options: ["40 km/h", "50 km/h", "60 km/h", "80 km/h"], answerIndex: 1 },
+            { id: 2, question: "Que signifie une ligne blanche continue au milieu d'une route à double sens ?", options: ["Dépassement autorisé avec prudence", "Stationnement réservé aux bus", "Dépassement strictement interdit", "Arrêt immédiat"], answerIndex: 2 },
+            { id: 3, question: "À l'approche d'un rond-point, quel conducteur a la priorité absolue ?", options: ["Véhicules entrant dans le rond-point", "Le véhicule le plus rapide", "Véhicules déjà engagés dans le rond-point", "Véhicules tournant à droite"], answerIndex: 2 },
+            { id: 4, question: "Quelles sont les couleurs obligatoires des feux à l'arrière d'un véhicule à moteur la nuit ?", options: ["Rouge", "Jaune", "Blanc", "Bleu"], answerIndex: 0 },
+            { id: 5, question: "Au Rwanda, de quel côté de la route êtes-vous légalement tenu de conduire ?", options: ["Voie centrale", "Côté droit", "Côté gauche", "N'importe quel côté"], answerIndex: 1 },
+            { id: 6, question: "Que doit faire un conducteur à l'approche d'un passage piéton occupé par des piétons ?", options: ["Klaxonner et avancer", "Accélérer pour libérer l'intersection", "Maintenir sa vitesse si les piétons sont loin", "S'arrêter et laisser les piétons traverser en toute sécurité"], answerIndex: 3 },
+            { id: 7, question: "Quand le dépassement est-il autorisé sur un pont étroit ?", options: ["Strictement interdit sauf indication contraire", "Uniquement pendant la journée", "Toujours autorisé", "Autorisé uniquement pour les motos"], answerIndex: 0 },
+            { id: 8, question: "Quelle est la fonction principale d'un panneau de signalisation triangulaire inversé ?", options: ["Arrêt complet", "Sens interdit", "Cédez le passage", "Limite de vitesse à venir"], answerIndex: 2 },
+            { id: 9, question: "Que doit faire un conducteur lorsqu'un véhicule d'urgence avec sirène s'approche par derrière ?", options: ["Se ranger sur la droite et céder le passage immédiatement", "Accélérez pour rester en avant", "S'arrêter brusquement sur la voie actuelle", "Ignorer si sur une seule voie"], answerIndex: 0 },
+            { id: 10, question: "Quel est l'âge minimum légal pour obtenir un permis de conduire provisoire de catégorie B au Rwanda ?", options: ["16 ans", "20 ans", "18 ans", "21 ans"], answerIndex: 2 },
+            { id: 11, question: "Que signale un panneau de signalisation rouge octogonal aux conducteurs ?", options: ["Arrêt", "Cédez le passage", "Virage dangereux", "Pas de stationnement"], answerIndex: 0 },
+            { id: 12, question: "Quand les conducteurs sont-ils tenus d'allumer les feux de route (pleins phares) ?", options: ["En cas de brouillard dense ou de forte pluie", "Dans les rues urbaines bien éclairées", "En suivant de près un autre véhicule", "Sur les routes non éclairées hors agglomération lorsqu'il n'y a pas de trafic en sens inverse"], answerIndex: 3 },
+            { id: 13, question: "Quelle distance doit être maintenue entre les véhicules en mouvement dans des conditions de conduite sèches normales ?", options: ["Une distance de sécurité (règle des 2 secondes)", "Au moins 1 mètre", "10 mètres quelle que soit la vitesse", "50 mètres à tout moment"], answerIndex: 0 },
+            { id: 14, question: "Que signifie une ligne jaune continue le long du trottoir ?", options: ["Zone de chargement", "Stationnement autorisé", "Station de taxis", "Interdiction de stationner ou de s'arrêter"], answerIndex: 3 },
+            { id: 15, question: "Est-il permis d'utiliser un téléphone portable à la main en conduisant selon la loi rwandaise ?", options: ["Oui, si l'on roule à moins de 30 km/h", "Non, strictement interdit", "Oui dans les embouteillages", "Autorisé pour les appels urgents"], answerIndex: 1 },
+            { id: 16, question: "Que signifie un feu de circulation jaune clignotant à une intersection ?", options: ["Procéder avec prudence", "S'arrêter immédiatement", "Le feu tricolore est en panne", "Accélérer avant le rouge"], answerIndex: 0 },
+            { id: 17, question: "Quel véhicule a la priorité dans une montée raide lorsque l'espace de passage est limité ?", options: ["Le véhicule descendant", "Le véhicule le plus grand", "Le véhicule montant", "Le véhicule le plus rapide"], answerIndex: 2 },
+            { id: 18, question: "Quelle est la limite d'alcool autorisée lors de la conduite d'un véhicule ?", options: ["Tolérance zéro / limite légale prescrite", "1.0 g/l", "0.8 g/l", "Autorisé si non visiblement intoxiqué"], answerIndex: 0 },
+            { id: 19, question: "Lors du transport d'un passager sur une moto, quel équipement de sécurité est obligatoire ?", options: ["Casque pour le conducteur uniquement", "Gilet réfléchissant pour le conducteur uniquement", "Casques pour le conducteur et le passager", "Lunettes de protection uniquement"], answerIndex: 2 },
+            { id: 20, question: "Que devez-vous faire si votre véhicule tombe en panne sur la voie publique ?", options: ["L'abandonner et partir à pied", "Placer un triangle de présignalisation à une distance sécuritaire derrière", "Éteindre tous les feux", "Faire signe à la circulation"], answerIndex: 1 }
+        ];
+
+        let currentIndex = 0;
+        let userAnswers = {};
+        let timeLeft = 20 * 60;
+        let timerInterval = null;
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    calculateResults();
+                    return;
+                }
+                timeLeft--;
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                document.getElementById('timer-display').textContent = 
+                    `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        function renderQuestion() {
+            const current = questions[currentIndex];
+            if (!current) return;
+
+            document.getElementById('question-badge').textContent = `Question ${currentIndex + 1} sur ${questions.length}`;
+            const progressPercent = ((currentIndex + 1) / questions.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('question-text').textContent = current.question;
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            current.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `option-btn w-full text-left p-4 rounded-2xl border border-gray-300 text-sm sm:text-base font-medium flex items-center justify-between bg-white`;
+                
+                if (userAnswers[currentIndex] === idx) {
+                    btn.classList.add('selected');
+                }
+
+                btn.innerHTML = `
+                    <span>${String.fromCharCode(65 + idx)}. ${opt}</span>
+                    <span class="w-5 h-5 rounded-full border border-gray-300 flex items-center justify-center text-xs">
+                        ${userAnswers[currentIndex] === idx ? '✓' : ''}
+                    </span>
+                `;
+                btn.onclick = () => selectOption(idx);
+                optionsContainer.appendChild(btn);
+            });
+
+            const prevBtn = document.getElementById('prev-btn');
+            if (currentIndex > 0) {
+                prevBtn.classList.remove('hidden');
+            } else {
+                prevBtn.classList.add('hidden');
+            }
+
+            const nextBtn = document.getElementById('next-btn');
+            if (userAnswers[currentIndex] !== undefined) {
+                nextBtn.disabled = false;
+                nextBtn.className = "bg-[#059669] hover:bg-[#10b981] text-white cursor-pointer text-xs sm:text-sm font-bold px-6 py-2.5 rounded-xl transition shadow-sm";
+            } else {
+                nextBtn.disabled = true;
+                nextBtn.className = "bg-gray-300 text-gray-500 cursor-not-allowed text-xs sm:text-sm font-bold px-6 py-2.5 rounded-xl transition";
+            }
+
+            if (currentIndex === questions.length - 1) {
+                nextBtn.textContent = "Terminer & Voir les Résultats";
+            } else {
+                nextBtn.textContent = "Question Suivante";
+            }
+        }
+
+        function selectOption(index) {
+            userAnswers[currentIndex] = index;
+            renderQuestion();
+        }
+
+        function nextQuestion() {
+            if (currentIndex < questions.length - 1) {
+                currentIndex++;
+                renderQuestion();
+            } else {
+                calculateResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuestion();
+            }
+        }
+
+        function calculateResults() {
+            clearInterval(timerInterval);
+            let score = 0;
+            questions.forEach((q, idx) => {
+                if (userAnswers[idx] === q.answerIndex) score++;
+            });
+
+            document.getElementById('quiz-card').classList.add('hidden');
+            const resultCard = document.getElementById('result-card');
+            resultCard.classList.remove('hidden');
+            document.getElementById('final-score').textContent = score;
+
+            const badge = document.getElementById('result-badge');
+            const title = document.getElementById('result-title');
+
+            if (score >= 12) {
+                badge.className = "w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-2xl font-extrabold text-white bg-[#059669]";
+                badge.textContent = "ADMIS";
+                title.textContent = "Félicitations ! Vous avez réussi !";
+            } else {
+                badge.className = "w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-2xl font-extrabold text-white bg-amber-500";
+                badge.textContent = "ÉCHOUÉ";
+                title.textContent = "Continuez à vous entraîner !";
+            }
+
+            const reviewContainer = document.getElementById('review-container');
+            reviewContainer.innerHTML = '';
+            questions.forEach((q, idx) => {
+                const userChoice = userAnswers[idx];
+                const isCorrect = userChoice === q.answerIndex;
+                const reviewItem = document.createElement('div');
+                reviewItem.className = `p-4 rounded-2xl border ${isCorrect ? 'bg-emerald-50 border-emerald-200' : 'bg-red-50 border-red-200'}`;
+
+                let optionsHtml = '';
+                q.options.forEach((opt, optIdx) => {
+                    let style = 'text-gray-700';
+                    let marker = '';
+                    if (optIdx === q.answerIndex) {
+                        style = 'text-[#059669] font-bold';
+                        marker = ' (Bonne réponse)';
+                    } else if (optIdx === userChoice && !isCorrect) {
+                        style = 'text-red-600 font-semibold line-through';
+                        marker = ' (Votre réponse)';
+                    } else if (optIdx === userChoice && isCorrect) {
+                        style = 'text-[#059669] font-semibold';
+                        marker = ' (Votre réponse)';
+                    }
+                    optionsHtml += `<li class="text-xs sm:text-sm ${style}">- ${String.fromCharCode(65 + optIdx)}. ${opt}${marker}</li>`;
+                });
+
+                reviewItem.innerHTML = `
+                    <p class="text-xs sm:text-sm font-bold text-gray-900 mb-2">Q${idx + 1}: ${q.question}</p>
+                    <ul class="flex flex-col gap-1 pl-2">${optionsHtml}</ul>
+                `;
+                reviewContainer.appendChild(reviewItem);
+            });
+        }
+
+        function restartTest() {
+            userAnswers = {};
+            currentIndex = 0;
+            timeLeft = 20 * 60;
+            document.getElementById('timer-display').textContent = "20:00";
+            document.getElementById('result-card').classList.add('hidden');
+            document.getElementById('quiz-card').classList.remove('hidden');
+            startTimer();
+            renderQuestion();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderQuestion();
+            startTimer();
+        });
+    </script>
+</body>
+</html>

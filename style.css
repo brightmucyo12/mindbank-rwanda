@@ -1,0 +1,247 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* CLEAR SEMI-TRANSPARENT BLUE PAGE BACKGROUND */
+body {
+  background: linear-gradient(135deg, rgba(220, 233, 250, 0.9) 0%, rgba(195, 218, 245, 0.85) 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px 50px;
+  color: #000000;
+  -webkit-font-smoothing: antialiased;
+}
+
+.header-bar {
+  width: 100%;
+  padding: 30px 20px 10px 40px;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.brand-logo {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.register-title {
+  font-size: 24px;
+  font-weight: 800;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 25px;
+  color: #000000;
+}
+
+.register-container {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Standard Light Gray Card */
+.register-card {
+  background-color: #F3F4F6;
+  width: 100%;
+  padding: 35px 30px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  font-weight: 800;
+  font-style: italic;
+  text-align: center;
+  margin: 10px 0 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-label {
+  display: block;
+  font-size: 16px;
+  font-weight: 800;
+  font-style: italic;
+  color: #000000;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.form-input {
+  width: 100%;
+  height: 48px;
+  background-color: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  padding: 0 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000;
+  outline: none;
+  text-align: center;
+}
+
+.form-input::placeholder {
+  color: #9CA3AF;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+.pin-helper-text {
+  font-size: 14px;
+  font-weight: 500;
+  font-style: italic;
+  color: #6B7280;
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: 18px;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #D1D5DB;
+  margin: 20px 0 25px;
+}
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.plan-option {
+  position: relative;
+}
+
+.plan-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.plan-box {
+  background-color: #FFFFFF;
+  border: 2px solid #E5E7EB;
+  padding: 16px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.plan-option input[type="radio"]:checked + .plan-box {
+  border-color: #006400;
+  background-color: #F0FDF4;
+}
+
+.plan-name {
+  font-size: 14px;
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.plan-price {
+  font-size: 16px;
+  font-weight: 900;
+  color: #006400;
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.payment-option {
+  position: relative;
+}
+
+.payment-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.payment-box {
+  background-color: #FFFFFF;
+  border: 2px solid #E5E7EB;
+  padding: 14px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 15px;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.payment-option input[type="radio"]:checked + .payment-box {
+  border-color: #006400;
+  background-color: #F0FDF4;
+  color: #006400;
+}
+
+.register-btn {
+  display: inline-block;
+  background-color: #55E55B;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  padding: 14px 45px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  margin-top: 10px;
+}
+
+.register-btn:hover {
+  background-color: #4BD851;
+}
+
+.login-link {
+  font-size: 16px;
+  font-weight: 900;
+  font-style: italic;
+  color: #8B0000;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-align: center;
+}
+
+.login-link:hover {
+  color: #600000;
+}

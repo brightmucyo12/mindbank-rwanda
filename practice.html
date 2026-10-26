@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Favicon Tags -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DREXFQGYZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-2DREXFQGYZ');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Practice Exam - MindBank Drive</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        .option-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .option-btn:hover {
+            border-color: #059669;
+            background-color: #f0fdf4;
+        }
+        .option-btn.selected {
+            border-color: #059669;
+            background-color: #ecfdf5;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 min-h-screen p-2 sm:p-4 md:p-6 flex flex-col items-center relative">
+
+    <!-- ================= TOP LANGUAGE BAR ================= -->
+    <div class="w-full max-w-7xl flex justify-end items-center gap-3 py-2 px-4 text-xs font-semibold text-gray-600">
+        <span class="text-gray-400">Language / Ururimi:</span>
+        <a href="practice-kin.html" class="hover:text-[#059669] transition">Kinyarwanda</a>
+        <span class="text-gray-300">|</span>
+        <a href="practice.html" class="text-[#059669] font-bold underline decoration-2 underline-offset-4">English</a>
+        <span class="text-gray-300">|</span>
+        <a href="practice-fr.html" class="hover:text-[#059669] transition">Français</a>
+    </div>
+
+    <!-- ================= HEADER / NAV ================= -->
+    <header class="w-full max-w-7xl border-b border-gray-100 pb-4 mb-6">
+        <div class="flex items-center justify-between px-2 sm:px-4">
+            <a href="index.html" class="flex items-center gap-1 text-2xl sm:text-3xl font-bold tracking-tight text-[#041a18] hover:opacity-90 transition">
+                <img src="apple-touch-icon.png" alt="mindbank logo" class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-contain">
+                <span class="font-extrabold tracking-normal">Drive</span>
+            </a>
+
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="text-xs sm:text-sm font-medium text-gray-600 hover:text-[#059669] transition px-3 py-1.5 rounded-full border border-gray-200">
+                    Exit Practice
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= PRACTICE CONTAINER ================= -->
+    <main class="w-full max-w-3xl px-3 sm:px-6 my-auto flex flex-col items-center">
+        
+        <!-- QUIZ BOARD CARD -->
+        <div id="quiz-card" class="w-full bg-[#F3F4F6] border border-gray-200 rounded-3xl p-5 sm:p-8 shadow-sm">
+            
+            <!-- Progress, Timer & Badge Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                <span id="question-badge" class="bg-emerald-100 text-[#059669] text-xs sm:text-sm px-3 py-1 rounded-full font-bold w-fit">
+                    Question 1 of 20
+                </span>
+                
+                <!-- Timer Display -->
+                <div class="flex items-center gap-1.5 bg-gray-200 text-gray-800 text-xs sm:text-sm px-3 py-1 rounded-full font-bold w-fit">
+                    <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span id="timer-display">20:00</span>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-200 h-2.5 rounded-full mb-6 overflow-hidden">
+                <div id="progress-bar" class="bg-[#059669] h-2.5 rounded-full transition-all duration-300" style="width: 5%;"></div>
+            </div>
+
+            <!-- Question Title -->
+            <h2 id="question-text" class="text-base sm:text-xl font-bold text-gray-900 mb-6 leading-snug">
+                Loading practice test...
+            </h2>
+
+            <!-- Answer Options List -->
+            <div id="options-container" class="flex flex-col gap-3 mb-8"></div>
+
+            <!-- Navigation Controls -->
+            <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+                <button id="prev-btn" onclick="prevQuestion()" class="hidden bg-gray-200 hover:bg-gray-300 text-gray-700 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl transition">
+                    Previous
+                </button>
+                <div class="flex-1"></div>
+                <button id="next-btn" onclick="nextQuestion()" disabled class="bg-gray-300 text-gray-500 cursor-not-allowed text-xs sm:text-sm font-bold px-6 py-2.5 rounded-xl transition">
+                    Next Question
+                </button>
+            </div>
+
+        </div>
+
+        <!-- RESULTS CARD (Hidden by default) -->
+        <div id="result-card" class="hidden w-full bg-[#F3F4F6] border border-gray-200 rounded-3xl p-6 sm:p-10 shadow-sm text-center mb-10">
+            <div id="result-badge" class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-2xl font-extrabold text-white"></div>
+
+            <h2 id="result-title" class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">
+                Exam Completed!
+            </h2>
+            <p id="result-summary" class="text-gray-600 text-sm sm:text-base mb-6">
+                You scored <span id="final-score" class="font-bold text-[#059669]">0</span> out of 20.
+            </p>
+
+            <!-- Call to Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
+                <a href="register.html" class="w-full sm:w-auto bg-[#55E55B] hover:bg-[#4BD851] text-black font-extrabold italic uppercase py-3 px-8 rounded-xl transition shadow-md text-center">
+                    Pay Now to Access All 300+ Questions
+                </a>
+                <button onclick="restartTest()" class="w-full sm:w-auto bg-[#059669] hover:bg-[#10b981] text-white font-bold py-3 px-6 rounded-xl transition shadow-md">
+                    Try Again
+                </button>
+            </div>
+
+            <!-- Review Container -->
+            <div class="text-left border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-4">Detailed Question Review</h3>
+                <div id="review-container" class="flex flex-col gap-4">
+                    <!-- Right & wrong answers populated dynamically here -->
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Copyright -->
+    <footer class="w-full max-w-7xl text-center text-xs text-gray-400 py-6 mt-12 border-t border-gray-100">
+        © 2026 MindBank (iZiDrive). All Rights Reserved.
+    </footer>
+
+    <!-- Practice Logic Script -->
+    <script>
+        const questions = [
+            { id: 1, question: "Based on the formal vocabulary defined in the Rwandan Traffic Code, what does the term \"Passage\" specifically mean?", options: ["A portion of the public highway allocated by special signs for bicycle traffic only", "A narrow public way designed exclusively for pedestrians or two-wheeled vehicles", "A wide public path not originally intended for two-wheeled vehicles"], answerIndex: 1 },
+            { id: 2, question: "According to the structural definitions of the highway, which term defines \"the part of a public way intended for vehicle traffic, which may comprise several distinct roadways\"?", options: ["Intersection", "Traffic lane", "Roadway"], answerIndex: 2 },
+            { id: 3, question: "If a roadway is divided longitudinally by continuous or discontinuous white marks, each of the parts wide enough to allow one file of moving vehicles is called a:", options: ["Traffic lane", "Unpaved track", "Cycle lane"], answerIndex: 0 },
+            { id: 4, question: "When a solid white line and a broken white line are painted parallel to each other, which line must the driver comply with?", options: ["The driver only needs to consider the line closest to their vehicle's side", "The solid line overrides the broken line for all vehicles across both directions", "The broken line cannot be crossed for overtaking maneuvers if it is on the right"], answerIndex: 0 },
+            { id: 5, question: "On a roadway featuring a special section demarcated by wide, separated white dashes, which vehicles are legally required to use it?", options: ["Slow-moving vehicles and public transport passenger vehicles", "Heavy trucks exceeding 20 tons loading capacity only", "Emergency vehicles using sirens and flashing lights"], answerIndex: 0 },
+            { id: 6, question: "Under the regulations governing vehicle lighting mechanics, what is the rule regarding a vehicle having two identical lights of the same type?", options: ["It is forbidden under all circumstances except for the reversing light", "It is permitted only for the side/clearance lights or direction indicators", "It is only required for high beams used during night driving on rural roads"], answerIndex: 1 },
+            { id: 7, question: "Based on general lighting restrictions, what color light or reflector is strictly prohibited from being visible from the front of the vehicle?", options: ["White", "Yellow", "Red"], answerIndex: 2 },
+            { id: 8, question: "What right-of-way rule applies to vehicles moving along a paved asphalt road when encountering traffic coming from an unpaved earth track?", options: ["They must share the road equally depending on vehicle speeds", "Vehicles moving on the paved road maintain absolute priority", "Traffic from the earth track has priority because it approaches from the right side"], answerIndex: 1 },
+            { id: 9, question: "According to maximum dimension limitations, what is the maximum legal width permitted for a loaded vehicle or trailer configuration in Rwanda?", options: ["2.50 meters", "2.65 meters", "3.00 meters"], answerIndex: 1 },
+            { id: 10, question: "Based on structural safety thresholds, what is the maximum legal height allowed for any vehicle, including its load?", options: ["4.00 meters", "4.20 meters", "4.50 meters"], answerIndex: 1 },
+            { id: 11, question: "Road signs categorized under the code \"B\" prefixes (such as B,1 or B,2a) represent which class of signage?", options: ["Danger warning signs", "Priority signs", "Absolute prohibition signs"], answerIndex: 1 },
+            { id: 12, question: "A driver navigating within a roundabout must yield the right of way to whom?", options: ["All incoming traffic approaching from the outer right lanes", "No one; priority belongs strictly to vehicles already moving inside the roundabout", "Public transport buses only"], answerIndex: 1 },
+            { id: 13, question: "When multiple forms of road signals are present at a junction, what is the hierarchical legal order of precedence?", options: ["Signs take precedence over traffic lights, which take precedence over police orders", "Driver hand signals override all formal mechanical and structural signs", "Police officer signals override traffic lights, which override signs, which override road markings"], answerIndex: 2 },
+            { id: 14, question: "According to the regulations, motor vehicles registered in Rwanda must have their steering apparatus located on which side?", options: ["On the right-hand side", "On the left-hand side", "On either side depending on the country of origin"], answerIndex: 1 },
+            { id: 15, question: "What is the legal designation for a public way that is wider than a narrow path (\"Akayira\") but is not generally intended for motor vehicle columns?", options: ["Cycle lane", "Unpaved earth track", "Longitudinal traffic lane"], answerIndex: 1 },
+            { id: 16, question: "What is the maximum duration that a foreign-registered vehicle with right-hand steering is legally permitted to operate on Rwandan roads?", options: ["1 month", "3 months", "12 months"], answerIndex: 1 },
+            { id: 17, question: "Unless a specific sign states otherwise, what is the statutory speed limit for light vehicles (under 3,500kg) and motorcycles on national highways?", options: ["60 km/h", "80 km/h", "100 km/h"], answerIndex: 1 },
+            { id: 18, question: "If a vehicle must stop on a public road at night and its main headlamps fail, which lights must remain functional to indicate its presence?", options: ["Clearance/Side lamps (utunyota)", "Reversing lights only", "No lighting is legally required while stationary"], answerIndex: 0 },
+            { id: 19, question: "How frequently must commercial passenger transport vehicles undergo mandatory automobile technical inspections?", options: ["Every two months", "Every year (Annually)", "Every two years"], answerIndex: 1 },
+            { id: 20, question: "Under the administrative enforcement rules, what is the deadline to pay a traffic fine before a 30% surcharge is automatically applied?", options: ["7 days", "15 days", "30 days"], answerIndex: 2 }
+        ];
+
+        let currentIndex = 0;
+        let userAnswers = {};
+        let timeLeft = 20 * 60; // 20 minutes
+        let timerInterval = null;
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    calculateResults();
+                    return;
+                }
+                timeLeft--;
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                document.getElementById('timer-display').textContent = 
+                    `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        function renderQuestion() {
+            const current = questions[currentIndex];
+            if (!current) return;
+
+            document.getElementById('question-badge').textContent = `Question ${currentIndex + 1} of ${questions.length}`;
+            const progressPercent = ((currentIndex + 1) / questions.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+
+            document.getElementById('question-text').textContent = current.question;
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            current.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `option-btn w-full text-left p-4 rounded-2xl border border-gray-300 text-sm sm:text-base font-medium flex items-center justify-between bg-white`;
+                
+                if (userAnswers[currentIndex] === idx) {
+                    btn.classList.add('selected');
+                }
+
+                btn.innerHTML = `
+                    <span>${String.fromCharCode(65 + idx)}. ${opt}</span>
+                    <span class="w-5 h-5 rounded-full border border-gray-300 flex items-center justify-center text-xs">
+                        ${userAnswers[currentIndex] === idx ? '✓' : ''}
+                    </span>
+                `;
+
+                btn.onclick = () => selectOption(idx);
+                optionsContainer.appendChild(btn);
+            });
+
+            const prevBtn = document.getElementById('prev-btn');
+            if (currentIndex > 0) {
+                prevBtn.classList.remove('hidden');
+            } else {
+                prevBtn.classList.add('hidden');
+            }
+
+            const nextBtn = document.getElementById('next-btn');
+            if (userAnswers[currentIndex] !== undefined) {
+                nextBtn.disabled = false;
+                nextBtn.className = "bg-[#059669] hover:bg-[#10b981] text-white cursor-pointer text-xs sm:text-sm font-bold px-6 py-2.5 rounded-xl transition shadow-sm";
+            } else {
+                nextBtn.disabled = true;
+                nextBtn.className = "bg-gray-300 text-gray-500 cursor-not-allowed text-xs sm:text-sm font-bold px-6 py-2.5 rounded-xl transition";
+            }
+
+            if (currentIndex === questions.length - 1) {
+                nextBtn.textContent = "Finish & See Results";
+            } else {
+                nextBtn.textContent = "Next Question";
+            }
+        }
+
+        function selectOption(index) {
+            userAnswers[currentIndex] = index;
+            renderQuestion();
+        }
+
+        function nextQuestion() {
+            if (currentIndex < questions.length - 1) {
+                currentIndex++;
+                renderQuestion();
+            } else {
+                calculateResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuestion();
+            }
+        }
+
+        function calculateResults() {
+            clearInterval(timerInterval);
+
+            let score = 0;
+            questions.forEach((q, idx) => {
+                if (userAnswers[idx] === q.answerIndex) {
+                    score++;
+                }
+            });
+
+            document.getElementById('quiz-card').classList.add('hidden');
+            const resultCard = document.getElementById('result-card');
+            resultCard.classList.remove('hidden');
+
+            document.getElementById('final-score').textContent = score;
+
+            const badge = document.getElementById('result-badge');
+            const title = document.getElementById('result-title');
+
+            if (score >= 12) {
+                badge.className = "w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-2xl font-extrabold text-white bg-[#059669]";
+                badge.textContent = "PASS";
+                title.textContent = "Congratulations! You Passed!";
+            } else {
+                badge.className = "w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-2xl font-extrabold text-white bg-amber-500";
+                badge.textContent = "RETRY";
+                title.textContent = "Keep Practicing!";
+            }
+
+            // Populate Review Section
+            const reviewContainer = document.getElementById('review-container');
+            reviewContainer.innerHTML = '';
+
+            questions.forEach((q, idx) => {
+                const userChoice = userAnswers[idx];
+                const isCorrect = userChoice === q.answerIndex;
+
+                const reviewItem = document.createElement('div');
+                reviewItem.className = `p-4 rounded-2xl border ${isCorrect ? 'bg-emerald-50 border-emerald-200' : 'bg-red-50 border-red-200'}`;
+
+                let optionsHtml = '';
+                q.options.forEach((opt, optIdx) => {
+                    let style = 'text-gray-700';
+                    let marker = '';
+                    if (optIdx === q.answerIndex) {
+                        style = 'text-[#059669] font-bold';
+                        marker = ' (Correct Answer)';
+                    } else if (optIdx === userChoice && !isCorrect) {
+                        style = 'text-red-600 font-semibold line-through';
+                        marker = ' (Your Answer)';
+                    } else if (optIdx === userChoice && isCorrect) {
+                        style = 'text-[#059669] font-semibold';
+                        marker = ' (Your Answer)';
+                    }
+                    optionsHtml += `<li class="text-xs sm:text-sm ${style}">- ${String.fromCharCode(65 + optIdx)}. ${opt}${marker}</li>`;
+                });
+
+                reviewItem.innerHTML = `
+                    <p class="text-xs sm:text-sm font-bold text-gray-900 mb-2">Q${idx + 1}: ${q.question}</p>
+                    <ul class="flex flex-col gap-1 pl-2">${optionsHtml}</ul>
+                `;
+                reviewContainer.appendChild(reviewItem);
+            });
+        }
+
+        function restartTest() {
+            userAnswers = {};
+            currentIndex = 0;
+            timeLeft = 20 * 60;
+            document.getElementById('timer-display').textContent = "20:00";
+            document.getElementById('result-card').classList.add('hidden');
+            document.getElementById('quiz-card').classList.remove('hidden');
+            startTimer();
+            renderQuestion();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderQuestion();
+            startTimer();
+        });
+    </script>
+</body>
+</html>

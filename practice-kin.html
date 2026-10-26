@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+    <!-- Favicon Tags -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DREXFQGYZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2DREXFQGYZ');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Ikizamini cy'Ubuntu - MINDbank Rwanda</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        .option-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .option-btn:hover {
+            border-color: #059669;
+            background-color: #f0fdf4;
+        }
+        .option-btn.selected {
+            border-color: #059669;
+            background-color: #ecfdf5;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 min-h-screen p-2 sm:p-4 md:p-6 flex flex-col items-center relative">
+
+    <!-- ================= TOP LANGUAGE BAR ================= -->
+    <div class="w-full max-w-7xl flex justify-end items-center gap-3 py-2 px-4 text-xs font-semibold text-gray-600">
+        <span class="text-gray-400">Ururimi / Language:</span>
+        <a href="practice-kin.html" class="text-[#059669] font-bold underline decoration-2 underline-offset-4">Kinyarwanda</a>
+        <span class="text-gray-300">|</span>
+        <a href="practice.html" class="hover:text-[#059669] transition">English</a>
+        <span class="text-gray-300">|</span>
+        <a href="practice-fr.html" class="hover:text-[#059669] transition">Français</a>
+    </div>
+
+    <!-- ================= HEADER / NAV ================= -->
+    <header class="w-full max-w-7xl border-b border-gray-100 pb-4 mb-6">
+        <div class="flex items-center justify-between px-2 sm:px-4">
+            <a href="index-kin.html" class="text-2xl sm:text-3xl font-bold tracking-tight text-[#041a18] hover:opacity-90 transition">
+                mindbank
+            </a>
+
+            <div class="flex items-center gap-3">
+                <a href="index-kin.html" class="text-xs sm:text-sm font-medium text-gray-600 hover:text-[#059669] transition px-3 py-1.5 rounded-full border border-gray-200">
+                    Sohoka mu Ikizamini
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= PRACTICE CONTAINER ================= -->
+    <main class="w-full max-w-3xl px-3 sm:px-6 my-auto flex flex-col items-center">
+        
+        <!-- QUIZ BOARD CARD -->
+        <div id="quiz-card" class="w-full bg-[#F3F4F6] border border-gray-200 rounded-3xl p-5 sm:p-8 shadow-sm">
+            
+            <!-- Progress, Timer & Badge Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                <span id="question-badge" class="bg-emerald-100 text-[#059669] text-xs sm:text-sm px-3 py-1 rounded-full font-bold w-fit">
+                    Ikibazo 1 kuri 20
+                </span>
+                
+                <!-- Timer Display -->
+                <div class="flex items-center gap-1.5 bg-gray-200 text-gray-800 text-xs sm:text-sm px-3 py-1 rounded-full font-bold w-fit">
+                    <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span id="timer-display">20:00</span>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-200 h-2.5 rounded-full mb-6 overflow-hidden">
+                <div id="progress-bar" class="bg-[#059669] h-2.5 rounded-full transition-all duration-300" style="width: 5%;"></div>
+            </div>
+
+            <!-- Question Title -->
+            <h2 id="question-text" class="text-base sm:text-xl font-bold text-gray-900 mb-6 leading-snug">
+                Tegereza gato...
+            </h2>
+
+            <!-- Answer Options List -->
+            <div id="options-container" class="flex flex-col gap-3 mb-8"></div>
+
+            <!-- Navigation Controls -->
+            <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+                <button id="prev-btn" onclick="prevQuestion()" class="hidden bg-gray-200 hover:bg-gray-300 text-gray-700 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl transition">
+                    Ibanze
+                </button>
+                <div class="flex-1"></div>
+                <button id="next-btn" onclick="nextQuestion()" disabled class="bg-gray-300 text-gray-500 cursor-not-allowed text-xs sm:text-sm font-bold px-6 py-2.5 rounded-xl transition">
+                    Ikibazo Gikurikira
+                </button>
+            </div>
+
+        </div>
+
+        <!-- RESULTS CARD (Hidden by default) -->
+        <div id="result-card" class="hidden w-full bg-[#F3F4F6] border border-gray-200 rounded-3xl p-6 sm:p-10 shadow-sm text-center mb-10">
+            <div id="result-badge" class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-2xl font-extrabold text-white"></div>
+
+            <h2 id="result-title" class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">
+                Ikizamini Cyarangiye!
+            </h2>
+            <p id="result-summary" class="text-gray-600 text-sm sm:text-base mb-6">
+                Watsinze <span id="final-score" class="font-bold text-[#059669]">0</span> kuri 20.
+            </p>
+
+            <!-- Call to Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
+                <a href="register.html" class="w-full sm:w-auto bg-[#55E55B] hover:bg-[#4BD851] text-black font-extrabold italic uppercase py-3 px-8 rounded-xl transition shadow-md text-center">
+                    Ishura ubu kugira ngo ubone ibibazo 300+ byose
+                </a>
+                <button onclick="restartTest()" class="w-full sm:w-auto bg-[#059669] hover:bg-[#10b981] text-white font-bold py-3 px-6 rounded-xl transition shadow-md">
+                    Ongera ugerageze
+                </button>
+            </div>
+
+            <!-- Review Container -->
+            <div class="text-left border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-4">Isuzuma ry'Ibibazo</h3>
+                <div id="review-container" class="flex flex-col gap-4"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Copyright -->
+    <footer class="w-full max-w-7xl text-center text-xs text-gray-400 py-6 mt-12 border-t border-gray-100">
+        © 2026 MindBank. Uburenganzira Bwose Burarazwe.
+    </footer>
+
+    <!-- Practice Logic Script -->
+    <script>
+        const questions = [
+            { 
+                id: 1, 
+                question: "Hashingiwe ku busesenguzi bw’amagambo akoreshwa mu mategeko y’umuhanda mu Rwanda, ijambo “Akayira” risobanura iki?", 
+                options: [
+                    "Igice cy’inzira nyabagendwa cyahariwe amagare na velomoteri gusa", 
+                    "Inzira nyabagendwa ifunganye yagenewe gusa abanyamaguru cyangwa ibinyabiziga bigendera ku biziga bibiri", 
+                    "Inzira yagutse ubusanzwe itaragenewe ibinyabiziga bibiri"
+                ], 
+                answerIndex: 1 
+            },
+            { 
+                id: 2, 
+                question: "Ugendeye ku mategeko y'umuhanda, ni rero jambo riranga \"Igice cy’inzira nyabagendwa kinyurwamo n’ibinyabiziga ikaba yagira imihanda myinshi\"?", 
+                options: [
+                    "Isangano", 
+                    "Igisate cy'umuhanda", 
+                    "Umuhanda"
+                ], 
+                answerIndex: 2 
+            },
+            { 
+                id: 3, 
+                question: "Iyo umuhanda ugabanyijwe mu burebure bwawo n’imirongo ifatika cyangwa idafatika, buri gice muri ibyo cyemerera gutambuka kw'itinjiro rimwe ry'ibinyabiziga kitwa iki?", 
+                options: [
+                    "Igisate cy’umuhanda", 
+                    "Inzira y'igitaka", 
+                    "Agahanda k'amagare"
+                ], 
+                answerIndex: 0 
+            },
+            { 
+                id: 4, 
+                question: "Umurongo wera ukomeje n’umurongo wera ucagaguye ibangikanye iyo bishushanyijwe mu muhanda, umuyobozi agomba kwita ku biki?", 
+                options: [
+                    "Agomba kwita gusa ku murongo uri mu rubehe rwe (uruhande rwe) rw'ikinyabiziga", 
+                    "Umurongo ukomeje urasabwa kubahirizwa n'abashoferi bose rihura nta kurobanura", 
+                    "Umurongo ucagaguye ntiwemerera kunyuranaho iyo uri uruhande rw'iburyo"
+                ], 
+                answerIndex: 0 
+            },
+            { 
+                id: 5, 
+                question: "Mu muhanda ufite igice banyuramo gikikijwe n’uduce tugari tudafatanye tw’ibara ry'umweru, ni ibihe binyabiziga bigomba kunyura muryo ku buryo bw'umwihariko?", 
+                options: [
+                    "Ibinyabiziga bigenda buhoro n’ibinyabiziga bitwara abantu muri rusange", 
+                    "Amakamyo manini arenga toni 20 gusa", 
+                    "Ibinyabiziga bitanga urwogera (Amburanse n'izizimya umuriro)"
+                ], 
+                answerIndex: 0 
+            },
+            { 
+                id: 6, 
+                question: "Ingingo ivuga ku matara y'ikinyabiziga n'ibimenyetso itanga itegeko riranga amatara abiri y'ubwoko bumwe. Ni ryari ikinyabiziga gishobora kugira amatara abiri y'ubwoko bumwe ku ruhande rumwe?", 
+                options: [
+                    "Ntagikoreshwa na rimwe kereka ku itara ryo gusubira inyuma", 
+                    "Kereka ku buryo bw'itara ndanga-mubyimba n'itara ryerekana icyerekezo", 
+                    "Kereka iyo ari amatara ya rutura akoreshwa mu muhanda wo mu cyaro"
+                ], 
+                answerIndex: 1 
+            },
+            { 
+                id: 7, 
+                question: "Hashingiwe ku mabwiriza rusange y'amatara, ni riri bara ry'itara cyangwa ry'akagarurarumuri ritemewe kuboneka ku ruhande rw'imbere rw'ikinyabiziga (uretse itara ryerekana icyerekezo)?", 
+                options: [
+                    "Ibara ry'umweru", 
+                    "Ibara ry'umuhondo", 
+                    "Ibara ritukura"
+                ], 
+                answerIndex: 2 
+            },
+            { 
+                id: 8, 
+                question: "Ni ubuhe burenganzira buhabwa ibinyabiziga biri mu muhanda uzafashwe n'asfayire (kaburimbo) iyo bihuye n'ibiturutse ku nzira y'igitaka?", 
+                options: [
+                    "Barafatanya bagasaranganya umuhanda bitewe n'umuvuduko", 
+                    "Ibinyabiziga bigenda ku muhanda wa kaburimbo bifite uburenganzira bw'ibanze", 
+                    "Ibinyabiziga biturutse ku nzira y'igitaka bifite uburenganzira kuko biba biza iburyo"
+                ], 
+                answerIndex: 1 
+            },
+            { 
+                id: 9, 
+                question: "Hashingiwe ku masezerano rusange y'ingano y'ibinyabiziga bikururana, imizigo ishingiye ku modoka ntabwo igomba kurenza ubuhe bugari bwemewe ku buryo bw'amategeko mu Rwanda?", 
+                options: [
+                    "Metero 2.50", 
+                    "Metero 2.65", 
+                    "Metero 3.00"
+                ], 
+                answerIndex: 1 
+            },
+            { 
+                id: 10, 
+                question: "Hashingiwe ku buremere n'imiterere, ni ubuhe burebure bw'ikinyabiziga butagomba kurenzwa harimo n'imizigo cyikoreye?", 
+                options: [
+                    "Metero 4.00", 
+                    "Metero 4.20", 
+                    "Metero 4.50"
+                ], 
+                answerIndex: 1 
+            },
+            { 
+                id: 11, 
+                question: "Ibyapa by'umuhanda biri mu gice cya \"B\" (nk'icyapa cya B,1 cyangwa B,2a) biranga itegeko rya he?", 
+                options: [
+                    "Ibyapa by'integuza y'akaga", 
+                    "Ibyapa byerekana Uburenganzira bw'ibanze", 
+                    "Ibyapa bibuza burundu"
+                ], 
+                answerIndex: 1 
+            },
+            { 
+                id: 12, 
+                question: "Umuyobozi w'ikinyabiziga unyura mu masangano azunguruka (Rond-point) agomba guharira umuhanda ba nde?", 
+                options: [
+                    "Agomba guharira abinjira bose baturuka iburyo", 
+                    "Ibinyabiziga bimaze gushyikira cyangwa kwinjira mu ruziga ni byo bifite uburenganzira bw'ibanze", 
+                    "Bisi zitwara abagenzi mu buryo bwa rusange gusa"
+                ], 
+                answerIndex: 1 
+            },
+            { 
+                id: 13, 
+                question: "Mu gihe amashanaho cyangwa ibimenyetso bitandukanye by'umuhanda bikurikirana, ni ubuhe buryo bw'isumbana bukurikizwa hashingiwe ku cyubahiro cy'amategeko?", 
+                options: [
+                    "Ibyapa biza imbere y'amatara, amatara akaza imbere y'umupolisi", 
+                    "Ibimenyetso by'abatwara ibinyabiziga biza imbere y'ibyapa byose", 
+                    "Ibimenyetso by'abapolisi biza imbere y'amatara, amatara imbere y'ibyapa, ibyapa imbere y'imirongo"
+                ], 
+                answerIndex: 2 
+            },
+            { 
+                id: 14, 
+                question: "Mu iteka rya Perezida, ibinyabiziga byose biyandikisha mu Rwanda bigomba kuba bifite akanyabiziga k'ubuyobozi (Volant) ku ruhande rwa he?", 
+                options: [
+                    "Ku ruhande rw'iburyo", 
+                    "Ku ruhande rw'ibumoso", 
+                    "Urubhande uwo ari rwo lwose rwemerwa bitewe n'aho imodoka yakorewe"
+                ], 
+                answerIndex: 1 
+            },
+            { 
+                id: 15, 
+                question: "Hashingiwe ku iteka ryubahiriza amategeko y'umuhanda, inzira nyabagendwa yagutse kurusha akayira ariko ubusanzwe itaragenewe ibinyabiziga bibiri yitwa iki?", 
+                options: [
+                    "Agahanda k'amagare", 
+                    "Inzira y'igitaka", 
+                    "Igisate cy'umuhanda"
+                ], 
+                answerIndex: 1 
+            },
+            { 
+                id: 16, 
+                question: "Ni ibihe binyabiziga bitandukanye bitemerewe kwandikwa mu Rwanda bifite volant iburyo, uretse ibyemererwa mu gihe kitari munsi y'amezi matatu?", 
+                options: [
+                    "Amakamyo afite uburemere bwa toni 10 gusa", 
+                    "Ibinyabiziga byose biturutse mu bihugu bya EAC bitarengeje amezi 3", 
+                    "Imodoka zose z'abaturage basanzwe bafite inganda zabo"
+                ], 
+                answerIndex: 1 
+            },
+            { 
+                id: 17, 
+                question: "Ugendeye ku mategeko agenga ikoreshwa ry'umuhanda ku modoka nto (izitarengeje 3,500kg) n'amapikipiki, umuvuduko ukabije mu muhanda mugari ni uwuhe?", 
+                options: [
+                    "60 km/h", 
+                    "80 km/h", 
+                    "100 km/h"
+                ], 
+                answerIndex: 1 
+            },
+            { 
+                id: 18, 
+                question: "Iyo umuyobozi acitse amashanyarazi y'amatara maku nka \"code\" cyangwa \"amajeri\" mu ijoro, ni ayahe matara yemewe gukoreshwa kugira ngo ikinyabiziga kigaragare mu gihe gihagaze?", 
+                options: [
+                    "Amatara ndanga-mubyimba (utunyota)", 
+                    "Amatara asubira inyuma gusa", 
+                    "Nta tara na rimwe ryemewe kwakwa"
+                ], 
+                answerIndex: 0 
+            },
+            { 
+                id: 19, 
+                question: "Isuzuma rya tekiniki ry'ibinyabiziga (Contrôle technique) bitwara abagenzi mu buryo bwa rusange rigomba gukorwa mu buhe buryo?", 
+                options: [
+                    "Rimwe mu mezi abiri", 
+                    "Rimwe mu mwaka", 
+                    "Rimwe mu myaka ibiri"
+                ], 
+                answerIndex: 1 
+            },
+            { 
+                id: 20, 
+                question: "Amategeko ahana amakosa yo muhanda mu Rwanda ateganya ko iyo urihijwe ihazabu y'akarusho (administrative fine), ugomba kuyishyura mu gihe kitarenze iyihe minsi mberereze yo kurenzaho 30%?", 
+                options: [
+                    "Iminsi 7", 
+                    "Iminsi 15", 
+                    "Iminsi 30"
+                ], 
+                answerIndex: 2 
+            }
+        ];
+
+        let currentIndex = 0;
+        let userAnswers = {};
+        let timeLeft = 20 * 60;
+        let timerInterval = null;
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    calculateResults();
+                    return;
+                }
+                timeLeft--;
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                document.getElementById('timer-display').textContent = 
+                    `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        function renderQuestion() {
+            const current = questions[currentIndex];
+            if (!current) return;
+
+            document.getElementById('question-badge').textContent = `Ikibazo ${currentIndex + 1} kuri ${questions.length}`;
+            const progressPercent = ((currentIndex + 1) / questions.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('question-text').textContent = current.question;
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            current.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `option-btn w-full text-left p-4 rounded-2xl border border-gray-300 text-sm sm:text-base font-medium flex items-center justify-between bg-white`;
+                
+                if (userAnswers[currentIndex] === idx) {
+                    btn.classList.add('selected');
+                }
+
+                btn.innerHTML = `
+                    <span>${String.fromCharCode(65 + idx)}. ${opt}</span>
+                    <span class="w-5 h-5 rounded-full border border-gray-300 flex items-center justify-center text-xs">
+                        ${userAnswers[currentIndex] === idx ? '✓' : ''}
+                    </span>
+                `;
+                btn.onclick = () => selectOption(idx);
+                optionsContainer.appendChild(btn);
+            });
+
+            const prevBtn = document.getElementById('prev-btn');
+            if (currentIndex > 0) {
+                prevBtn.classList.remove('hidden');
+            } else {
+                prevBtn.classList.add('hidden');
+            }
+
+            const nextBtn = document.getElementById('next-btn');
+            if (userAnswers[currentIndex] !== undefined) {
+                nextBtn.disabled = false;
+                nextBtn.className = "bg-[#059669] hover:bg-[#10b981] text-white cursor-pointer text-xs sm:text-sm font-bold px-6 py-2.5 rounded-xl transition shadow-sm";
+            } else {
+                nextBtn.disabled = true;
+                nextBtn.className = "bg-gray-300 text-gray-500 cursor-not-allowed text-xs sm:text-sm font-bold px-6 py-2.5 rounded-xl transition";
+            }
+
+            if (currentIndex === questions.length - 1) {
+                nextBtn.textContent = "Soza urebe amanota";
+            } else {
+                nextBtn.textContent = "Ikibazo Gikurikira";
+            }
+        }
+
+        function selectOption(index) {
+            userAnswers[currentIndex] = index;
+            renderQuestion();
+        }
+
+        function nextQuestion() {
+            if (currentIndex < questions.length - 1) {
+                currentIndex++;
+                renderQuestion();
+            } else {
+                calculateResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuestion();
+            }
+        }
+
+        function calculateResults() {
+            clearInterval(timerInterval);
+            let score = 0;
+            questions.forEach((q, idx) => {
+                if (userAnswers[idx] === q.answerIndex) score++;
+            });
+
+            document.getElementById('quiz-card').classList.add('hidden');
+            const resultCard = document.getElementById('result-card');
+            resultCard.classList.remove('hidden');
+            document.getElementById('final-score').textContent = score;
+
+            const badge = document.getElementById('result-badge');
+            const title = document.getElementById('result-title');
+
+            if (score >= 12) {
+                badge.className = "w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-2xl font-extrabold text-white bg-[#059669]";
+                badge.textContent = "WATSINZE";
+                title.textContent = "Twishimiye ko Watsinze!";
+            } else {
+                badge.className = "w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-2xl font-extrabold text-white bg-amber-500";
+                badge.textContent = "SUBIRA";
+                title.textContent = "Komeza Witoze!";
+            }
+
+            const reviewContainer = document.getElementById('review-container');
+            reviewContainer.innerHTML = '';
+            questions.forEach((q, idx) => {
+                const userChoice = userAnswers[idx];
+                const isCorrect = userChoice === q.answerIndex;
+                const reviewItem = document.createElement('div');
+                reviewItem.className = `p-4 rounded-2xl border ${isCorrect ? 'bg-emerald-50 border-emerald-200' : 'bg-red-50 border-red-200'}`;
+
+                let optionsHtml = '';
+                q.options.forEach((opt, optIdx) => {
+                    let style = 'text-gray-700';
+                    let marker = '';
+                    if (optIdx === q.answerIndex) {
+                        style = 'text-[#059669] font-bold';
+                        marker = ' (Igisubizo Nyacyo)';
+                    } else if (optIdx === userChoice && !isCorrect) {
+                        style = 'text-red-600 font-semibold line-through';
+                        marker = ' (Igisubizo Wawemo)';
+                    } else if (optIdx === userChoice && isCorrect) {
+                        style = 'text-[#059669] font-semibold';
+                        marker = ' (Igisubizo Wawemo)';
+                    }
+                    optionsHtml += `<li class="text-xs sm:text-sm ${style}">- ${String.fromCharCode(65 + optIdx)}. ${opt}${marker}</li>`;
+                });
+
+                reviewItem.innerHTML = `
+                    <p class="text-xs sm:text-sm font-bold text-gray-900 mb-2">Q${idx + 1}: ${q.question}</p>
+                    <ul class="flex flex-col gap-1 pl-2">${optionsHtml}</ul>
+                `;
+                reviewContainer.appendChild(reviewItem);
+            });
+        }
+
+        function restartTest() {
+            userAnswers = {};
+            currentIndex = 0;
+            timeLeft = 20 * 60;
+            document.getElementById('timer-display').textContent = "20:00";
+            document.getElementById('result-card').classList.add('hidden');
+            document.getElementById('quiz-card').classList.remove('hidden');
+            startTimer();
+            renderQuestion();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderQuestion();
+            startTimer();
+        });
+    </script>
+</body>
+</html>

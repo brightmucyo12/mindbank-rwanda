@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Exam - MindBank Rwanda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col text-gray-900">
+
+    <!-- HEADER / TIMER BAR -->
+    <header class="bg-[#041a18] text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="dashboard.html" class="text-lg font-bold tracking-tight text-white hover:text-emerald-400 transition">
+                &larr; Exit Exam
+            </a>
+            <div id="timerDisplay" class="bg-[#0b332f] border border-[#13423d] px-4 py-1.5 rounded-full text-emerald-300 font-mono font-bold text-sm">
+                ⏱️ Loading Timer...
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN QUIZ CONTAINER -->
+    <main class="flex-grow max-w-4xl w-full mx-auto px-4 py-8 sm:py-12">
+        
+        <!-- Loading State -->
+        <div id="loadingContainer" class="bg-white rounded-3xl p-10 text-center shadow-sm border border-gray-100">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600 mx-auto mb-4"></div>
+            <h2 class="text-xl font-bold text-gray-800">Preparing your exam questions...</h2>
+            <p class="text-sm text-gray-500 mt-1">Fetching randomized questions from your database.</p>
+        </div>
+
+        <!-- Quiz Form / Card -->
+        <div id="quizContainer" class="hidden space-y-6">
+            <!-- Progress Bar Header -->
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex items-center justify-between">
+                <span id="questionProgress" class="text-sm font-bold text-gray-500">Question 1 of 20</span>
+                <span id="examTitleBadge" class="text-xs font-bold bg-emerald-50 text-[#059669] px-3 py-1 rounded-full">Provisional Test</span>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-100">
+                <h3 id="questionText" class="text-lg sm:text-xl font-bold text-gray-900 mb-6">
+                    <!-- Question dynamically injected here -->
+                </h3>
+
+                <!-- Options List -->
+                <div id="optionsList" class="space-y-3">
+                    <!-- Options dynamically injected here -->
+                </div>
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="flex justify-between items-center">
+                <button id="prevBtn" onclick="prevQuestion()" class="bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 px-6 py-3 rounded-2xl font-semibold text-sm transition hidden">
+                    &larr; Previous
+                </button>
+                <div class="ml-auto">
+                    <button id="nextBtn" onclick="nextQuestion()" class="bg-[#059669] hover:bg-[#10b981] text-white px-8 py-3 rounded-2xl font-bold text-sm shadow-lg transition">
+                        Next Question &rarr;
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results View (Hidden Initially) -->
+        <div id="resultsContainer" class="hidden bg-white rounded-3xl p-8 sm:p-12 text-center shadow-sm border border-gray-100">
+            <div id="resultIcon" class="w-20 h-20 rounded-full mx-auto flex items-center justify-center text-3xl mb-6 bg-emerald-100 text-emerald-600">
+                🎉
+            </div>
+            <h2 id="resultHeading" class="text-2xl sm:text-3xl font-extrabold text-gray-900">Exam Completed!</h2>
+            <p id="resultSub" class="text-gray-500 mt-2">Here is how you performed on this test session.</p>
+            
+            <div class="my-8 p-6 bg-gray-50 rounded-2xl max-w-sm mx-auto border border-gray-100">
+                <span class="text-xs font-semibold uppercase text-gray-400">Final Score</span>
+                <div id="finalScoreText" class="text-4xl font-extrabold text-[#041a18] mt-1">0 / 20</div>
+                <div id="passFailBadge" class="mt-3 inline-block px-4 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">PASSED</div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="dashboard.html" class="bg-[#041a18] hover:bg-black text-white px-8 py-3.5 rounded-2xl font-bold text-sm transition">
+                    Return to Dashboard
+                </a>
+                <button onclick="location.reload()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-8 py-3.5 rounded-2xl font-bold text-sm transition">
+                    Retake Test
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- SUPABASE CLIENT -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Supabase Initialization (Make sure your keys match your setup)
+        const SUPABASE_URL = 'https://itvheirsaghrmzkeezw.supabase.co';
+
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml0dmhlaXJzYWd4aHJtemtlZXp3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE1MjQ2NDgsImV4cCI6MjEwNzEwMDY0OH0.l2aGXnELeLbneM1DDh2zo-nJQNTvNypvpzWSxJ1KijE';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Read URL Parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const questionCount = parseInt(urlParams.get('count')) || 20;
+        const timeLimitMinutes = parseInt(urlParams.get('time')) || 20;
+
+        // Determine Database Language based on user dashboard selection ('en', 'rw', 'fr')
+        let uiLang = localStorage.getItem('lang') || 'en';
+        let dbLang = uiLang === 'rw' ? 'kin' : (uiLang === 'fr' ? 'fr' : 'eng');
+
+        let questions = [];
+        let currentIndex = 0;
+        let userAnswers = {}; // stores index -> selected option key ('option_a', etc.)
+        let timerInterval;
+        let timeLeftSeconds = timeLimitMinutes * 60;
+
+        async function initQuiz() {
+            try {
+                // Fetch questions matching language from Supabase
+                const { data, error } = await supabaseClient
+                    .from('questions')
+                    .select('*')
+                    .eq('language', dbLang);
+
+                if (error) throw error;
+
+                if (!data || data.length === 0) {
+                    alert('No questions found for this language.');
+                    window.location.href = 'dashboard.html';
+                    return;
+                }
+
+                // Shuffle and slice to required count (10 or 20)
+                const shuffled = data.sort(() => 0.5 - Math.random());
+                questions = shuffled.slice(0, questionCount);
+
+                // Hide loader, show quiz
+                document.getElementById('loadingContainer').classList.add('hidden');
+                document.getElementById('quizContainer').classList.remove('hidden');
+
+                startTimer();
+                renderQuestion();
+
+            } catch (err) {
+                console.error('Error loading quiz:', err);
+                alert('Failed to load quiz questions. Please check connection.');
+                window.location.href = 'dashboard.html';
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (timeLeftSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    alert('Time is up! Submitting your exam.');
+                    submitExam();
+                    return;
+                }
+                timeLeftSeconds--;
+                const mins = Math.floor(timeLeftSeconds / 60);
+                const secs = timeLeftSeconds % 60;
+                document.getElementById('timerDisplay').textContent = 
+                    `⏱️ Time Left: ${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }, 1000);
+        }
+
+        function renderQuestion() {
+            const q = questions[currentIndex];
+            document.getElementById('questionProgress').textContent = `Question ${currentIndex + 1} of ${questions.length}`;
+            document.getElementById('questionText').textContent = q.question;
+
+            const optionsList = document.getElementById('optionsList');
+            optionsList.innerHTML = '';
+
+            const options = [
+                { key: 'option_a', text: q.option_a },
+                { key: 'option_b', text: q.option_b },
+                { key: 'option_c', text: q.option_c },
+                { key: 'option_d', text: q.option_d }
+            ];
+
+            options.forEach(opt => {
+                if (!opt.text) return; // Skip empty options if any
+
+                const isSelected = userAnswers[currentIndex] === opt.key;
+
+                const label = document.createElement('label');
+                label.className = `flex items-center gap-4 p-4 rounded-2xl border cursor-pointer transition ${
+                    isSelected ? 'border-emerald-600 bg-emerald-50/50 font-semibold text-emerald-950' : 'border-gray-200 hover:border-gray-300 bg-white text-gray-700'
+                }`;
+                label.innerHTML = `
+                    <input type="radio" name="questionOption" value="${opt.key}" ${isSelected ? 'checked' : ''} class="w-4 h-4 text-emerald-600 focus:ring-emerald-500">
+                    <span class="text-sm sm:text-base">${opt.text}</span>
+                `;
+
+                label.querySelector('input').addEventListener('change', () => {
+                    userAnswers[currentIndex] = opt.key;
+                    renderQuestion(); // Re-render to update active styling
+                });
+
+                optionsList.appendChild(label);
+            });
+
+            // Toggle Previous Button
+            if (currentIndex > 0) {
+                document.getElementById('prevBtn').classList.remove('hidden');
+            } else {
+                document.getElementById('prevBtn').classList.add('hidden');
+            }
+
+            // Toggle Next / Submit Button text
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentIndex === questions.length - 1) {
+                nextBtn.textContent = 'Submit Exam 🏁';
+                nextBtn.onclick = submitExam;
+            } else {
+                nextBtn.textContent = 'Next Question →';
+                nextBtn.onclick = nextQuestion;
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < questions.length - 1) {
+                currentIndex++;
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuestion();
+            }
+        }
+
+        async function submitExam() {
+            clearInterval(timerInterval);
+
+            // Calculate Score
+            let score = 0;
+            questions.forEach((q, idx) => {
+                if (userAnswers[idx] && userAnswers[idx] === q.correct_answer) {
+                    score++;
+                }
+            });
+
+            const total = questions.length;
+            const percentage = Math.round((score / total) * 100);
+            // Passing threshold: 60% or standard Rwandan 12/20 rule adjusted for question count
+            const passThreshold = Math.ceil(total * 0.6); 
+            const passed = score >= passThreshold;
+
+            // Hide Quiz, Show Results UI
+            document.getElementById('quizContainer').classList.add('hidden');
+            document.getElementById('resultsContainer').classList.remove('hidden');
+            document.getElementById('finalScoreText').textContent = `${score} / ${total}`;
+            
+            const badge = document.getElementById('passFailBadge');
+            badge.textContent = passed ? 'PASSED ' : 'FAILED ';
+            badge.className = `mt-3 inline-block px-4 py-1 rounded-full text-xs font-bold ${passed ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}`;
+
+            // Save to Backend Database API
+            const storedUser = localStorage.getItem('user');
+            if (storedUser) {
+                try {
+                    const user = JSON.parse(storedUser);
+                    await fetch('/api/results', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            user_id: user.id,
+                            score: score,
+                            total_questions: total
+                        })
+                    });
+                } catch (err) {
+                    console.error('Failed to save exam results to server:', err);
+                }
+            }
+        }
+
+        // Run on page load
+        initQuiz();
+    </script>
+</body>
+</html>

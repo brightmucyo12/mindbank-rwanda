@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Main Homepage -->
+  <url>
+    <loc>https://izidrive.site/</loc>
+    <lastmod>2026-10-24</lastmod>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Kinyarwanda Homepage -->
+  <url>
+    <loc>https://izidrive.site/index-kin.html</loc>
+    <lastmod>2026-10-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- French Homepage -->
+  <url>
+    <loc>https://izidrive.site/index-fr.html</loc>
+    <lastmod>2026-10-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Auth Pages -->
+  <url>
+    <loc>https://izidrive.site/login.html</loc>
+    <lastmod>2026-10-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://izidrive.site/register.html</loc>
+    <lastmod>2026-10-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://izidrive.site/forgotpin.html</loc>
+    <lastmod>2026-10-24</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Privacy Policy Page -->
+  <url>
+    <loc>https://izidrive.site/privacypage.html</loc>
+    <lastmod>2026-10-24</lastmod>
+    <priority>0.3</priority>
+  </url>
+</urlset>
