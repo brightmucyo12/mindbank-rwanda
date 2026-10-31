@@ -168,6 +168,11 @@ app.get('/api/questions', (req, res) => {
   }
 });
 
+// Explicit route to serve the dashboard file
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dashboard-index.html'));
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
