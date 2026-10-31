@@ -1,188 +1,380 @@
-const path = require('path');
-const fs = require('fs');
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const bcrypt = require('bcryptjs');
-const { createClient } = require('@supabase/supabase-js');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Favicon Tags -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#041a18">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - IZIdrive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; overflow-x: hidden; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col text-gray-900 relative">
 
-const app = express();
+    <!-- TOP LANGUAGE BAR -->
+    <div class="w-full max-w-7xl mx-auto flex justify-end items-center gap-3 py-2 px-4 sm:px-6 lg:px-8 text-xs font-semibold text-gray-600 bg-white">
+        <span class="text-gray-400">Language / Ururimi:</span>
+        <a href="dashboard-kin.html" id="langKin" class="hover:text-[#059669] transition">Kinyarwanda</a>
+        <span class="text-gray-300">|</span>
+        <a href="dashboard-index.html" id="langEn" class="text-[#059669] font-bold underline decoration-2 underline-offset-4">English</a>
+        <span class="text-gray-300">|</span>
+        <a href="dashboard-fr.html" id="langFr" class="hover:text-[#059669] transition">Français</a>
+    </div>
 
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  credentials: true
-}));
+    <!-- STICKY HEADER -->
+    <div id="sticky-header" class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-md shadow-md z-50 transition-all duration-300 transform -translate-y-full px-4 sm:px-8 md:px-12 py-3 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-xl sm:text-2xl font-bold tracking-tight text-[#041a18] hover:opacity-90 transition">
+                <img src="apple-touch-icon.png" alt="IZIdrive logo" class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl object-contain">
+                <span class="tracking-tight">IZIdrive</span>
+            </a>
 
-app.use(express.json());
+            <div class="flex items-center gap-3">
+                <span id="userPhoneDisplaySticky" class="text-xs sm:text-sm bg-gray-100 px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hidden sm:inline">
+                    Loading...
+                </span>
+                <button id="logoutBtnSticky" class="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm px-4 py-1.5 rounded-full font-medium transition">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </div>
 
-app.use(express.static(path.join(__dirname), {
-  setHeaders: (res, filePath) => {
-    if (filePath.endsWith('.html')) {
-      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-      res.setHeader('Pragma', 'no-cache');
-      res.setHeader('Expires', '0');
-    }
-  }
-}));
+    <!-- TOP NAVIGATION BAR -->
+    <header id="hero-header" class="bg-white border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <nav id="nav-bar-row" class="flex items-center justify-between relative w-full">
+                <a href="index.html" class="flex items-center gap-2 text-2xl sm:text-3xl font-bold tracking-tight text-[#041a18] hover:opacity-90 transition">
+                    <img src="apple-touch-icon.png" alt="IZIdrive logo" class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-contain">
+                    <span class="tracking-tight">IZIdrive</span>
+                </a>
 
-// Initialize Supabase client via HTTPS
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
+                <div class="flex items-center gap-3">
+                    <span id="userPhoneDisplay" class="text-xs sm:text-sm bg-gray-100 px-3.5 py-2 rounded-full border border-gray-200 text-gray-700 hidden sm:inline font-medium">
+                        Loading...
+                    </span>
+                    <button id="logoutBtn" class="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm px-4 sm:px-6 py-2 rounded-full font-medium transition shadow-sm">
+                        Logout
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-// Verify database connection on startup
-async function testConnection() {
-  const { data, error } = await supabase.from('users').select('id').limit(1);
-  if (error) {
-    console.error('Database connection error:', error.message);
-  } else {
-    console.log('Connected to Supabase PostgreSQL Database via HTTPS!');
-  }
-}
-testConnection();
+    <!-- MAIN DASHBOARD CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 mb-12">
+        
+        <!-- Welcome Banner -->
+        <div class="bg-[#041a18] text-white rounded-3xl p-6 sm:p-10 mb-8 shadow-xl relative overflow-hidden flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div class="relative z-10">
+                <span id="planBadge" class="inline-block bg-[#059669] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
+                    Active Plan: ...
+                </span>
+                <h1 id="txtWelcomeTitle" class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">
+                    Welcome back to your Study Hub!
+                </h1>
+                <p id="txtWelcomeSub" class="text-gray-300 text-sm sm:text-base mt-2 max-w-xl">
+                    You have full access to over 300+ provisional driving test questions. Practice daily to guarantee your success on the first try.
+                </p>
+            </div>
+            <div class="relative z-10 w-full md:w-auto">
+                <a href="SectionA.html" id="txtStartExamBtn" class="block text-center bg-[#059669] hover:bg-[#10b981] text-white font-bold text-base px-8 py-3.5 rounded-2xl shadow-lg transition transform active:scale-95">
+                    Start Quick Practice (10 Qs / 10 Mins)
+                </a>
+            </div>
+        </div>
 
-app.post('/api/register', async (req, res) => {
-  const { phone, pin, plan, payment_method } = req.body;
+        <!-- STATS & QUICK ACTIONS GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                <div>
+                    <span id="txtTestsCompletedLabel" class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Tests Completed</span>
+                    <h3 id="statTotalTests" class="text-3xl font-extrabold text-[#041a18] mt-2">0</h3>
+                </div>
+                <div class="mt-4 text-xs text-emerald-600 font-medium">
+                    Updated from database
+                </div>
+            </div>
 
-  if (!/^\d{10}$/.test(phone)) {
-    return res.status(400).json({ error: 'Phone number must be exactly 10 digits.' });
-  }
-  if (!/^\d{4}$/.test(pin)) {
-    return res.status(400).json({ error: 'PIN must be exactly 4 digits.' });
-  }
-  if (!['daily', 'monthly'].includes(plan)) {
-    return res.status(400).json({ error: 'Invalid subscription plan selected.' });
-  }
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                <div>
+                    <span id="txtAvgScoreLabel" class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Average Score</span>
+                    <h3 id="statAvgScore" class="text-3xl font-extrabold text-[#041a18] mt-2">-- / 20</h3>
+                </div>
+                <div class="mt-4 text-xs text-gray-500 font-medium">
+                    Keep practicing to boost score
+                </div>
+            </div>
 
-  try {
-    const { data: existingUsers, error: checkError } = await supabase
-      .from('users')
-      .select('id')
-      .eq('phone_number', phone);
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                <div>
+                    <span id="txtAccountStatusLabel" class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Account Status</span>
+                    <h3 id="accountStatusText" class="text-xl font-bold text-emerald-600 mt-2">Active</h3>
+                </div>
+                <div class="mt-4 text-xs text-gray-500 font-medium">
+                    Subscription is verified
+                </div>
+            </div>
 
-    if (checkError) throw checkError;
+        </div>
 
-    if (existingUsers && existingUsers.length > 0) {
-      return res.status(400).json({ error: 'Phone number is already registered.' });
-    }
+        <!-- RESULTS SECTION -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 mb-12">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h2 id="txtResultsTitle" class="text-xl sm:text-2xl font-bold text-gray-900">
+                        Results
+                    </h2>
+                    <p id="txtResultsSub" class="text-xs sm:text-sm text-gray-500 mt-1">Your last 5 exam attempts</p>
+                </div>
+                <span id="txtHistoryBadge" class="text-xs font-bold bg-emerald-50 text-[#059669] px-3 py-1.5 rounded-full">
+                    History
+                </span>
+            </div>
 
-    const saltRounds = 10;
-    const pinHash = await bcrypt.hash(pin, saltRounds);
-    const amount = plan === 'daily' ? 500 : 1000;
-    const selectedPaymentMethod = payment_method || 'mtn';
+            <div id="resultsTableContainer" class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-gray-100 text-xs font-bold uppercase text-gray-400 tracking-wider">
+                            <th id="thDate" class="py-3 px-4">Date</th>
+                            <th id="thScore" class="py-3 px-4">Score</th>
+                            <th id="thPercentage" class="py-3 px-4">Percentage</th>
+                            <th id="thStatus" class="py-3 px-4 text-right">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsList" class="divide-y divide-gray-50 text-sm">
+                        <tr>
+                            <td colspan="4" class="py-6 text-center text-gray-400">Loading your exam history...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-    const { error: insertError } = await supabase
-      .from('users')
-      .insert([
-        {
-          phone_number: phone,
-          pin_hash: pinHash,
-          plan: plan,
-          payment_method: selectedPaymentMethod,
-          payment_status: 'pending'
+        <!-- PRACTICE MODULES SECTION -->
+        <div id="quiz-section" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100">
+            <h2 id="txtModulesTitle" class="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
+                Provisional License Modules
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#059669] transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center font-bold justify-center mb-4 text-lg">01</div>
+                        <h3 id="mod1Title" class="font-bold text-lg text-gray-900 mb-2">Road Signs & Signals</h3>
+                        <p id="mod1Desc" class="text-sm text-gray-600">Master regulatory signs, warning signs, and priority rules on Rwandan roads.</p>
+                    </div>
+                    <button onclick="window.location.href='RoadSigns.html'" id="mod1Btn" class="mt-6 w-full bg-gray-900 hover:bg-black text-white py-2.5 rounded-xl font-medium text-sm transition">
+                        Start Test (20 Qs / 20 Mins)
+                    </button>
+                </div>
+
+                <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#059669] transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center font-bold justify-center mb-4 text-lg">02</div>
+                        <h3 id="mod2Title" class="font-bold text-lg text-gray-900 mb-2">Right of Way & Speed</h3>
+                        <p id="mod2Desc" class="text-sm text-gray-600">Learn intersection priorities, speed limits, and overtaking regulations.</p>
+                    </div>
+                    <button onclick="window.location.href='quiz.html?count=20&time=20&mod=2'" id="mod2Btn" class="mt-6 w-full bg-gray-900 hover:bg-black text-white py-2.5 rounded-xl font-medium text-sm transition">
+                        Start Test (20 Qs / 20 Mins)
+                    </button>
+                </div>
+
+                <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#059669] transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center font-bold justify-center mb-4 text-lg">03</div>
+                        <h3 id="mod3Title" class="font-bold text-lg text-gray-900 mb-2">Comprehensive Mock Exam</h3>
+                        <p id="mod3Desc" class="text-sm text-gray-600">Full random 20-question timed exam simulating the official provisional test.</p>
+                    </div>
+                    <button onclick="window.location.href='quiz.html?count=20&time=20&mock=true'" id="mod3Btn" class="mt-6 w-full bg-[#059669] hover:bg-[#10b981] text-white py-2.5 rounded-xl font-medium text-sm transition">
+                        Take Mock Exam (20 Qs / 20 Mins)
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Load Translations Script -->
+    <script src="translations.js"></script>
+
+    <!-- DASHBOARD SESSION & INTERACTION SCRIPT -->
+    <script>
+        let currentLang = 'en';
+
+        function updateTexts() {
+            const t = translations[currentLang];
+            if (!t) return;
+
+            document.getElementById('logoutBtn').textContent = t.logout;
+            document.getElementById('logoutBtnSticky').textContent = t.logout;
+            document.getElementById('txtWelcomeTitle').textContent = t.welcomeTitle;
+            document.getElementById('txtWelcomeSub').textContent = t.welcomeSub;
+            document.getElementById('txtStartExamBtn').textContent = t.startExamBtn;
+            document.getElementById('txtTestsCompletedLabel').textContent = t.testsCompleted;
+            document.getElementById('txtAvgScoreLabel').textContent = t.avgScore;
+            document.getElementById('txtAccountStatusLabel').textContent = t.accountStatus;
+            document.getElementById('accountStatusText').textContent = t.activeStatusText;
+            document.getElementById('txtResultsTitle').textContent = t.resultsTitle;
+            document.getElementById('txtResultsSub').textContent = t.resultsSub;
+            document.getElementById('txtHistoryBadge').textContent = t.historyLabel;
+            document.getElementById('thDate').textContent = t.tableDate;
+            document.getElementById('thScore').textContent = t.tableScore;
+            document.getElementById('thPercentage').textContent = t.tablePercentage;
+            document.getElementById('thStatus').textContent = t.tableStatus;
+            document.getElementById('txtModulesTitle').textContent = t.modulesTitle;
+            document.getElementById('mod1Title').textContent = t.mod1Title;
+            document.getElementById('mod1Desc').textContent = t.mod1Desc;
+            document.getElementById('mod1Btn').textContent = t.mod1Btn;
+            document.getElementById('mod2Title').textContent = t.mod2Title;
+            document.getElementById('mod2Desc').textContent = t.mod2Desc;
+            document.getElementById('mod2Btn').textContent = t.mod2Btn;
+            document.getElementById('mod3Title').textContent = t.mod3Title;
+            document.getElementById('mod3Desc').textContent = t.mod3Desc;
+            document.getElementById('mod3Btn').textContent = t.mod3Btn;
         }
-      ]);
 
-    if (insertError) throw insertError;
+        updateTexts();
 
-    return res.status(201).json({ 
-      success: true, 
-      message: 'Account created! Please complete payment to activate access.',
-      amount: amount,
-      plan: plan
-    });
+        // Check user session with robust fallbacks
+        const storedUser = localStorage.getItem('user');
+        
+        if (!storedUser && !localStorage.getItem('userPhone')) {
+            window.location.href = 'login.html';
+        } else {
+            try {
+                let user = storedUser ? JSON.parse(storedUser) : {};
+                const phoneNum = user.phone_number || user.phone || localStorage.getItem('userPhone');
+                const userPlan = user.plan || 'daily';
+                const userId = user.id || 1;
 
-  } catch (err) {
-    console.error('Registration Error:', err);
-    return res.status(500).json({ error: 'Internal server error during registration.' });
-  }
-});
+                const phoneDisplay = document.getElementById('userPhoneDisplay');
+                const phoneDisplaySticky = document.getElementById('userPhoneDisplaySticky');
+                const planBadge = document.getElementById('planBadge');
 
-app.post('/api/login', async (req, res) => {
-  const { phone, pin } = req.body;
+                if (phoneNum) {
+                    const phoneText = `📞 ${phoneNum}`;
+                    if (phoneDisplay) phoneDisplay.textContent = phoneText;
+                    if (phoneDisplaySticky) phoneDisplaySticky.textContent = phoneText;
+                }
 
-  if (!phone || !pin) {
-    return res.status(400).json({ error: 'Phone number and PIN are required.' });
-  }
+                if (planBadge) {
+                    const formattedPlan = userPlan.charAt(0).toUpperCase() + userPlan.slice(1);
+                    planBadge.textContent = `Active Plan: ${formattedPlan}`;
+                }
 
-  try {
-    const { data: users, error: queryError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('phone_number', phone);
+                fetchUserResults(userId);
 
-    if (queryError) throw queryError;
-    
-    if (!users || users.length === 0) {
-      return res.status(401).json({ error: 'Invalid phone number or PIN.' });
+            } catch (err) {
+                console.error('Failed to parse user session:', err);
+                const rawPhone = localStorage.getItem('userPhone');
+                if (rawPhone) {
+                    document.getElementById('userPhoneDisplay').textContent = `📞 ${rawPhone}`;
+                    document.getElementById('userPhoneDisplaySticky').textContent = `📞 ${rawPhone}`;
+                } else {
+                    window.location.href = 'login.html';
+                }
+            }
+        }
+
+        async function fetchUserResults(userId) {
+            try {
+                const res = await fetch(`/api/results/${userId}`);
+                const data = await res.json();
+
+                if (data.success) {
+                    document.getElementById('statTotalTests').textContent = data.total_tests;
+                    document.getElementById('statAvgScore').textContent = `${data.avg_score} / 20`;
+
+                    const resultsList = document.getElementById('resultsList');
+                    resultsList.innerHTML = '';
+
+                    if (data.history.length === 0) {
+                        resultsList.innerHTML = `
+                            <tr>
+                                <td colspan="4" class="py-6 text-center text-gray-400">No tests completed yet. Start your first practice test above!</td>
+                            </tr>
+                        `;
+                        return;
+                    }
+
+                    data.history.forEach(item => {
+                        const dateFormatted = new Date(item.created_at).toLocaleDateString('en-GB', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric'
+                        });
+
+                        const percentage = Math.round((item.score / item.total_questions) * 100);
+                        const passed = item.score >= 12;
+
+                        const tr = document.createElement('tr');
+                        tr.className = 'hover:bg-gray-50/80 transition';
+                        tr.innerHTML = `
+                            <td class="py-3 px-4 font-medium text-gray-700">${dateFormatted}</td>
+                            <td class="py-3 px-4 font-bold text-gray-900">${item.score} / ${item.total_questions}</td>
+                            <td class="py-3 px-4 font-semibold text-gray-600">${percentage}%</td>
+                            <td class="py-3 px-4 text-right">
+                                <span class="px-3 py-1 rounded-full text-xs font-bold ${passed ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}">
+                                    ${passed ? 'PASSED' : 'FAILED'}
+                                </span>
+                            </td>
+                        `;
+                        resultsList.appendChild(tr);
+                    });
+                }
+            } catch (err) {
+                console.error('Failed to load user results:', err);
+            }
+        }
+
+        const handleLogout = () => {
+            localStorage.removeItem('user');
+            localStorage.removeItem('userPhone');
+            window.location.href = 'login.html';
+        };
+
+        document.getElementById('logoutBtn').addEventListener('click', handleLogout);
+        document.getElementById('logoutBtnSticky').addEventListener('click', handleLogout);
+
+        // Sticky Header scroll effect
+        const navBarRow = document.getElementById('nav-bar-row');
+        const stickyHeader = document.getElementById('sticky-header');
+
+        window.addEventListener('scroll', () => {
+            const navRowBottom = navBarRow.getBoundingClientRect().bottom;
+            if (navRowBottom < 0) {
+                stickyHeader.classList.remove('-translate-y-full');
+                stickyHeader.classList.add('translate-y-0');
+            } else {
+                stickyHeader.classList.remove('translate-y-0');
+                stickyHeader.classList.add('-translate-y-full');
+            }
+        });
+    </script>
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('Service Worker registered successfully:', reg.scope))
+                .catch(err => console.error('Service Worker registration failed:', err));
+        });
     }
-
-    const user = users[0];
-    const pinMatch = await bcrypt.compare(pin, user.pin_hash);
-
-    if (!pinMatch) {
-      return res.status(401).json({ error: 'Invalid phone number or PIN.' });
-    }
-
-    const now = new Date();
-    const isExpired = user.subscription_expires_at ? new Date(user.subscription_expires_at) < now : true;
-
-    return res.json({
-      success: true,
-      message: 'Login successful!',
-      isSubscribed: !isExpired,
-      user: {
-        id: user.id,
-        phone_number: user.phone_number,
-        plan: user.plan,
-        subscription_expires_at: user.subscription_expires_at
-      }
-    });
-
-  } catch (err) {
-    console.error('Login Error:', err);
-    return res.status(500).json({ error: 'Internal server error.' });
-  }
-});
-
-app.get('/api/questions', (req, res) => {
-  try {
-    const filePath = path.join(__dirname, 'questions-secA.json');
-    if (!fs.existsSync(filePath)) {
-      return res.status(404).json({ error: 'Questions file not found.' });
-    }
-
-    const fileData = fs.readFileSync(filePath, 'utf8');
-    const questions = JSON.parse(fileData);
-
-    const shuffled = [...questions].sort(() => 0.5 - Math.random());
-    const selectedQuestions = shuffled.slice(0, 20);
-
-    return res.json({
-      success: true,
-      questions: selectedQuestions
-    });
-  } catch (err) {
-    console.error('Error reading local questions file:', err);
-    return res.status(500).json({ error: 'Internal server error loading questions.' });
-  }
-});
-
-// Explicit route to serve the dashboard file
-app.get('/dashboard', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dashboard-index.html'));
-});
-
-// Case-insensitive route handlers for SectionA
-app.get('/SectionA.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'SECTIONA.html'));
-});
-
-app.get('/sectiona.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'SECTIONA.html'));
-});
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+    </script>
+</body>
+</html>
