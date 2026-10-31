@@ -15,8 +15,8 @@
         <!-- Header & Timer -->
         <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-100">
             <div>
-                <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">Comprehensive Mock Exam (Module 3)</span>
-                <h1 id="question-tracker" class="text-lg font-extrabold text-gray-900 mt-2">Question 1 of 20</h1>
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">Comprehensive Mock Exam (Module 3)[cite: 9]</span>
+                <h1 id="question-tracker" class="text-lg font-extrabold text-gray-900 mt-2">Question 1 of 20[cite: 9]</h1>
             </div>
             <div id="timer" class="text-lg font-mono font-bold text-red-600 bg-red-50 px-4 py-2 rounded-2xl">
                 20:00
@@ -60,14 +60,14 @@
         let userAnswers = {};
         let score = 0;
         let timerInterval;
-        let timeLeft = 20 * 60; // 20 minutes in seconds
+        let timeLeft = 20 * 60; // 20 minutes in seconds[cite: 9]
 
         async function initQuiz() {
             try {
                 const res = await fetch('questions-secA.json');
                 const allData = await res.json();
                 
-                // Shuffle array randomly and slice top 20 questions for mock exam
+                // Shuffle array randomly and slice top 20 questions for mock exam[cite: 9]
                 const shuffled = allData.sort(() => 0.5 - Math.random());
                 questions = shuffled.slice(0, 20);
                 
@@ -157,13 +157,13 @@
                 }
             });
 
-            // Pass mark is typically 12/20 (60%) for Rwandan provisional exams
+            // Pass mark is 12/20 (60%) for Rwandan provisional exams
             const passed = score >= 12;
 
             // Hide quiz UI, show result screen
             document.getElementById('quiz-container').classList.add('hidden');
             document.getElementById('result-container').classList.remove('hidden');
-            document.getElementById('score-summary').textContent = `You scored ${score} out of 20 correct (${Math.round((score/20)*100}%)`;
+            document.getElementById('score-summary').textContent = `You scored ${score} out of 20 correct (${Math.round((score/20)*100)}%)`;
 
             const statusEl = document.getElementById('pass-fail-status');
             if (passed) {
