@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Mock Exam - IZIDRIVE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }</style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div class="max-w-2xl w-full bg-white rounded-3xl shadow-lg p-6 sm:p-10 border border-gray-100">
+        
+        <!-- Header & Timer -->
+        <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-100">
+            <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">Comprehensive Mock Exam (Module 3)</span>
+                <h1 id="question-tracker" class="text-lg font-extrabold text-gray-900 mt-2">Question 1 of 20</h1>
+            </div>
+            <div id="timer" class="text-lg font-mono font-bold text-red-600 bg-red-50 px-4 py-2 rounded-2xl">
+                20:00
+            </div>
+        </div>
+
+        <!-- Question Container -->
+        <div id="quiz-container">
+            <!-- Question Image Container (Hidden if no image) -->
+            <div id="image-container" class="mb-6 hidden text-center">
+                <img id="question-img" src="" alt="Exam Scenario" class="max-h-48 mx-auto rounded-2xl object-contain border border-gray-200 p-2">
+            </div>
+
+            <p id="question-text" class="text-lg font-semibold text-gray-900 mb-6">Loading questions...</p>
+            
+            <div id="options-container" class="space-y-3 mb-8">
+                <!-- Dynamic options injected here -->
+            </div>
+
+            <div class="flex justify-between items-center">
+                <button id="prev-btn" onclick="prevQuestion()" class="hidden bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold px-6 py-2.5 rounded-xl transition">Previous</button>
+                <button id="next-btn" onclick="nextQuestion()" class="ml-auto bg-[#059669] hover:bg-[#10b981] text-white font-bold px-8 py-2.5 rounded-xl shadow-md transition">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Result Screen (Hidden by default) -->
+        <div id="result-container" class="hidden text-center py-8">
+            <h2 id="result-heading" class="text-2xl font-extrabold text-gray-900 mb-2">Mock Exam Completed!</h2>
+            <p id="score-summary" class="text-gray-600 text-lg mb-2">You scored X out of 20</p>
+            <p id="pass-fail-status" class="text-sm font-bold mb-6 px-4 py-1.5 rounded-full inline-block"></p>
+            <div>
+                <a href="dashboard-index.html" class="inline-block bg-[#041a18] text-white font-bold px-8 py-3 rounded-2xl shadow-lg hover:opacity-90 transition">Return to Dashboard</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let questions = [];
+        let currentIndex = 0;
+        let userAnswers = {};
+        let score = 0;
+        let timerInterval;
+        let timeLeft = 20 * 60; // 20 minutes in seconds
+
+        async function initQuiz() {
+            try {
+                const res = await fetch('questions-secA.json');
+                const allData = await res.json();
+                
+                // Shuffle array randomly and slice top 20 questions for mock exam
+                const shuffled = allData.sort(() => 0.5 - Math.random());
+                questions = shuffled.slice(0, 20);
+                
+                if (questions.length === 0) {
+                    document.getElementById('question-text').textContent = 'No questions found in questions-secA.json.';
+                    return;
+                }
+
+                startTimer();
+                renderQuestion();
+            } catch (err) {
+                console.error('Failed to load local questions:', err);
+                document.getElementById('question-text').textContent = 'Error loading local mock exam questions.';
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                    return;
+                }
+                timeLeft--;
+                let mins = Math.floor(timeLeft / 60);
+                let secs = timeLeft % 60;
+                document.getElementById('timer').textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        function renderQuestion() {
+            const q = questions[currentIndex];
+            document.getElementById('question-tracker').textContent = `Question ${currentIndex + 1} of 20`;
+            document.getElementById('question-text').textContent = q.question;
+
+            // Handle Question Image
+            const imgContainer = document.getElementById('image-container');
+            const imgElement = document.getElementById('question-img');
+            if (q.image_url && q.image_url.trim() !== '') {
+                imgElement.src = q.image_url;
+                imgContainer.classList.remove('hidden');
+            } else {
+                imgContainer.classList.add('hidden');
+            }
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            q.options.forEach((opt, index) => {
+                const isSelected = userAnswers[currentIndex] === index;
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left p-4 rounded-2xl border transition font-medium text-sm sm:text-base ${isSelected ? 'border-[#059669] bg-emerald-50 text-[#041a18]' : 'border-gray-200 hover:border-gray-300 bg-white text-gray-700'}`;
+                btn.textContent = opt;
+                btn.onclick = () => {
+                    userAnswers[currentIndex] = index;
+                    renderQuestion();
+                };
+                optionsContainer.appendChild(btn);
+            });
+
+            document.getElementById('prev-btn').style.display = currentIndex > 0 ? 'block' : 'none';
+            document.getElementById('next-btn').textContent = currentIndex === questions.length - 1 ? 'Submit Mock Exam' : 'Next Question';
+        }
+
+        function nextQuestion() {
+            if (currentIndex < questions.length - 1) {
+                currentIndex++;
+                renderQuestion();
+            } else {
+                clearInterval(timerInterval);
+                submitQuiz();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuestion();
+            }
+        }
+
+        async function submitQuiz() {
+            score = 0;
+            questions.forEach((q, index) => {
+                if (userAnswers[index] === q.correct_answer) {
+                    score++;
+                }
+            });
+
+            // Pass mark is typically 12/20 (60%) for Rwandan provisional exams
+            const passed = score >= 12;
+
+            // Hide quiz UI, show result screen
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('result-container').classList.remove('hidden');
+            document.getElementById('score-summary').textContent = `You scored ${score} out of 20 correct (${Math.round((score/20)*100}%)`;
+
+            const statusEl = document.getElementById('pass-fail-status');
+            if (passed) {
+                statusEl.textContent = 'PASSED OFFICIAL EXAM THRESHOLD';
+                statusEl.className = 'text-xs font-bold mb-6 px-4 py-1.5 rounded-full inline-block bg-emerald-100 text-emerald-800';
+            } else {
+                statusEl.textContent = 'FAILED (Minimum 12/20 required)';
+                statusEl.className = 'text-xs font-bold mb-6 px-4 py-1.5 rounded-full inline-block bg-red-100 text-red-800';
+            }
+
+            // Save result to Supabase backend database
+            const storedUser = localStorage.getItem('user');
+            if (storedUser) {
+                try {
+                    const user = JSON.parse(storedUser);
+                    await fetch('/api/results', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            userId: user.id,
+                            score: score,
+                            totalQuestions: 20
+                        })
+                    });
+                } catch (err) {
+                    console.error('Failed to sync score to database:', err);
+                }
+            }
+        }
+
+        initQuiz();
+    </script>
+</body>
+</html>

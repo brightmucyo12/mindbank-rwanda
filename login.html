@@ -23,6 +23,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
+  <!-- Tailwind CSS for modern header branding -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -44,19 +47,11 @@
 
     .header-bar {
       width: 100%;
-      padding: 30px 20px 10px 40px;
+      max-width: 480px;
+      padding: 20px 0;
       display: flex;
       justify-content: flex-start;
-      margin-bottom: 20px;
-    }
-
-    .brand-logo {
-      font-size: 15px;
-      font-weight: 600;
-      color: #000000;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      text-decoration: none;
+      margin-bottom: 10px;
     }
 
     .login-title {
@@ -195,7 +190,10 @@
 <body>
 
   <header class="header-bar">
-    <a href="login.html" class="brand-logo">MIND BANK</a>
+    <a href="index.html" class="flex items-center gap-1 text-2xl sm:text-3xl font-bold tracking-tight text-[#041a18] hover:opacity-90 transition">
+      <img src="apple-touch-icon.png" alt="mindbank logo" class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-contain">
+      <span class="font-extrabold tracking-normal">Drive</span>
+    </a>
   </header>
 
   <h1 class="login-title">Sign In</h1>

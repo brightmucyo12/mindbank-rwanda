@@ -19,11 +19,25 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Primary Meta Tags -->
+    <title>Mindbank Rwanda - Provisional Driving License Practice Tests</title>
+    <meta name="title" content="Mindbank Rwanda - Provisional Driving License Practice Tests">
+    <meta name="description" content="Pass your Rwandan provisional driving license theory exam on the first try. Master 300+ real practice test questions with instant scoring.">
+    <meta name="keywords" content="Mindbank Rwanda, izidrive, provisional driving license Rwanda, traffic rules quiz, driving test practice">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / WhatsApp / Facebook Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mindbank-rwanda-api.onrender.com/index.html">
+    <meta property="og:title" content="Mindbank Rwanda - Pass Your Provisional Driving Test on the First Try">
+    <meta property="og:description" content="Practice with over 300+ real provisional driving license questions in Rwanda.">
+
+    <!-- Anti-Caching Directives -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>mindbank</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -32,7 +46,6 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             overflow-x: hidden;
         }
-        /* Benefits Card Fill D9D9D9 22% & Radius 45px on desktop, slightly tighter on mobile */
         .benefit-card {
             background-color: rgba(217, 217, 217, 0.22);
             border-radius: 28px;
@@ -46,7 +59,7 @@
 </head>
 <body class="bg-white text-gray-900 min-h-screen p-2 sm:p-4 md:p-6 flex flex-col items-center relative">
 
-    <!-- ================= TOP LANGUAGE BAR ================= -->
+    <!-- TOP LANGUAGE BAR -->
     <div class="w-full max-w-7xl flex justify-end items-center gap-3 py-2 px-4 text-xs font-semibold text-gray-600">
         <span class="text-gray-400">Language / Ururimi:</span>
         <a href="index-kin.html" class="hover:text-[#059669] transition">Kinyarwanda</a>
@@ -56,21 +69,26 @@
         <a href="index-fr.html" class="hover:text-[#059669] transition">Français</a>
     </div>
 
-    <!-- ================= STICKY HEADER ================= -->
+    <!-- STICKY HEADER -->
     <div id="sticky-header" class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-md shadow-md z-50 transition-all duration-300 transform -translate-y-full px-4 sm:px-8 md:px-12 py-3 border-b border-gray-100">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
-            
-            <!-- Logo + Bold "Drive" (Sticky Header) -->
             <a href="index.html" class="flex items-center gap-1 text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-[#041a18] hover:opacity-90 transition">
-                <img src="apple-touch-icon.png" alt="mindbank logo" class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl object-contain">
+                <img src="apple-touch-icon.png" alt="mindbank logo" class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl object-contain">
                 <span class="font-extrabold tracking-normal">Drive</span>
             </a>
 
             <div class="hidden md:flex items-center gap-6 bg-gray-100 px-6 py-2 rounded-full border border-gray-200 text-sm text-gray-700 font-medium">
                 <a href="#features" class="hover:text-[#059669] transition">Features</a>
                 <a href="#pricing" class="hover:text-[#059669] transition">Pricing</a>
-                <a href="#questions" class="hover:text-[#059669] transition">Questions</a>
-                <a href="#contact" class="hover:text-[#059669] transition">Contact Support</a>
+                <a href="#questions" class="hover:text-[#059669] transition">FAQ</a>
+            </div>
+
+            <div class="hidden lg:flex items-center gap-2 text-xs font-semibold bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200">
+                <a href="index-kin.html" class="text-gray-600 hover:text-black">KIN</a>
+                <span class="text-gray-300">|</span>
+                <a href="index.html" class="text-[#059669] font-bold">EN</a>
+                <span class="text-gray-300">|</span>
+                <a href="index-fr.html" class="text-gray-600 hover:text-black">FR</a>
             </div>
 
             <div class="flex items-center gap-2 sm:gap-3">
@@ -78,78 +96,73 @@
                     Login
                 </a>
                 <a href="register.html" class="bg-[#059669] hover:bg-[#10b981] text-white text-xs sm:text-sm px-4 sm:px-6 py-1.5 sm:py-2 rounded-full font-medium transition">
-                    Sign up
+                    Register
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- ================= 1. HERO SECTION (WHITE BACKGROUND) ================= -->
+    <!-- HERO SECTION -->
     <header id="hero-header" class="w-full max-w-7xl min-h-[70vh] sm:min-h-[75vh] bg-white text-gray-900 p-5 sm:p-8 md:p-12 mb-12 sm:mb-16 flex flex-col justify-between">
-        
         <div class="w-full">
             <nav id="nav-bar-row" class="flex items-center justify-between relative w-full">
-                
-                <!-- Logo + Bold "Drive" (Hero Header) -->
                 <a href="index.html" class="flex items-center gap-1 text-2xl sm:text-3xl font-bold tracking-tight text-[#041a18] hover:opacity-90 transition">
                     <img src="apple-touch-icon.png" alt="mindbank logo" class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-contain">
                     <span class="font-extrabold tracking-normal">Drive</span>
                 </a>
 
-                <!-- Central Nav Links Badge -->
                 <div class="hidden md:flex items-center gap-6 bg-gray-100 px-6 py-2 rounded-full border border-gray-200 text-sm text-gray-700 font-medium">
                     <a href="#features" class="hover:text-[#059669] transition">Features</a>
                     <a href="#pricing" class="hover:text-[#059669] transition">Pricing</a>
-                    <a href="#questions" class="hover:text-[#059669] transition">Questions</a>
-                    <a href="#contact" class="hover:text-[#059669] transition">Contact Support</a>
+                    <a href="#questions" class="hover:text-[#059669] transition">FAQ</a>
                 </div>
 
-                <!-- Desktop & Mobile Action Buttons -->
                 <div class="flex items-center gap-3">
                     <div class="hidden md:flex items-center gap-3">
                         <a href="login.html" class="bg-[#0b332f] hover:bg-[#0f403b] text-white text-sm px-5 py-2 rounded-full border border-[#0b332f] transition font-medium">
                             Login
                         </a>
                         <a href="register.html" class="bg-[#059669] hover:bg-[#10b981] text-white text-sm px-6 py-2 rounded-full transition font-medium">
-                            Sign up
+                            Register
                         </a>
                     </div>
 
-                    <button id="menu-toggle" aria-label="Toggle Navigation" class="md:hidden text-[#041a18] focus:outline-none p-2 rounded-lg bg-gray-100 border border-gray-200">
+                    <button id="menu-toggle" aria-label="Toggle menu" class="md:hidden text-[#041a18] focus:outline-none p-2 rounded-lg bg-gray-100 border border-gray-200">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
 
-                <!-- Mobile Menu Dropdown -->
-                <div id="mobile-menu" class="hidden md:hidden flex-col gap-3 absolute top-12 right-0 bg-white p-4 rounded-2xl border border-gray-200 z-50 w-48 shadow-xl text-xs text-gray-800">
+                <div id="mobile-menu" class="hidden md:hidden flex-col gap-3 absolute top-12 right-0 bg-white p-4 rounded-2xl border border-gray-200 z-50 w-52 shadow-xl text-xs text-gray-800">
+                    <div class="flex justify-around py-1 border-b border-gray-100 font-bold">
+                        <a href="index-kin.html" class="text-gray-500">Kinyarwanda</a>
+                        <a href="index.html" class="text-[#059669]">English</a>
+                        <a href="index-fr.html" class="text-gray-500">Français</a>
+                    </div>
                     <a href="#features" class="hover:text-[#059669] transition py-1">Features</a>
                     <a href="#pricing" class="hover:text-[#059669] transition py-1">Pricing</a>
-                    <a href="#questions" class="hover:text-[#059669] transition py-1">Questions</a>
-                    <a href="#contact" class="hover:text-[#059669] transition py-1">Contact Support</a>
+                    <a href="#questions" class="hover:text-[#059669] transition py-1">FAQ</a>
                     <div class="pt-2 border-t border-gray-100 flex flex-col gap-2">
                         <a href="login.html" class="text-center bg-[#0b332f] text-white py-1.5 rounded-full font-medium">Login</a>
-                        <a href="register.html" class="text-center bg-[#059669] text-white py-1.5 rounded-full font-medium">Sign up</a>
+                        <a href="register.html" class="text-center bg-[#059669] text-white py-1.5 rounded-full font-medium">Register</a>
                     </div>
                 </div>
             </nav>
         </div>
 
-        <!-- Hero Content Area -->
         <div class="max-w-3xl mx-auto w-full my-auto flex flex-col items-center text-center py-8">
             <div class="bg-emerald-50 text-[#059669] text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-full border border-emerald-200 mb-6 sm:mb-8 font-semibold max-w-full">
-                Prepare for your Provisional Driving License Today
+                Prepare for Your Provisional Driving License Test Today
             </div>
 
             <h1 class="text-2xl sm:text-4xl font-extrabold leading-snug sm:leading-tight text-gray-900 tracking-tight mb-8">
-                Pass your theory test on the first try. Master real provisional driving license questions with our free practice tests.
+                Pass your provisional driving test on the first try. Master real traffic rule questions with instant scoring.
             </h1>
 
-            <!-- Connected to practice.html -->
             <a href="practice.html" class="w-full max-w-lg h-20 sm:h-28 bg-[#059669] hover:bg-[#10b981] active:scale-95 rounded-2xl shadow-xl shadow-[#059669]/20 transition-all duration-200 ease-in-out flex items-center justify-center p-4 group cursor-pointer">
                 <span class="text-white font-bold text-base sm:text-xl md:text-2xl tracking-wide flex items-center gap-3 drop-shadow-md">
-                    Start Free Practice Tests Today
+                    Start Free Practice Test
                     <svg class="w-6 h-6 sm:w-7 sm:h-7 transform group-hover:translate-x-1.5 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                     </svg>
@@ -158,23 +171,20 @@
         </div>
 
         <div></div>
-
     </header>
 
-    <!-- ================= 2. BENEFITS SECTION ================= -->
+    <!-- BENEFITS SECTION -->
     <main class="w-full max-w-7xl px-3 sm:px-6 md:px-12 mb-16 sm:mb-20" id="features">
-        
         <h2 class="text-base sm:text-lg md:text-xl font-semibold text-black mb-6">
-            With over 300+ questions and their answers, Mind bank brings you these benefits:
+            Featuring over 300+ questions and answers, MindBank delivers these benefits:
         </h2>
 
         <div class="flex flex-col gap-4 sm:gap-6">
-
             <div class="benefit-card p-5 sm:p-8 md:p-10 text-black text-sm sm:text-base md:text-lg leading-relaxed">
                 <div class="flex items-start gap-2.5 sm:gap-3">
                     <span class="text-lg sm:text-xl leading-none mt-1">&#9679;</span>
                     <p class="m-0">
-                        Take twenty-question practice tests with real-time automated scoring and immediate detailed performance breakdown.
+                        Take timed 20-question practice tests with real-time automated scoring and detailed performance reviews.
                     </p>
                 </div>
             </div>
@@ -183,7 +193,7 @@
                 <div class="flex items-start gap-2.5 sm:gap-3">
                     <span class="text-lg sm:text-xl leading-none mt-1">&#9679;</span>
                     <p class="m-0">
-                        Enjoy an intuitive, affordable platform featuring a dynamic dashboard that visually tracks daily study progress.
+                        Enjoy a seamless, intuitive dashboard that tracks your daily study progress and exam history.
                     </p>
                 </div>
             </div>
@@ -192,163 +202,128 @@
                 <div class="flex items-start gap-2.5 sm:gap-3">
                     <span class="text-lg sm:text-xl leading-none mt-1">&#9679;</span>
                     <p class="m-0">
-                        Access over three hundred meticulously structured questions with instant feedback to guarantee exam success.
+                        Access over three hundred curated questions designed to guarantee your success in the official exam.
                     </p>
                 </div>
             </div>
-
         </div>
-
     </main>
 
-    <!-- ================= 3. PRICING MODEL SECTION ================= -->
+    <!-- PRICING SECTION -->
     <section id="pricing" class="w-full max-w-7xl px-3 sm:px-6 md:px-12 mb-16 sm:mb-20 flex flex-col items-center">
-        
         <h2 class="text-lg sm:text-xl md:text-2xl font-bold text-black text-center mb-6 sm:mb-8">
-            Pricing Model
+            Pricing Plans
         </h2>
 
         <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            
             <div class="bg-[#F3F4F6] border-2 border-[#1080d0] p-8 rounded-2xl shadow-md flex flex-col items-center text-center transition hover:shadow-lg">
-                <h3 class="text-xl font-extrabold italic uppercase text-gray-900 mb-2">DAILY Plan</h3>
+                <h3 class="text-xl font-extrabold italic uppercase text-gray-900 mb-2">DAILY PASS</h3>
                 <div class="text-3xl font-black text-[#166534] mb-4">500 RWF</div>
                 <p class="text-sm sm:text-base text-gray-600 mb-6 leading-relaxed">
-                    Full access for a fullday. Practice questions, track results, and boost your performance.
+                    Full access for 24 hours. Take practice tests, check scores, and review answers immediately.
                 </p>
                 <a href="register.html" class="w-full bg-[#55E55B] hover:bg-[#4BD851] text-black font-extrabold italic uppercase py-3 px-6 rounded-lg transition tracking-wide text-center">
-                    Choose DAILY
+                    CHOOSE DAILY
                 </a>
             </div>
 
             <div class="bg-[#F3F4F6] border-2 border-[#059669] p-8 rounded-2xl shadow-md flex flex-col items-center text-center transition hover:shadow-lg">
-                <h3 class="text-xl font-extrabold italic uppercase text-gray-900 mb-2">Monthly Plan</h3>
-                <div class="text-3xl font-black text-[#166534] mb-4">1000 RWF</div>
+                <h3 class="text-xl font-extrabold italic uppercase text-gray-900 mb-2">MONTHLY PASS</h3>
+                <div class="text-3xl font-black text-[#166534] mb-4">1,000 RWF</div>
                 <p class="text-sm sm:text-base text-gray-600 mb-6 leading-relaxed">
-                    Full unlimited access for a full month. Best value for comprehensive preparation.
+                    Unlimited access for an entire month. The ultimate value plan for thorough preparation.
                 </p>
                 <a href="register.html" class="w-full bg-[#55E55B] hover:bg-[#4BD851] text-black font-extrabold italic uppercase py-3 px-6 rounded-lg transition tracking-wide text-center">
-                    Choose Monthly
+                    CHOOSE MONTHLY
                 </a>
             </div>
-
         </div>
-
     </section>
 
-    <!-- ================= 4. FAQ SECTION ================= -->
+    <!-- FAQ SECTION -->
     <section id="questions" class="w-full max-w-7xl px-3 sm:px-6 md:px-12 mb-16 sm:mb-20">
-        
         <h2 class="text-lg sm:text-xl md:text-2xl font-bold text-black mb-6 sm:mb-8">
-            Frequently asked Questions
+            Frequently Asked Questions
         </h2>
 
         <div class="flex flex-col gap-6 text-black">
-            
-            <!-- FAQ Item 1 -->
             <div class="border-b border-gray-200 pb-4">
                 <div class="faq-toggle flex items-center justify-between cursor-pointer font-bold text-sm sm:text-base md:text-lg hover:text-[#059669] transition">
                     <span>What is MindBank?</span>
                     <span class="faq-icon text-xl font-bold">+</span>
                 </div>
                 <div class="faq-content hidden mt-2 text-gray-600 text-sm sm:text-base leading-relaxed">
-                    MindBank Rwanda is an online digital preparation platform designed specifically to help candidates pass their Rwandan provisional driving license theory test on the first try through realistic practice exams and detailed tracking.
+                    MindBank Rwanda is an educational technology platform built to help candidates pass their provisional driving license theory exams on the first try through realistic practice tests.
                 </div>
             </div>
 
-            <!-- FAQ Item 2 -->
             <div class="border-b border-gray-200 pb-4">
                 <div class="faq-toggle flex items-center justify-between cursor-pointer font-bold text-sm sm:text-base md:text-lg hover:text-[#059669] transition">
-                    <span>What is included in my paid subscription?</span>
+                    <span>What is included with my subscription?</span>
                     <span class="faq-icon text-xl font-bold">+</span>
                 </div>
                 <div class="faq-content hidden mt-2 text-gray-600 text-sm sm:text-base leading-relaxed">
-                    Your subscription gives you full, unlimited access to our bank of over 300+ official provisional test questions, automated 20-question practice mock exams with real-time scoring, and performance history tracking.
+                    Your subscription grants full access to over 300+ real test questions, 20-question timed practice exams with instant scoring, and complete score history tracking.
                 </div>
             </div>
 
-            <!-- FAQ Item 3 -->
             <div class="border-b border-gray-200 pb-4">
                 <div class="faq-toggle flex items-center justify-between cursor-pointer font-bold text-sm sm:text-base md:text-lg hover:text-[#059669] transition">
-                    <span>How much is the subscription, and how can I pay?</span>
+                    <span>How much does it cost and how do I pay?</span>
                     <span class="faq-icon text-xl font-bold">+</span>
                 </div>
                 <div class="faq-content hidden mt-2 text-gray-600 text-sm sm:text-base leading-relaxed">
-                    We offer two flexible plans: the DAILY plan for 500 RWF and the Monthly plan for 1,000 RWF. You can pay securely and conveniently via MTN Mobile Money (MoMo) or Airtel Money directly from your registration page.
+                    We offer two plans: Daily Pass for 500 RWF and Monthly Pass for 1,000 RWF. You can pay securely using MTN Mobile Money (MoMo) or Airtel Money directly on the registration page.
                 </div>
             </div>
 
-            <!-- FAQ Item 4 -->
             <div class="border-b border-gray-200 pb-4">
                 <div class="faq-toggle flex items-center justify-between cursor-pointer font-bold text-sm sm:text-base md:text-lg hover:text-[#059669] transition">
-                    <span>Do you offer a free trial and what is included?</span>
+                    <span>Do you offer free practice tests?</span>
                     <span class="faq-icon text-xl font-bold">+</span>
                 </div>
                 <div class="faq-content hidden mt-2 text-gray-600 text-sm sm:text-base leading-relaxed">
-                    Yes! You can explore our initial practice features and get familiar with the test interface to kickstart your study sessions before upgrading to full subscription access.
+                    Yes! You can take sample free practice tests to experience how the platform works before purchasing a full subscription.
                 </div>
             </div>
-
         </div>
-
     </section>
 
-    <!-- ================= 5. FOOTER & CONTACT SECTION ================= -->
-    <footer id="contact" class="w-full bg-[#041a18] text-white p-6 sm:p-10 md:p-14 flex flex-col items-center rounded-[1.25rem] sm:rounded-[2rem] md:rounded-[2.5rem]">
-        
+    <!-- FOOTER SECTION -->
+    <footer class="w-full bg-[#041a18] text-white p-6 sm:p-10 md:p-14 flex flex-col items-center rounded-[1.25rem] sm:rounded-[2rem] md:rounded-[2.5rem]">
         <div class="max-w-7xl w-full flex flex-col items-center">
-            
-            <!-- Footer Grid -->
-            <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12 sm:mb-16">
-                
-                <!-- Col 1: Legal Policies -->
-                <div class="flex flex-col gap-3 sm:gap-4 text-left">
-                    <h3 class="text-lg sm:text-xl font-serif font-bold text-[#059669]">Legal & Policies</h3>
-                    <a href="privacypage.html" class="text-sm sm:text-base font-serif hover:text-gray-300 transition">Privacy Policy</a>
-                    <a href="terms.html" class="text-sm sm:text-base font-serif hover:text-gray-300 transition">Terms & Conditions</a>
-                    <a href="refund.html" class="text-sm sm:text-base font-serif hover:text-gray-300 transition">Refund Policy</a>
-                </div>
+            <div class="w-full md:grid md:grid-cols-3 gap-8 md:gap-16 mb-12 sm:mb-16">
+                <div class="flex flex-row justify-between items-start w-full md:contents mb-8 md:mb-0">
+                    <div class="flex flex-col gap-3 sm:gap-4 text-left">
+                        <h3 class="text-lg sm:text-xl md:text-2xl font-serif">About</h3>
+                        <a href="privacypage.html" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Privacy Policy</a>
+                        <a href="terms.html" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Terms & Conditions</a>
+                    </div>
 
-                <!-- Col 2: Navigation Links -->
-                <div class="flex flex-col gap-3 sm:gap-4 text-left">
-                    <h3 class="text-lg sm:text-xl font-serif font-bold text-[#059669]">Discover</h3>
-                    <a href="#questions" class="text-sm sm:text-base font-serif hover:text-gray-300 transition">FAQ</a>
-                    <a href="#features" class="text-sm sm:text-base font-serif hover:text-gray-300 transition">Features</a>
-                    <a href="#pricing" class="text-sm sm:text-base font-serif hover:text-gray-300 transition">Pricing Plans</a>
-                </div>
-
-                <!-- Col 3: Customer & Payment Support -->
-                <div class="flex flex-col gap-3 sm:gap-4 text-left">
-                    <h3 class="text-lg sm:text-xl font-serif font-bold text-[#059669]">Support & Assistance</h3>
-                    <p class="text-sm text-gray-300 leading-relaxed font-sans">
-                        Need help with payments or your account access?
-                    </p>
-                    <div class="flex flex-col gap-1 text-sm font-sans text-gray-200">
-                        <span><strong>Email:</strong> info@izidrive.site</span>
-                        <span class="text-xs text-gray-400 mt-1">Operating Hours: Mon - Sat (8am - 6pm CAT)</span>
+                    <div class="flex flex-col gap-3 sm:gap-4 text-right md:text-left">
+                        <h3 class="text-lg sm:text-xl md:text-2xl font-serif">Discover</h3>
+                        <a href="#questions" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">FAQ</a>
+                        <a href="#features" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Features</a>
+                        <a href="#pricing" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Pricing</a>
                     </div>
                 </div>
 
-                <!-- Col 4: Social Media -->
-                <div class="flex flex-col gap-3 sm:gap-4 text-left">
-                    <h3 class="text-lg sm:text-xl font-serif font-bold text-[#059669]">Connect with Us</h3>
-                    <a href="#facebook" class="text-sm sm:text-base font-serif hover:text-gray-300 transition">Facebook</a>
-                    <a href="#instagram" class="text-sm sm:text-base font-serif hover:text-gray-300 transition">Instagram</a>
-                    <a href="#twitter" class="text-sm sm:text-base font-serif hover:text-gray-300 transition">Twitter</a>
+                <div class="flex flex-col gap-3 sm:gap-4 text-center md:text-left items-center md:items-start">
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-serif">Connect</h3>
+                    <a href="#facebook" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Facebook</a>
+                    <a href="#instagram" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Instagram</a>
+                    <a href="#twitter" class="text-base sm:text-lg md:text-xl font-serif hover:text-gray-300 transition">Twitter</a>
                 </div>
-
             </div>
 
-            <!-- Bottom Copyright -->
-            <div class="text-gray-400 font-serif text-xs sm:text-sm md:text-base text-center border-t border-gray-800 w-full pt-8">
-                © 2026 MindBank (iZiDrive). All Rights Reserved.
+            <div class="text-gray-300 font-serif text-sm sm:text-base md:text-xl text-center">
+                © 2026 MindBank. All Rights Reserved.
             </div>
         </div>
     </footer>
 
     <!-- Interactive Scripts -->
     <script>
-        // Hero Mobile Hamburger Toggle
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         menuToggle.addEventListener('click', () => {
@@ -356,7 +331,6 @@
             mobileMenu.classList.toggle('flex');
         });
 
-        // Sticky Header Scroll Observer
         const navBarRow = document.getElementById('nav-bar-row');
         const stickyHeader = document.getElementById('sticky-header');
 
@@ -371,7 +345,6 @@
             }
         });
 
-        // FAQ Accordion Toggle Script
         document.querySelectorAll('.faq-toggle').forEach(item => {
             item.addEventListener('click', () => {
                 const content = item.nextElementSibling;

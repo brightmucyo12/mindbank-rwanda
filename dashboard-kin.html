@@ -12,44 +12,71 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - MindBank Rwanda</title>
+    <title>Dashboard - IZIdrive</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; overflow-x: hidden; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col text-gray-900">
+<body class="min-h-screen flex flex-col text-gray-900 relative">
 
-    <!-- TOP NAVIGATION BAR -->
-    <header class="bg-[#041a18] text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href="index.html" id="navBrand" class="text-xl sm:text-2xl font-bold tracking-tight text-white">
-                mindbank
+    <!-- TOP LANGUAGE BAR -->
+    <div class="w-full max-w-7xl mx-auto flex justify-end items-center gap-3 py-2 px-4 sm:px-6 lg:px-8 text-xs font-semibold text-gray-600 bg-white">
+        <span class="text-gray-400">Language / Ururimi:</span>
+        <a href="dashboard-kin.html" id="langKin" class="hover:text-[#059669] transition">Kinyarwanda</a>
+        <span class="text-gray-300">|</span>
+        <a href="dashboard-index.html" id="langEn" class="text-[#059669] font-bold underline decoration-2 underline-offset-4">English</a>
+        <span class="text-gray-300">|</span>
+        <a href="dashboard-fr.html" id="langFr" class="hover:text-[#059669] transition">Français</a>
+    </div>
+
+    <!-- STICKY HEADER -->
+    <div id="sticky-header" class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-md shadow-md z-50 transition-all duration-300 transform -translate-y-full px-4 sm:px-8 md:px-12 py-3 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-xl sm:text-2xl font-bold tracking-tight text-[#041a18] hover:opacity-90 transition">
+                <img src="apple-touch-icon.png" alt="IZIdrive logo" class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl object-contain">
+                <span class="tracking-tight">IZIdrive</span>
             </a>
-            
-            <div class="flex items-center gap-3">
-                <!-- Language Toggle Button -->
-                <button id="langToggleBtn" onclick="toggleLanguage()" class="bg-[#0b332f] hover:bg-[#13423d] text-emerald-300 border border-[#13423d] text-xs font-bold px-3 py-1.5 rounded-full transition">
-                    🇷🇼 Kinyarwanda
-                </button>
 
-                <span id="userPhoneDisplay" class="text-xs sm:text-sm bg-[#0b332f] px-3 py-1.5 rounded-full border border-[#13423d] text-gray-200 hidden sm:inline">
+            <div class="flex items-center gap-3">
+                <span id="userPhoneDisplaySticky" class="text-xs sm:text-sm bg-gray-100 px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hidden sm:inline">
                     Loading...
                 </span>
-                <button id="logoutBtn" class="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm px-4 py-1.5 rounded-full font-medium transition">
+                <button id="logoutBtnSticky" class="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm px-4 py-1.5 rounded-full font-medium transition">
                     Logout
                 </button>
             </div>
         </div>
+    </div>
+
+    <!-- TOP NAVIGATION BAR -->
+    <header id="hero-header" class="bg-white border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <nav id="nav-bar-row" class="flex items-center justify-between relative w-full">
+                <a href="index.html" class="flex items-center gap-2 text-2xl sm:text-3xl font-bold tracking-tight text-[#041a18] hover:opacity-90 transition">
+                    <img src="apple-touch-icon.png" alt="IZIdrive logo" class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-contain">
+                    <span class="tracking-tight">IZIdrive</span>
+                </a>
+
+                <div class="flex items-center gap-3">
+                    <span id="userPhoneDisplay" class="text-xs sm:text-sm bg-gray-100 px-3.5 py-2 rounded-full border border-gray-200 text-gray-700 hidden sm:inline font-medium">
+                        Loading...
+                    </span>
+                    <button id="logoutBtn" class="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm px-4 sm:px-6 py-2 rounded-full font-medium transition shadow-sm">
+                        Logout
+                    </button>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <!-- MAIN DASHBOARD CONTAINER -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 mb-12">
         
-        <!-- Welcome Banner (10 Questions / 10 Minutes Quick Practice) -->
+        <!-- Welcome Banner (Quick Practice linking to SectionA.html) -->
         <div class="bg-[#041a18] text-white rounded-3xl p-6 sm:p-10 mb-8 shadow-xl relative overflow-hidden flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div class="relative z-10">
                 <span id="planBadge" class="inline-block bg-[#059669] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
@@ -63,7 +90,7 @@
                 </p>
             </div>
             <div class="relative z-10 w-full md:w-auto">
-                <a href="quiz.html?count=10&time=10" id="txtStartExamBtn" class="block text-center bg-[#059669] hover:bg-[#10b981] text-white font-bold text-base px-8 py-3.5 rounded-2xl shadow-lg transition transform active:scale-95">
+                <a href="SectionA.html" id="txtStartExamBtn" class="block text-center bg-[#059669] hover:bg-[#10b981] text-white font-bold text-base px-8 py-3.5 rounded-2xl shadow-lg transition transform active:scale-95">
                     Start Quick Practice (10 Qs / 10 Mins)
                 </a>
             </div>
@@ -140,7 +167,7 @@
             </div>
         </div>
 
-        <!-- PRACTICE MODULES SECTION (20 Questions / 20 Minutes) -->
+        <!-- PRACTICE MODULES SECTION -->
         <div id="quiz-section" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100">
             <h2 id="txtModulesTitle" class="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
                 Provisional License Modules
@@ -148,38 +175,38 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 
-                <!-- Module Card 1 -->
+                <!-- Module Card 1 (RoadSigns.html) -->
                 <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#059669] transition flex flex-col justify-between">
                     <div>
                         <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center font-bold justify-center mb-4 text-lg">01</div>
                         <h3 id="mod1Title" class="font-bold text-lg text-gray-900 mb-2">Road Signs & Signals</h3>
                         <p id="mod1Desc" class="text-sm text-gray-600">Master regulatory signs, warning signs, and priority rules on Rwandan roads.</p>
                     </div>
-                    <button onclick="window.location.href='quiz.html?count=20&time=20&mod=1'" id="mod1Btn" class="mt-6 w-full bg-gray-900 hover:bg-black text-white py-2.5 rounded-xl font-medium text-sm transition">
+                    <button onclick="window.location.href='RoadSigns.html'" id="mod1Btn" class="mt-6 w-full bg-gray-900 hover:bg-black text-white py-2.5 rounded-xl font-medium text-sm transition">
                         Start Test (20 Qs / 20 Mins)
                     </button>
                 </div>
 
-                <!-- Module Card 2 -->
+                <!-- Module Card 2 (right.html) -->
                 <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#059669] transition flex flex-col justify-between">
                     <div>
                         <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center font-bold justify-center mb-4 text-lg">02</div>
                         <h3 id="mod2Title" class="font-bold text-lg text-gray-900 mb-2">Right of Way & Speed</h3>
                         <p id="mod2Desc" class="text-sm text-gray-600">Learn intersection priorities, speed limits, and overtaking regulations.</p>
                     </div>
-                    <button onclick="window.location.href='quiz.html?count=20&time=20&mod=2'" id="mod2Btn" class="mt-6 w-full bg-gray-900 hover:bg-black text-white py-2.5 rounded-xl font-medium text-sm transition">
+                    <button onclick="window.location.href='right.html'" id="mod2Btn" class="mt-6 w-full bg-gray-900 hover:bg-black text-white py-2.5 rounded-xl font-medium text-sm transition">
                         Start Test (20 Qs / 20 Mins)
                     </button>
                 </div>
 
-                <!-- Module Card 3 (Mock Exam) -->
+                <!-- Module Card 3 (mock.html) -->
                 <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#059669] transition flex flex-col justify-between">
                     <div>
                         <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center font-bold justify-center mb-4 text-lg">03</div>
                         <h3 id="mod3Title" class="font-bold text-lg text-gray-900 mb-2">Comprehensive Mock Exam</h3>
                         <p id="mod3Desc" class="text-sm text-gray-600">Full random 20-question timed exam simulating the official provisional test.</p>
                     </div>
-                    <button onclick="window.location.href='quiz.html?count=20&time=20&mock=true'" id="mod3Btn" class="mt-6 w-full bg-[#059669] hover:bg-[#10b981] text-white py-2.5 rounded-xl font-medium text-sm transition">
+                    <button onclick="window.location.href='mock.html'" id="mod3Btn" class="mt-6 w-full bg-[#059669] hover:bg-[#10b981] text-white py-2.5 rounded-xl font-medium text-sm transition">
                         Take Mock Exam (20 Qs / 20 Mins)
                     </button>
                 </div>
@@ -189,24 +216,19 @@
 
     </main>
 
-    <!-- FOOTER -->
-    <footer id="footerText" class="bg-white border-t border-gray-100 py-6 text-center text-sm text-gray-500">
-        &copy; 2026 MindBank. All Rights Reserved.
-    </footer>
-
     <!-- Load Translations Script -->
     <script src="translations.js"></script>
 
     <!-- DASHBOARD SESSION & INTERACTION SCRIPT -->
     <script>
-        // Language management
-        let currentLang = localStorage.getItem('lang') || 'en';
+        let currentLang = 'en';
 
         function updateTexts() {
             const t = translations[currentLang];
             if (!t) return;
 
             document.getElementById('logoutBtn').textContent = t.logout;
+            document.getElementById('logoutBtnSticky').textContent = t.logout;
             document.getElementById('txtWelcomeTitle').textContent = t.welcomeTitle;
             document.getElementById('txtWelcomeSub').textContent = t.welcomeSub;
             document.getElementById('txtStartExamBtn').textContent = t.startExamBtn;
@@ -231,26 +253,10 @@
             document.getElementById('mod3Title').textContent = t.mod3Title;
             document.getElementById('mod3Desc').textContent = t.mod3Desc;
             document.getElementById('mod3Btn').textContent = t.mod3Btn;
-            document.getElementById('footerText').innerHTML = t.footerText;
-
-            const btn = document.getElementById('langToggleBtn');
-            if (currentLang === 'rw') {
-                btn.textContent = "🇬🇧 English";
-            } else {
-                btn.textContent = "🇷🇼 Kinyarwanda";
-            }
         }
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'en' ? 'rw' : 'en';
-            localStorage.setItem('lang', currentLang);
-            updateTexts();
-        }
-
-        // Initialize language on load
         updateTexts();
 
-        // Check user session
         const storedUser = localStorage.getItem('user');
         
         if (!storedUser) {
@@ -259,10 +265,17 @@
             try {
                 const user = JSON.parse(storedUser);
                 const phoneDisplay = document.getElementById('userPhoneDisplay');
+                const phoneDisplaySticky = document.getElementById('userPhoneDisplaySticky');
                 const planBadge = document.getElementById('planBadge');
 
-                if (phoneDisplay && user.phone_number) {
-                    phoneDisplay.textContent = `📞 ${user.phone_number}`;
+                const userPhone = user.phone_number || user.phone || localStorage.getItem('userPhone');
+                if (userPhone) {
+                    const phoneText = `📞 ${userPhone}`;
+                    if (phoneDisplay) phoneDisplay.textContent = phoneText;
+                    if (phoneDisplaySticky) phoneDisplaySticky.textContent = phoneText;
+                } else {
+                    if (phoneDisplay) phoneDisplay.textContent = `📞 Account`;
+                    if (phoneDisplaySticky) phoneDisplaySticky.textContent = `📞 Account`;
                 }
 
                 if (planBadge && user.plan) {
@@ -318,7 +331,7 @@
                             <td class="py-3 px-4 font-semibold text-gray-600">${percentage}%</td>
                             <td class="py-3 px-4 text-right">
                                 <span class="px-3 py-1 rounded-full text-xs font-bold ${passed ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}">
-                                    ${passed ? (currentLang === 'rw' ? 'BYATSINZE' : 'PASSED') : (currentLang === 'rw' ? 'BYATSIYE' : 'FAILED')}
+                                    ${passed ? 'PASSED' : 'FAILED'}
                                 </span>
                             </td>
                         `;
@@ -330,10 +343,27 @@
             }
         }
 
-        document.getElementById('logoutBtn').addEventListener('click', () => {
+        const handleLogout = () => {
             localStorage.removeItem('user');
             localStorage.removeItem('userPhone');
             window.location.href = 'login.html';
+        };
+
+        document.getElementById('logoutBtn').addEventListener('click', handleLogout);
+        document.getElementById('logoutBtnSticky').addEventListener('click', handleLogout);
+
+        const navBarRow = document.getElementById('nav-bar-row');
+        const stickyHeader = document.getElementById('sticky-header');
+
+        window.addEventListener('scroll', () => {
+            const navRowBottom = navBarRow.getBoundingClientRect().bottom;
+            if (navRowBottom < 0) {
+                stickyHeader.classList.remove('-translate-y-full');
+                stickyHeader.classList.add('translate-y-0');
+            } else {
+                stickyHeader.classList.remove('translate-y-0');
+                stickyHeader.classList.add('-translate-y-full');
+            }
         });
     </script>
     <script>

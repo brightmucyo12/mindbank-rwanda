@@ -24,6 +24,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
+  <!-- Tailwind CSS for modern header branding -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     /* Inline Status Message Styling */
     .status-msg {
@@ -51,10 +54,15 @@
     }
   </style>
 </head>
-<body>
+<body class="bg-white text-gray-900 min-h-screen p-2 sm:p-4 md:p-6 flex flex-col items-center relative">
 
-  <header class="header-bar">
-    <a href="index.html" class="brand-logo">MIND BANK</a>
+  <header class="w-full max-w-7xl border-b border-gray-100 pb-4 mb-6">
+    <div class="flex items-center justify-between px-2 sm:px-4">
+      <a href="index.html" class="flex items-center gap-1 text-2xl sm:text-3xl font-bold tracking-tight text-[#041a18] hover:opacity-90 transition">
+        <img src="apple-touch-icon.png" alt="mindbank logo" class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-contain">
+        <span class="font-extrabold tracking-normal">Drive</span>
+      </a>
+    </div>
   </header>
 
   <h1 class="register-title">Register</h1>

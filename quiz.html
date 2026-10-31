@@ -108,23 +108,23 @@
         const questionCount = parseInt(urlParams.get('count')) || 20;
         const timeLimitMinutes = parseInt(urlParams.get('time')) || 20;
 
-        // Robust Language Mapping to match Supabase database codes ('eng', 'kin', 'fr')
-        let uiLang = localStorage.getItem('lang') || 'eng';
+        // Foolproof Language Mapping for Database Query ('eng' or 'kin')
+        let rawLang = localStorage.getItem('lang') || 'eng';
         let dbLang = 'eng'; // default fallback
 
-        if (uiLang === 'rw' || uiLang === 'kin') {
+        if (rawLang === 'rw' || rawLang === 'kin' || rawLang.includes('kin') || rawLang.includes('rw')) {
             dbLang = 'kin';
-        } else if (uiLang === 'fr') {
-            dbLang = 'fr';
         } else {
             dbLang = 'eng';
         }
+
+        console.log("Exam running with database language filter:", dbLang);
 
         let questions = [];
         let currentIndex = 0;
         let userAnswers = {}; 
         let timerInterval;
-        let timeLeftSeconds = timeLimitMinutes * 60; // Fixed syntax error
+        let timeLeftSeconds = timeLimitMinutes * 60;
 
         async function initQuiz() {
             try {
@@ -137,7 +137,7 @@
                 if (error) throw error;
 
                 if (!data || data.length === 0) {
-                    alert(`No questions found for language code: ${dbLang}`);
+                    alert(`No questions found in database for language code: ${dbLang}. Please make sure questions are seeded for this language.`);
                     window.location.href = 'dashboard.html';
                     return;
                 }
@@ -266,7 +266,7 @@
             document.getElementById('finalScoreText').textContent = `${score} / ${total}`;
             
             const badge = document.getElementById('passFailBadge');
-            badge.textContent = passed ? 'PASSED ' : 'FAILED ';
+            badge.textContent = passed ? 'PASSED' : 'FAILED';
             badge.className = `mt-3 inline-block px-4 py-1 rounded-full text-xs font-bold ${passed ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}`;
 
             // Save to Backend Database API

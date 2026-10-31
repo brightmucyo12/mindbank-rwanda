@@ -1,0 +1,2252 @@
+[
+	{
+		"id": 249,
+		"q_number": 93,
+		"category": "general",
+		"question": "A blue circular sign with a white bicycle symbol means:",
+		"options": [
+			"Mandatory path reserved for cyclists",
+			"Bicycles prohibited",
+			"Bicycle rental shop",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 157,
+		"q_number": 1,
+		"category": "general",
+		"question": "At an uncontrolled four-way crossroads with no signs or police officers, who has priority?",
+		"options": [
+			"The vehicle approaching from your right",
+			"The vehicle on your left",
+			"The faster vehicle",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 158,
+		"q_number": 2,
+		"category": "general",
+		"question": "When approaching an uncontrolled T-junction, which vehicle must yield right-of-way?",
+		"options": [
+			"The vehicle on the terminating road joining the through road",
+			"The vehicle traveling along the through road",
+			"The vehicle carrying heavier freight",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 159,
+		"q_number": 3,
+		"category": "general",
+		"question": "When an emergency vehicle approaches with active sirens and beacons, a driver must:",
+		"options": [
+			"Pull over to the right and stop if necessary to clear passage",
+			"Accelerate to get through the intersection first",
+			"Turn on hazard flashers and maintain speed",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 160,
+		"q_number": 4,
+		"category": "general",
+		"question": "On a steep mountain incline where two vehicles cannot pass, which vehicle must reverse?",
+		"options": [
+			"The descending vehicle must reverse to a passing space",
+			"The ascending vehicle must reverse down the slope",
+			"The lighter passenger vehicle must reverse for a truck",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 161,
+		"q_number": 5,
+		"category": "general",
+		"question": "When turning left across oncoming traffic at an intersection, a driver must:",
+		"options": [
+			"Yield to oncoming vehicles continuing straight or turning right",
+			"Flash high beams and make the turn quickly",
+			"Sound horn twice and accelerate immediately",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 162,
+		"q_number": 6,
+		"category": "general",
+		"question": "When joining a public highway from a private residential driveway, you must:",
+		"options": [
+			"Yield right-of-way to all vehicles and pedestrians on the highway",
+			"Merge quickly ahead of oncoming traffic",
+			"Assert priority if making a right turn",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 163,
+		"q_number": 7,
+		"category": "general",
+		"question": "When two opposing vehicles meet at an intersection while both are turning left:",
+		"options": [
+			"They should pass in front of each other (leaving each other on their right)",
+			"They must circle around each other's rear",
+			"The lighter vehicle yields to the heavier truck",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 164,
+		"q_number": 8,
+		"category": "general",
+		"question": "At an intersection with a 'Yield' (Cédez le passage) sign, a driver must:",
+		"options": [
+			"Slow down and yield priority to cross-traffic without stopping if clear",
+			"Always come to a mandatory 5-second complete stop",
+			"Assert priority over all vehicles on the left",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 165,
+		"q_number": 9,
+		"category": "general",
+		"question": "At an intersection with an octagonal red 'STOP' sign, a driver must:",
+		"options": [
+			"Come to an absolute complete stop at the stop line before proceeding",
+			"Slow down to 10 km/h and proceed if no traffic is visible",
+			"Stop only if traffic is approaching from the right",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 166,
+		"q_number": 10,
+		"category": "general",
+		"question": "When an authorized official convoy or funeral procession is crossing an intersection:",
+		"options": [
+			"Drivers must yield passage and refrain from cutting through the convoy",
+			"Drivers may overtake convoy vehicles on the right curb",
+			"Drivers must honk to request passage",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 167,
+		"q_number": 11,
+		"category": "general",
+		"question": "When leaving an unpaved earthen track to enter a paved public road, priority belongs to:",
+		"options": [
+			"Vehicles already traveling on the paved public road",
+			"The vehicle entering from the earthen track",
+			"The faster approaching vehicle",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 168,
+		"q_number": 12,
+		"category": "general",
+		"question": "In heavy traffic, entering an intersection on a green light is only permitted if:",
+		"options": [
+			"There is adequate space to exit the intersection completely",
+			"You can stop in the center of the intersection",
+			"You sound your horn to push traffic ahead",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 169,
+		"q_number": 13,
+		"category": "general",
+		"question": "When approaching a bridge where a narrow passage sign gives priority to oncoming traffic:",
+		"options": [
+			"You must stop and yield passage to any oncoming vehicle",
+			"You have right-of-way if you arrive first at the bridge",
+			"You may proceed if you flash your high beams",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 170,
+		"q_number": 14,
+		"category": "general",
+		"question": "At an intersection with an uncontrolled pedestrian crossing, who has priority?",
+		"options": [
+			"Pedestrians who have stepped onto or intend to cross the crosswalk",
+			"Motor vehicles traveling at statutory speed limits",
+			"Commercial freight trucks",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 171,
+		"q_number": 15,
+		"category": "general",
+		"question": "When reversing a vehicle out of a parking bay into a roadway, priority belongs to:",
+		"options": [
+			"All moving vehicles and pedestrians on the roadway",
+			"The reversing vehicle",
+			"The larger commercial vehicle",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 172,
+		"q_number": 16,
+		"category": "general",
+		"question": "When two vehicles approach a narrowing obstacle on your side of the road, who yields?",
+		"options": [
+			"You must yield because the obstruction is on your side of the lane",
+			"The oncoming vehicle must yield to you",
+			"The larger vehicle proceeds first",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 173,
+		"q_number": 17,
+		"category": "general",
+		"question": "When exiting an off-street petrol station across a sidewalk into active traffic:",
+		"options": [
+			"Yield to pedestrians on the footway and vehicles on the road",
+			"Drive across the pavement quickly to enter the lane",
+			"Flash hazard lights to demand right-of-way",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 174,
+		"q_number": 18,
+		"category": "general",
+		"question": "At an intersection where traffic lights are blinking amber in all directions:",
+		"options": [
+			"Apply the standard rule of Priority to the Right with extreme caution",
+			"Proceed at maximum speed since signals are disabled",
+			"Come to a complete stop for 60 seconds before crossing",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 175,
+		"q_number": 19,
+		"category": "general",
+		"question": "When a city bus indicates its intention to leave a marked bus stop in an urban zone:",
+		"options": [
+			"Drivers traveling in the same direction must slow down to allow it to merge",
+			"Drivers must honk and accelerate past the bus",
+			"Drivers must overtake the bus on the right curb",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 176,
+		"q_number": 20,
+		"category": "general",
+		"question": "When arriving at an intersection where a police officer gestures for you to proceed:",
+		"options": [
+			"You must proceed as directed, even if a traffic light is red",
+			"You must wait for the red traffic light to turn green first",
+			"You must stop and ask for verbal confirmation",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 177,
+		"q_number": 21,
+		"category": "general",
+		"question": "At an unsignaled roundabout with no priority signs, which driver has priority?",
+		"options": [
+			"Vehicles already circulating inside the roundabout ring",
+			"Vehicles entering from the high-speed access lane",
+			"Heavy freight trucks regardless of position",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 178,
+		"q_number": 22,
+		"category": "general",
+		"question": "When preparing to turn right at a standard multi-lane roundabout, a driver should:",
+		"options": [
+			"Signal right and approach in the extreme right-hand lane",
+			"Signal left and enter in the far left lane",
+			"Enter without signaling and steer across lanes",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 179,
+		"q_number": 23,
+		"category": "general",
+		"question": "When planning to take the third exit (turning left) at a multi-lane roundabout:",
+		"options": [
+			"Signal left and position your vehicle in the inner/left lane upon entry",
+			"Stay in the far right lane and signal right continuously",
+			"Drive along the outer perimeter with hazard lights active",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 180,
+		"q_number": 24,
+		"category": "general",
+		"question": "When preparing to exit a roundabout, a driver must:",
+		"options": [
+			"Signal right immediately after passing the exit prior to the intended one",
+			"Turn on hazard flashers upon entering the roundabout",
+			"Sound horn twice to announce the exit maneuver",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 181,
+		"q_number": 25,
+		"category": "general",
+		"question": "Overtaking another vehicle on the right-hand side inside a roundabout is:",
+		"options": [
+			"Strictly prohibited unless traffic is moving in parallel designated queues",
+			"Permitted at all times if your vehicle is faster",
+			"Permitted for commercial freight vehicles only",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 182,
+		"q_number": 26,
+		"category": "general",
+		"question": "If you miss your intended exit on a busy roundabout, what is the correct action?",
+		"options": [
+			"Circulate around the roundabout again until you reach the exit",
+			"Stop immediately and reverse back to the missed exit",
+			"Make an immediate U-turn across the island apron",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 183,
+		"q_number": 27,
+		"category": "general",
+		"question": "Stopping or parking a vehicle on the circulatory roadway of a roundabout is:",
+		"options": [
+			"Strictly forbidden under all circumstances",
+			"Permitted for loading passengers for less than 1 minute",
+			"Permitted if hazard warning flashers are activated",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 184,
+		"q_number": 28,
+		"category": "general",
+		"question": "A circular road sign with a blue background and three circular white arrows indicates:",
+		"options": [
+			"Mandatory direction: roundabout traffic flow",
+			"Recommended tourist scenic loop ahead",
+			"Danger: circular obstacle on the roadway",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 185,
+		"q_number": 29,
+		"category": "general",
+		"question": "When entering a mini-roundabout with a painted flush central island:",
+		"options": [
+			"Drivers must circulate around the central island and avoid driving over it",
+			"Drivers may drive directly straight over the island at speed",
+			"Priority is reversed, giving right-of-way to entering vehicles",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 186,
+		"q_number": 30,
+		"category": "general",
+		"question": "Pedestrians crossing at marked zebra crossings at the entrance/exit of a roundabout:",
+		"options": [
+			"Have absolute priority over all entering and exiting vehicles",
+			"Must yield to all motor vehicles leaving the roundabout",
+			"May only cross when traffic police are present",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 187,
+		"q_number": 31,
+		"category": "general",
+		"question": "When approaching a roundabout, drivers must yield to:",
+		"options": [
+			"Traffic already inside the roundabout from the left",
+			"Vehicles waiting to enter behind you",
+			"Non-motorized pushcarts only",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 188,
+		"q_number": 32,
+		"category": "general",
+		"question": "Lane choice upon entering a roundabout when going straight is:",
+		"options": [
+			"The right or middle lane, maintaining lane discipline throughout",
+			"The leftmost lane crossing all exits directly",
+			"Any lane at maximum speed",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 189,
+		"q_number": 33,
+		"category": "general",
+		"question": "Changing lanes while driving inside a multi-lane roundabout is:",
+		"options": [
+			"Permitted only when safe and after signaling, without cutting off other drivers",
+			"Strictly forbidden under all circumstances",
+			"Permitted by sounding your horn beforehand",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 190,
+		"q_number": 34,
+		"category": "general",
+		"question": "Is parking permitted within 5 meters of a roundabout entrance?",
+		"options": [
+			"No, parking near roundabout entry points obstructs visibility and flow",
+			"Yes, for up to 15 minutes",
+			"Yes, if hazard lights are on",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 191,
+		"q_number": 35,
+		"category": "general",
+		"question": "When a large articulated truck takes up two lanes to navigate a roundabout, other drivers should:",
+		"options": [
+			"Maintain a safe distance and give the truck sufficient clearance",
+			"Try to squeeze past on the right side immediately",
+			"Sound their horn continuously until the truck moves over",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 192,
+		"q_number": 36,
+		"category": "general",
+		"question": "Exiting a roundabout from the inner-most lane directly across outer lane traffic is:",
+		"options": [
+			"Illegal and dangerous",
+			"Allowed if you signal early",
+			"Permitted for emergency vehicles only",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 193,
+		"q_number": 37,
+		"category": "general",
+		"question": "If two vehicles enter a small unsignaled roundabout simultaneously:",
+		"options": [
+			"The vehicle on the right has priority over the vehicle entering from the left approach",
+			"The larger vehicle always goes first",
+			"Both vehicles must stop and reverse",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 194,
+		"q_number": 38,
+		"category": "general",
+		"question": "The central island of a roundabout is designed to:",
+		"options": [
+			"Force deflection and regulate traffic flow safely in a single direction",
+			"Provide a resting area for pedestrians",
+			"Serve as an auxiliary parking space",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 195,
+		"q_number": 39,
+		"category": "general",
+		"question": "When driving past a roundabout at night, your vehicle must use:",
+		"options": [
+			"Low beam headlights to avoid blinding other road users",
+			"High beam headlights exclusively",
+			"Parking lights only",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 196,
+		"q_number": 40,
+		"category": "general",
+		"question": "Are bicycles permitted to use roundabouts?",
+		"options": [
+			"Yes, cyclists follow the same circulatory rules as motor vehicles",
+			"No, bicycles are banned from all roundabouts",
+			"Yes, but only by riding on the pedestrian sidewalk",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 197,
+		"q_number": 41,
+		"category": "general",
+		"question": "A police officer stands with arms outstretched horizontally towards your direction:",
+		"options": [
+			"Absolute stop command for traffic facing the officer",
+			"Proceed with caution at reduced speed",
+			"Overtaking allowed on the left side",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 198,
+		"q_number": 42,
+		"category": "general",
+		"question": "A police officer stands with one arm raised vertically upwards. This means:",
+		"options": [
+			"Prepare to stop: clear the intersection for all approaching traffic",
+			"Traffic may accelerate to beat the signal",
+			"All vehicles must make an immediate U-turn",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 199,
+		"q_number": 43,
+		"category": "general",
+		"question": "A police officer gestures with his forearm moving towards his chest repeatedly:",
+		"options": [
+			"Accelerate and proceed forward",
+			"Stop immediately",
+			"Turn off vehicle engine",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 200,
+		"q_number": 44,
+		"category": "general",
+		"question": "A steady yellow/amber traffic light displayed alone means:",
+		"options": [
+			"Stop before the stop line unless you are so close you cannot stop safely",
+			"Accelerate to cross before the red light activates",
+			"Amber grants right-of-way over cross-traffic",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 201,
+		"q_number": 45,
+		"category": "general",
+		"question": "At an intersection governed by traffic lights, a green directional arrow pointing left means:",
+		"options": [
+			"Protected left turn: oncoming traffic faces a red signal",
+			"Left turn permitted only after yielding to oncoming traffic",
+			"Left turn is prohibited during peak hours",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 202,
+		"q_number": 46,
+		"category": "general",
+		"question": "A flashing red traffic light at an intersection signifies:",
+		"options": [
+			"Stop completely, verify traffic is clear, then proceed as at a STOP sign",
+			"The traffic light is broken; drive through without stopping",
+			"Caution, proceed without stopping at 30 km/h",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 203,
+		"q_number": 47,
+		"category": "general",
+		"question": "A flashing amber light located at an intersection signifies:",
+		"options": [
+			"Caution: proceed with reduced speed, observing normal priority rules",
+			"Stop for at least 30 seconds before proceeding",
+			"The intersection is closed for road maintenance",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 204,
+		"q_number": 48,
+		"category": "general",
+		"question": "If a police officer's signal contradicts an automatic green traffic light:",
+		"options": [
+			"The police officer's signal strictly supersedes the traffic light",
+			"The traffic light overrides the police officer",
+			"Stop until the light turns red and the officer agrees",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 205,
+		"q_number": 49,
+		"category": "general",
+		"question": "A red cross (X) displayed above a motorway traffic lane signifies:",
+		"options": [
+			"The lane is closed to traffic; you must not travel in this lane",
+			"The lane is reserved for high-speed express vehicles",
+			"Toll booth ahead; prepare exact cash",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 206,
+		"q_number": 50,
+		"category": "general",
+		"question": "A green arrow pointing downward above a traffic lane signifies:",
+		"options": [
+			"The lane is open and traffic may proceed normally",
+			"You must immediately exit the lane to the right",
+			"Speed limit in this lane is minimum 100 km/h",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 207,
+		"q_number": 51,
+		"category": "general",
+		"question": "When a traffic light turns green, you must:",
+		"options": [
+			"Check that the intersection is clear before moving forward",
+			"Accelerate rapidly to maximum speed",
+			"Sound your horn before moving",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 208,
+		"q_number": 52,
+		"category": "general",
+		"question": "A police officer blowing a short, sharp blast on a whistle intends to:",
+		"options": [
+			"Attract the attention of road users to a signal or instruction",
+			"Signal drivers to turn off their engines",
+			"Order all vehicles to reverse immediately",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 209,
+		"q_number": 53,
+		"category": "general",
+		"question": "When a traffic light displays a steady red light alongside a green right-turn arrow:",
+		"options": [
+			"You may turn right cautiously, yielding to pedestrians and cross-traffic",
+			"You must remain stopped until all lights turn green",
+			"You must reverse out of the lane",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 210,
+		"q_number": 54,
+		"category": "general",
+		"question": "A police officer standing sideways with arms lowered means:",
+		"options": [
+			"Traffic parallel to the officer's sides may proceed; traffic facing front/back must stop",
+			"All traffic in all directions must stop immediately",
+			"Overtaking is permitted for all vehicles",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 211,
+		"q_number": 55,
+		"category": "general",
+		"question": "At night, a traffic police officer uses a baton with a glowing red tip to signal:",
+		"options": [
+			"Drivers to stop",
+			"Drivers to speed up",
+			"Road construction ahead",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 212,
+		"q_number": 56,
+		"category": "general",
+		"question": "What should you do if traffic lights fail completely during a power outage?",
+		"options": [
+			"Treat the intersection as an uncontrolled junction and apply right-of-way rules",
+			"Park your car in the middle of the road and wait",
+			"Drive through without slowing down",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 213,
+		"q_number": 57,
+		"category": "general",
+		"question": "A circular blue sign with a white downward arrow indicates:",
+		"options": [
+			"Mandatory lane direction or keep right/pass this side",
+			"Dead end road ahead",
+			"Underground parking garage",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 214,
+		"q_number": 58,
+		"category": "general",
+		"question": "If a traffic officer directs you to drive onto the sidewalk to bypass an obstruction:",
+		"options": [
+			"You must follow the officer's instructions safely",
+			"You must refuse because driving on sidewalks is illegal",
+			"You must wait for a written permit",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 215,
+		"q_number": 59,
+		"category": "general",
+		"question": "A pedestrian crossing signal showing a steady red silhouette of a standing person means:",
+		"options": [
+			"Pedestrians must not step onto the roadway",
+			"Pedestrians have priority to run across",
+			"Crossing is closed for maintenance only",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 216,
+		"q_number": 60,
+		"category": "general",
+		"question": "A pedestrian crossing signal showing a green walking figure means:",
+		"options": [
+			"Pedestrians may cross the roadway within the crosswalk",
+			"Pedestrians must clear the road immediately",
+			"Skateboarding is permitted on the road",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 217,
+		"q_number": 61,
+		"category": "general",
+		"question": "What shape and border characterizes danger warning signs under the Rwanda Highway Code?",
+		"options": [
+			"Equilateral triangle pointing upwards with a red border",
+			"Circular shape with a solid blue background",
+			"Octagonal shape with white letters",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 218,
+		"q_number": 62,
+		"category": "general",
+		"question": "A triangular warning sign displaying an exclamation mark in the center indicates:",
+		"options": [
+			"General danger or hazard ahead; proceed with caution",
+			"Mandatory police checkpoint",
+			"End of all speed restrictions",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 219,
+		"q_number": 63,
+		"category": "general",
+		"question": "A triangular warning sign displaying two curved wavy lines curving right then left indicates:",
+		"options": [
+			"Double bend ahead, first to the right",
+			"Winding road with loose stones",
+			"Slippery road surface due to rain",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 220,
+		"q_number": 64,
+		"category": "general",
+		"question": "A triangular warning sign showing a car skidding with wavy tire marks indicates:",
+		"options": [
+			"Road surface ahead is prone to slipping or loss of traction",
+			"Washing bay ahead",
+			"Motor vehicle testing track",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 221,
+		"q_number": 65,
+		"category": "general",
+		"question": "A triangular sign showing a silhouette of children running with satchels indicates:",
+		"options": [
+			"Danger: school zone, children frequently crossing ahead",
+			"Playground zone; horn sounding mandatory",
+			"Pedestrian mall reserved for students",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 222,
+		"q_number": 66,
+		"category": "general",
+		"question": "A triangular warning sign with a silhouette of a domestic cow indicates:",
+		"options": [
+			"Risk of domestic livestock or cattle crossing the roadway",
+			"Abattoir or slaughterhouse entrance",
+			"Veterinary clinic nearby",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 223,
+		"q_number": 67,
+		"category": "general",
+		"question": "A triangular sign with a percentage (e.g., '10%') and a descending car indicates:",
+		"options": [
+			"Dangerous steep downward incline ahead",
+			"Speed limit reduced by 10 percent",
+			"Toll fee discount zone",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 224,
+		"q_number": 68,
+		"category": "general",
+		"question": "A triangular warning sign displaying a traffic light symbol indicates:",
+		"options": [
+			"Traffic light signals ahead where they might be unexpected",
+			"Police station with automated gates",
+			"Electrical transformer station ahead",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 225,
+		"q_number": 69,
+		"category": "general",
+		"question": "A triangular warning sign showing falling rocks or boulders on the right indicates:",
+		"options": [
+			"Danger of rockfalls or debris falling onto the road from the right cliffside",
+			"Stone quarry entrance ahead",
+			"Road paved with cobblestones",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 226,
+		"q_number": 70,
+		"category": "general",
+		"question": "A triangular warning sign showing a swing bridge or open quay indicates:",
+		"options": [
+			"Road leads onto a quay, riverbank, or opening bridge without barriers",
+			"Children's playground ahead",
+			"Amusement park roller coaster zone",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 227,
+		"q_number": 71,
+		"category": "general",
+		"question": "A triangular warning sign showing an intersecting road with a secondary road on the right indicates:",
+		"options": [
+			"Crossroad or junction where priority rules apply with a side road on the right",
+			"Dead end on the right",
+			"One-way street entry on the right",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 228,
+		"q_number": 72,
+		"category": "general",
+		"question": "A triangular warning sign showing road narrowing on both sides indicates:",
+		"options": [
+			"Road width decreases symmetrically on both left and right sides",
+			"Bridge ahead closed to trucks",
+			"Dual carriageway beginning ahead",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 229,
+		"q_number": 73,
+		"category": "general",
+		"question": "A triangular warning sign showing a low-flying airplane indicates:",
+		"options": [
+			"Low-flying aircraft overhead near an airport or airstrip",
+			"Skydiving training center",
+			"Bird sanctuary zone",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 230,
+		"q_number": 74,
+		"category": "general",
+		"question": "A triangular warning sign showing a humpbacked bridge indicates:",
+		"options": [
+			"Uneven road or humpbacked bridge ahead that may cause suspension shock",
+			"Speed bump installation zone",
+			"Camel riding ranch ahead",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 231,
+		"q_number": 75,
+		"category": "general",
+		"question": "A triangular warning sign showing road works and a worker with a shovel indicates:",
+		"options": [
+			"Road construction or maintenance work ahead; reduce speed",
+			"Archaeological excavation site",
+			"Gardening nursery entrance",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 232,
+		"q_number": 76,
+		"category": "general",
+		"question": "A triangular warning sign showing a cross with no other symbols indicates:",
+		"options": [
+			"Intersection where the general Priority to the Right rule applies",
+			"Graveyard entrance ahead",
+			"First aid medical post",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 233,
+		"q_number": 77,
+		"category": "general",
+		"question": "A triangular warning sign showing two children running with a ball indicates:",
+		"options": [
+			"Playground or recreational area nearby where children may run onto the road",
+			"Football stadium parking lot",
+			"Toy store zone",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 234,
+		"q_number": 78,
+		"category": "general",
+		"question": "A triangular warning sign showing a winding road starting to the left indicates:",
+		"options": [
+			"Series of dangerous bends ahead, starting with a turn to the left",
+			"Hairpin turn to the right",
+			"Circular racing track ahead",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 235,
+		"q_number": 79,
+		"category": "general",
+		"question": "A triangular warning sign showing loose gravel or stones indicates:",
+		"options": [
+			"Risk of flying stones or loose gravel thrown up by tires",
+			"Paved stone factory ahead",
+			"Pedestrian walkway paved with gravel",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 236,
+		"q_number": 80,
+		"category": "general",
+		"question": "A triangular warning sign showing a tunnel silhouette indicates:",
+		"options": [
+			"Tunnel ahead; switch on headlights and remove sunglasses",
+			"Underground railway crossing",
+			"Mining excavation zone",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 237,
+		"q_number": 81,
+		"category": "general",
+		"question": "What shape characterizes prohibitory or restrictive road signs under the Highway Code?",
+		"options": [
+			"Circular shape with a red border and white background",
+			"Triangular shape with a yellow background",
+			"Rectangular shape with a blue background",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 238,
+		"q_number": 82,
+		"category": "general",
+		"question": "A circular sign with a red border and a blank white center means:",
+		"options": [
+			"Closed to all vehicles in both directions (No Entry)",
+			"Parking permitted for all vehicles",
+			"Speed limit de-restriction zone",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 239,
+		"q_number": 83,
+		"category": "general",
+		"question": "A circular sign with a red border and a white car silhouette means:",
+		"options": [
+			"No entry for all motor vehicles except motorcycles",
+			"Parking reserved for cars only",
+			"Car rental agency ahead",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 240,
+		"q_number": 84,
+		"category": "general",
+		"question": "A circular sign with a red border displaying '50' in black numbers means:",
+		"options": [
+			"Maximum speed limit of 50 km/h",
+			"Minimum speed limit of 50 km/h",
+			"Distance of 50 meters to the next town",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 241,
+		"q_number": 85,
+		"category": "general",
+		"question": "A circular sign with a red border showing a truck silhouette means:",
+		"options": [
+			"Overtaking or entry prohibited for goods vehicles exceeding specified weight",
+			"Truck parking bay ahead",
+			"Heavy vehicle weighing station",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 242,
+		"q_number": 86,
+		"category": "general",
+		"question": "A circular sign with a blue background and a white diagonal red slash across a white 'P' means:",
+		"options": [
+			"Parking prohibited",
+			"Parking permitted on even days only",
+			"Parking garage entrance",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 243,
+		"q_number": 87,
+		"category": "general",
+		"question": "A circular sign with a blue background and a white 'P' crossed with two diagonal red slashes means:",
+		"options": [
+			"Both stopping and parking are strictly prohibited",
+			"Parking prohibited, but temporary stopping allowed",
+			"Reserved taxi parking zone",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 244,
+		"q_number": 88,
+		"category": "general",
+		"question": "A circular sign with a red border and a horn symbol means:",
+		"options": [
+			"Prohibition against sounding horns (Audible warning prohibited)",
+			"Mandatory horn testing station",
+			"Musical highway ahead",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 245,
+		"q_number": 89,
+		"category": "general",
+		"question": "A circular sign with a red border showing a car overtaking another car means:",
+		"options": [
+			"Overtaking prohibited for all motor vehicles",
+			"Overtaking permitted on the right side only",
+			"Driving school practice zone",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 246,
+		"q_number": 90,
+		"category": "general",
+		"question": "A circular sign with a red border and black arrow pointing left means:",
+		"options": [
+			"Turn left prohibited",
+			"Mandatory left turn ahead",
+			"One-way traffic to the left",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 247,
+		"q_number": 91,
+		"category": "general",
+		"question": "A circular sign with a red border and a U-turn arrow crossed out means:",
+		"options": [
+			"Making a U-turn is strictly prohibited",
+			"U-turn mandatory ahead",
+			"Roundabout intersection ahead",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 248,
+		"q_number": 92,
+		"category": "general",
+		"question": "A blue circular sign with a white right-turn arrow means:",
+		"options": [
+			"Mandatory direction: turn right ahead",
+			"Right turn prohibited",
+			"Winding road to the right",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 250,
+		"q_number": 94,
+		"category": "general",
+		"question": "A blue circular sign with a white pedestrian silhouette means:",
+		"options": [
+			"Mandatory footpath reserved for pedestrians",
+			"Pedestrians prohibited",
+			"Pedestrian crossing ahead",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 251,
+		"q_number": 95,
+		"category": "general",
+		"question": "A blue circular sign with a white number '30' means:",
+		"options": [
+			"Minimum speed limit of 30 km/h; do not drive slower unless traffic conditions require",
+			"Maximum speed limit of 30 km/h",
+			"Recommended speed 30 km/h",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 252,
+		"q_number": 96,
+		"category": "general",
+		"question": "A circular sign with a red border and weight restriction '10t' means:",
+		"options": [
+			"Vehicles exceeding a total weight of 10 tonnes are prohibited",
+			"Minimum vehicle weight must be 10 tonnes",
+			"Toll fee of 10 Rwandan Francs",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 253,
+		"q_number": 97,
+		"category": "general",
+		"question": "A circular sign with a red border and height limit '3.5m' means:",
+		"options": [
+			"Vehicles exceeding 3.5 meters in height are prohibited",
+			"Minimum clearance height is 3.5 meters",
+			"Parking height clearance indicator",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 254,
+		"q_number": 98,
+		"category": "general",
+		"question": "A circular sign with a red border and width limit '2m' means:",
+		"options": [
+			"Vehicles exceeding 2 meters in width are prohibited",
+			"Minimum lane width is 2 meters",
+			"Motorcycle-only width corridor",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 255,
+		"q_number": 99,
+		"category": "general",
+		"question": "A circular sign with a red border showing a motorcycle silhouette means:",
+		"options": [
+			"Motorcycles prohibited from entering",
+			"Motorcycle parking zone",
+			"Motorcycle repair shop ahead",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 256,
+		"q_number": 100,
+		"category": "general",
+		"question": "A circular sign with a red border showing a pedestrian silhouette means:",
+		"options": [
+			"Pedestrians prohibited from entering the road or zone",
+			"Pedestrian crossing ahead",
+			"School zone ahead",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 257,
+		"q_number": 101,
+		"category": "general",
+		"question": "What is the standard statutory speed limit for cars and motorcycles in built-up urban areas in Rwanda unless otherwise posted?",
+		"options": [
+			"40 km/h or 50 km/h depending on local municipality ordinances",
+			"80 km/h",
+			"100 km/h",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 258,
+		"q_number": 102,
+		"category": "general",
+		"question": "What is the standard maximum speed limit on national paved highways outside built-up areas for light passenger vehicles?",
+		"options": [
+			"80 km/h to 100 km/h as marked by signs",
+			"60 km/h",
+			"120 km/h",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 259,
+		"q_number": 103,
+		"category": "general",
+		"question": "When overtaking another vehicle on a standard two-way road, you must:",
+		"options": [
+			"Overtake on the left side after ensuring the road ahead is completely clear",
+			"Overtake on the right side by using the shoulder",
+			"Sound your horn continuously and force your way past",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 260,
+		"q_number": 104,
+		"category": "general",
+		"question": "Overtaking is strictly prohibited in which of the following locations?",
+		"options": [
+			"On blind curves, crests of hills, and at uncontrolled intersections",
+			"On multi-lane highways with dashed white center lines",
+			"In urban streets with two lanes moving in the same direction",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 261,
+		"q_number": 105,
+		"category": "general",
+		"question": "If a vehicle behind you signals its intention to overtake your vehicle, you must:",
+		"options": [
+			"Maintain your speed or slow down slightly, and never accelerate to obstruct the maneuver",
+			"Speed up to prevent the vehicle from passing",
+			"Slam on your brakes immediately",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 262,
+		"q_number": 106,
+		"category": "general",
+		"question": "Overtaking another vehicle on the right is permitted when:",
+		"options": [
+			"The vehicle ahead has signaled and is waiting to turn left",
+			"You are in a rush and the left lane is blocked",
+			"Driving on a single-lane dirt road",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 263,
+		"q_number": 107,
+		"category": "general",
+		"question": "Driving at an unreasonably slow speed that impedes the normal flow of traffic is:",
+		"options": [
+			"Illegal, unless required by safety, weather, or vehicle mechanical breakdown",
+			"Encouraged for all drivers",
+			"Permitted on national highways at all times",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 264,
+		"q_number": 108,
+		"category": "general",
+		"question": "When driving behind a heavy freight truck on a highway, you should maintain:",
+		"options": [
+			"A safe following distance that allows you to see the truck's exterior mirrors and stop safely",
+			"A distance of less than 2 meters to save fuel",
+			"High beam headlights to signal the truck driver",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 265,
+		"q_number": 109,
+		"category": "general",
+		"question": "What action must you take when approaching the crest of a steep hill where visibility is obstructed?",
+		"options": [
+			"Keep well to the right, reduce speed, and refrain from overtaking",
+			"Drive in the center of the road to claim priority",
+			"Switch on hazard lights and accelerate",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 266,
+		"q_number": 110,
+		"category": "general",
+		"question": "Speed limits in school zones or hospital areas are typically:",
+		"options": [
+			"Significantly reduced (e.g., 30 km/h) to ensure safety of vulnerable pedestrians and patients",
+			"Increased to clear traffic quickly",
+			"Unregulated during daytime hours",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 267,
+		"q_number": 111,
+		"category": "general",
+		"question": "When passing a row of parked vehicles on a narrow street, a driver should:",
+		"options": [
+			"Reduce speed and watch out for opening doors or pedestrians stepping out",
+			"Maintain maximum urban speed",
+			"Sound the horn continuously",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 268,
+		"q_number": 112,
+		"category": "general",
+		"question": "Is it permissible to exceed the posted speed limit when overtaking another vehicle?",
+		"options": [
+			"No, exceeding the statutory speed limit is illegal even during overtaking",
+			"Yes, by up to 30 km/h to complete the maneuver quickly",
+			"Yes, if driving a commercial truck",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 269,
+		"q_number": 113,
+		"category": "general",
+		"question": "When driving in heavy tropical downpours or thick fog, your speed should be:",
+		"options": [
+			"Reduced substantially to match reduced visibility and slippery road conditions",
+			"Maintained at normal highway limits",
+			"Increased to get out of the rain quickly",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 270,
+		"q_number": 114,
+		"category": "general",
+		"question": "If you are caught driving 20 km/h above the posted speed limit, you are liable to:",
+		"options": [
+			"Traffic fines and possible penalty points as per Rwanda traffic enforcement laws",
+			"A verbal warning from passing motorists",
+			"A road safety medal",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 271,
+		"q_number": 115,
+		"category": "general",
+		"question": "When driving on unpaved gravel roads, drivers should:",
+		"options": [
+			"Reduce speed to prevent loss of vehicle control and flying stones",
+			"Drive at 100 km/h to skim over potholes",
+			"Turn off all headlights",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 272,
+		"q_number": 116,
+		"category": "general",
+		"question": "Overtaking a stationary public bus that is loading passengers at a designated stop requires:",
+		"options": [
+			"Extreme caution, watching for pedestrians crossing in front of the bus",
+			"Passing at full speed without stopping",
+			"Honking continuously to clear the sidewalk",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 273,
+		"q_number": 117,
+		"category": "general",
+		"question": "When two vehicles approach each other on a narrow unpaved road, both drivers must:",
+		"options": [
+			"Slow down and move to the extreme right of their respective lanes",
+			"Maintain speed and force the other car off the road",
+			"Turn off their engines",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 274,
+		"q_number": 118,
+		"category": "general",
+		"question": "What is the purpose of continuous solid yellow or white lines painted in the center of a road?",
+		"options": [
+			"To prohibit drivers from crossing or straddling the line for overtaking",
+			"To mark parking bays",
+			"To indicate bicycle lanes",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 275,
+		"q_number": 119,
+		"category": "general",
+		"question": "A dashed (broken) center road line indicates that:",
+		"options": [
+			"Overtaking is permitted when it is safe and the road ahead is clear",
+			"Crossing the line is strictly prohibited at all times",
+			"Parking is allowed in the middle of the road",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 276,
+		"q_number": 120,
+		"category": "general",
+		"question": "When entering a highway slip road, you must:",
+		"options": [
+			"Yield right-of-way to vehicles already traveling on the main highway",
+			"Stop completely on the slip road until traffic halts",
+			"Force your way into the nearest lane",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 277,
+		"q_number": 121,
+		"category": "general",
+		"question": "Parking a vehicle within how many meters of an intersection or pedestrian crossing is prohibited?",
+		"options": [
+			"Within 5 meters (and often 10-15 meters near intersections/crosswalks)",
+			"Within 50 centimeters",
+			"Parking is permitted anywhere near intersections",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 278,
+		"q_number": 122,
+		"category": "general",
+		"question": "When parking a vehicle on a steep downhill slope, the driver should:",
+		"options": [
+			"Turn the front wheels towards the curb and engage handbrake/reverse gear",
+			"Turn the wheels away from the curb and leave the car in neutral",
+			"Leave the vehicle unlocked with engine running",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 279,
+		"q_number": 123,
+		"category": "general",
+		"question": "When parking a vehicle on a steep uphill slope with a curb, the driver should:",
+		"options": [
+			"Turn the front wheels away from the curb and engage handbrake/first gear",
+			"Turn the wheels towards the curb",
+			"Leave wheels straight without a handbrake",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 280,
+		"q_number": 124,
+		"category": "general",
+		"question": "Double parking (parking alongside another vehicle parked parallel to the curb) is:",
+		"options": [
+			"Strictly prohibited at all times because it obstructs traffic flow",
+			"Permitted for delivery vehicles for up to 5 minutes",
+			"Permitted on Sundays",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 281,
+		"q_number": 125,
+		"category": "general",
+		"question": "Under what conditions must vehicle headlights be switched on?",
+		"options": [
+			"From sunset to sunrise, and during daytime in conditions of poor visibility (rain, fog, tunnels)",
+			"Only when driving above 100 km/h",
+			"Only when requested by traffic police",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 282,
+		"q_number": 126,
+		"category": "general",
+		"question": "When driving at night on unlit rural roads, drivers must use:",
+		"options": [
+			"High beam (main beam) headlights, provided no oncoming vehicle is dazzled",
+			"Parking lights exclusively",
+			"Interior cabin lights",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 283,
+		"q_number": 127,
+		"category": "general",
+		"question": "When an oncoming vehicle approaches you at night with high beams active, you should:",
+		"options": [
+			"Switch your headlights from high beam to dipped (low) beam to avoid blinding them",
+			"Switch on your high beams in retaliation",
+			"Close your eyes and maintain speed",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 284,
+		"q_number": 128,
+		"category": "general",
+		"question": "What lighting must be displayed by a broken-down vehicle stopped on a dark unlit highway?",
+		"options": [
+			"Hazard warning flashers and placement of a reflective warning triangle behind the vehicle",
+			"High beam headlights pointed backward",
+			"Interior roof lights",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 285,
+		"q_number": 129,
+		"category": "general",
+		"question": "Parking a vehicle in front of a designated fire hydrant or emergency exit is:",
+		"options": [
+			"Strictly prohibited under all circumstances",
+			"Permitted if you remain inside the car",
+			"Permitted during nighttime hours only",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 286,
+		"q_number": 130,
+		"category": "general",
+		"question": "What color must rear registration plate illumination lights be?",
+		"options": [
+			"White light so the license plate is clearly legible at night",
+			"Red light matching tail lights",
+			"Blue flashing light",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 287,
+		"q_number": 131,
+		"category": "general",
+		"question": "When stopping temporarily on the side of a highway at night, you should display:",
+		"options": [
+			"Parking lights or sidelights so the vehicle remains visible to others",
+			"No lights to save battery power",
+			"High beam headlights",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 288,
+		"q_number": 132,
+		"category": "general",
+		"question": "What is the maximum distance a reflective warning triangle must be placed behind a disabled vehicle on a fast highway?",
+		"options": [
+			"At least 30 meters (and up to 50-100 meters on high-speed roads)",
+			"Exactly 1 meter",
+			"500 meters",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 289,
+		"q_number": 133,
+		"category": "general",
+		"question": "Fog lights (front or rear) should be used:",
+		"options": [
+			"Only when visibility is severely reduced by fog, heavy rain, or snow",
+			"At all times during normal sunny daytime driving",
+			"As a substitute for high beams at night",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 290,
+		"q_number": 134,
+		"category": "general",
+		"question": "Parking on a pedestrian sidewalk or footway is:",
+		"options": [
+			"Strictly prohibited because sidewalks are reserved for pedestrian safety",
+			"Permitted if half the car remains on the road",
+			"Permitted for motorcycles only",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 291,
+		"q_number": 135,
+		"category": "general",
+		"question": "When leaving your vehicle unattended, you are legally required to:",
+		"options": [
+			"Switch off the engine, engage the handbrake, remove the ignition key, and lock all doors",
+			"Leave the engine idling to keep the air conditioning running",
+			"Leave the keys in the ignition for emergency towing",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 292,
+		"q_number": 136,
+		"category": "general",
+		"question": "What color are mandatory rear brake lights on motor vehicles?",
+		"options": [
+			"Red",
+			"Amber/Yellow",
+			"White",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 293,
+		"q_number": 137,
+		"category": "general",
+		"question": "What color are directional indicator (turn signal) lights?",
+		"options": [
+			"Amber (yellow) or orange",
+			"Blue",
+			"White only",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 294,
+		"q_number": 138,
+		"category": "general",
+		"question": "Reversing your vehicle on a motorway or high-speed expressway is:",
+		"options": [
+			"Strictly prohibited and extremely dangerous",
+			"Permitted if you missed your off-ramp by less than 100 meters",
+			"Permitted during off-peak hours",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 295,
+		"q_number": 139,
+		"category": "general",
+		"question": "If your vehicle breaks down in the middle of a busy traffic lane, your first priority is to:",
+		"options": [
+			"Warn oncoming traffic, activate hazard lights, and move passengers to a safe location off the road",
+			"Stay inside the car and honk your horn",
+			"Leave the car immediately without setting up signals",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 296,
+		"q_number": 140,
+		"category": "general",
+		"question": "Parking within 5 meters before a pedestrian crossing is prohibited because:",
+		"options": [
+			"It blocks the line of sight between drivers and approaching pedestrians",
+			"It reserves space for police cars",
+			"It prevents rain drainage",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 297,
+		"q_number": 141,
+		"category": "general",
+		"question": "Are drivers permitted to use handheld mobile phones while driving?",
+		"options": [
+			"No, holding or using a mobile phone while driving is strictly illegal unless using a hands-free system",
+			"Yes, for texting while stopped at red lights",
+			"Yes, if driving below 30 km/h",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 298,
+		"q_number": 142,
+		"category": "general",
+		"question": "Wearing seat belts is mandatory for:",
+		"options": [
+			"The driver and all passengers in vehicles equipped with seat belts",
+			"The driver only",
+			"Front-seat passengers only",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 299,
+		"q_number": 143,
+		"category": "general",
+		"question": "What is the legal blood alcohol concentration (BAC) limit for ordinary drivers in Rwanda?",
+		"options": [
+			"0.00g% (Zero tolerance for driving under the influence of alcohol)",
+			"0.05g%",
+			"0.08g%",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 300,
+		"q_number": 144,
+		"category": "general",
+		"question": "When towing another broken-down vehicle with a rigid tow bar or rope, the maximum speed is:",
+		"options": [
+			"Reduced, and both vehicles must display appropriate hazard/towing signals",
+			"Maximum highway speed (100 km/h)",
+			"Unregulated",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 301,
+		"q_number": 145,
+		"category": "general",
+		"question": "Children below a certain age or height must travel in:",
+		"options": [
+			"Approved child restraint systems (car seats) appropriate for their size",
+			"The front passenger seat without a seatbelt",
+			"The trunk of the vehicle",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 302,
+		"q_number": 146,
+		"category": "general",
+		"question": "Driving a motor vehicle with expired technical inspection (control technique) certificates is:",
+		"options": [
+			"Illegal and subject to heavy fines and vehicle impoundment",
+			"Permitted for up to 6 months past expiry",
+			"Allowed if the car is insured",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 303,
+		"q_number": 147,
+		"category": "general",
+		"question": "A driver involved in a traffic accident resulting in injury or severe property damage must:",
+		"options": [
+			"Stop immediately, assist injured persons, report to the police, and not flee the scene",
+			"Drive away quickly before police arrive",
+			"Exchange phone numbers and leave without reporting",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 304,
+		"q_number": 148,
+		"category": "general",
+		"question": "What document must a driver always carry while operating a motor vehicle on public roads?",
+		"options": [
+			"Valid driving license, vehicle registration card, and proof of insurance",
+			"Birth certificate and passport only",
+			"House tenancy agreement",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 305,
+		"q_number": 149,
+		"category": "general",
+		"question": "Motorcyclists and their passengers are legally required to wear:",
+		"options": [
+			"Securely fastened protective helmets meeting safety standards",
+			"Baseball caps turned backward",
+			"No headgear is required in rural areas",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	},
+	{
+		"id": 306,
+		"q_number": 150,
+		"category": "general",
+		"question": "Littering or throwing objects out of a moving vehicle window is:",
+		"options": [
+			"Illegal and punishable by traffic fines for environmental and safety hazards",
+			"Permitted for organic waste only",
+			"Permitted on national highways at night",
+			"No correct answer"
+		],
+		"correct_answer": "option_a",
+		"image_url": null,
+		"language": "eng"
+	}
+]
