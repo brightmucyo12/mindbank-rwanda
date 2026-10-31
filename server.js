@@ -91,6 +91,8 @@ app.get('/dashboard', (req, res) => res.sendFile(path.join(__dirname, 'dashboard
 app.get('/SectionA.html', (req, res) => res.sendFile(path.join(__dirname, 'SECTIONA.html')));
 app.get('/roadsigns.html', (req, res) => res.sendFile(path.join(__dirname, 'RoadSigns.html')));
 app.get('/RoadSigns.html', (req, res) => res.sendFile(path.join(__dirname, 'RoadSigns.html')));
+app.get('/mock.html', (req, res) => res.sendFile(path.join(__dirname, 'mock.html')));
+app.get('/Mock.html', (req, res) => res.sendFile(path.join(__dirname, 'mock.html')));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
