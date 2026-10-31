@@ -76,7 +76,7 @@
     <!-- MAIN DASHBOARD CONTAINER -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 mb-12">
         
-        <!-- Welcome Banner (10 Questions / 10 Minutes Quick Practice) -->
+        <!-- Welcome Banner -->
         <div class="bg-[#041a18] text-white rounded-3xl p-6 sm:p-10 mb-8 shadow-xl relative overflow-hidden flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div class="relative z-10">
                 <span id="planBadge" class="inline-block bg-[#059669] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
@@ -99,7 +99,6 @@
         <!-- STATS & QUICK ACTIONS GRID -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             
-            <!-- Stat Card 1 -->
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
                 <div>
                     <span id="txtTestsCompletedLabel" class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Tests Completed</span>
@@ -110,7 +109,6 @@
                 </div>
             </div>
 
-            <!-- Stat Card 2 -->
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
                 <div>
                     <span id="txtAvgScoreLabel" class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Average Score</span>
@@ -121,7 +119,6 @@
                 </div>
             </div>
 
-            <!-- Stat Card 3 -->
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
                 <div>
                     <span id="txtAccountStatusLabel" class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Account Status</span>
@@ -134,7 +131,7 @@
 
         </div>
 
-        <!-- RESULTS SECTION: LAST 5 TESTS -->
+        <!-- RESULTS SECTION -->
         <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 mb-12">
             <div class="flex items-center justify-between mb-6">
                 <div>
@@ -167,7 +164,7 @@
             </div>
         </div>
 
-        <!-- PRACTICE MODULES SECTION (20 Questions / 20 Minutes) -->
+        <!-- PRACTICE MODULES SECTION -->
         <div id="quiz-section" class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100">
             <h2 id="txtModulesTitle" class="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
                 Provisional License Modules
@@ -175,7 +172,6 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 
-                <!-- Module Card 1 -->
                 <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#059669] transition flex flex-col justify-between">
                     <div>
                         <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center font-bold justify-center mb-4 text-lg">01</div>
@@ -187,7 +183,6 @@
                     </button>
                 </div>
 
-                <!-- Module Card 2 -->
                 <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#059669] transition flex flex-col justify-between">
                     <div>
                         <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center font-bold justify-center mb-4 text-lg">02</div>
@@ -199,7 +194,6 @@
                     </button>
                 </div>
 
-                <!-- Module Card 3 (Mock Exam) -->
                 <div class="border border-gray-200 rounded-2xl p-6 hover:border-[#059669] transition flex flex-col justify-between">
                     <div>
                         <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center font-bold justify-center mb-4 text-lg">03</div>
@@ -221,7 +215,6 @@
 
     <!-- DASHBOARD SESSION & INTERACTION SCRIPT -->
     <script>
-        // Language management (English is default for dashboard-index.html)
         let currentLang = 'en';
 
         function updateTexts() {
@@ -256,38 +249,46 @@
             document.getElementById('mod3Btn').textContent = t.mod3Btn;
         }
 
-        // Initialize language on load
         updateTexts();
 
-        // Check user session
+        // Check user session with robust fallbacks
         const storedUser = localStorage.getItem('user');
         
-        if (!storedUser) {
+        if (!storedUser && !localStorage.getItem('userPhone')) {
             window.location.href = 'login.html';
         } else {
             try {
-                const user = JSON.parse(storedUser);
+                let user = storedUser ? JSON.parse(storedUser) : {};
+                const phoneNum = user.phone_number || user.phone || localStorage.getItem('userPhone');
+                const userPlan = user.plan || 'daily';
+                const userId = user.id || 1;
+
                 const phoneDisplay = document.getElementById('userPhoneDisplay');
                 const phoneDisplaySticky = document.getElementById('userPhoneDisplaySticky');
                 const planBadge = document.getElementById('planBadge');
 
-                if (user.phone_number) {
-                    const phoneText = `📞 ${user.phone_number}`;
+                if (phoneNum) {
+                    const phoneText = `📞 ${phoneNum}`;
                     if (phoneDisplay) phoneDisplay.textContent = phoneText;
                     if (phoneDisplaySticky) phoneDisplaySticky.textContent = phoneText;
                 }
 
-                if (planBadge && user.plan) {
-                    const formattedPlan = user.plan.charAt(0).toUpperCase() + user.plan.slice(1);
-                    planBadge.textContent = `${translations[currentLang].activePlan} ${formattedPlan}`;
+                if (planBadge) {
+                    const formattedPlan = userPlan.charAt(0).toUpperCase() + userPlan.slice(1);
+                    planBadge.textContent = `Active Plan: ${formattedPlan}`;
                 }
 
-                fetchUserResults(user.id);
+                fetchUserResults(userId);
 
             } catch (err) {
                 console.error('Failed to parse user session:', err);
-                localStorage.removeItem('user');
-                window.location.href = 'login.html';
+                const rawPhone = localStorage.getItem('userPhone');
+                if (rawPhone) {
+                    document.getElementById('userPhoneDisplay').textContent = `📞 ${rawPhone}`;
+                    document.getElementById('userPhoneDisplaySticky').textContent = `📞 ${rawPhone}`;
+                } else {
+                    window.location.href = 'login.html';
+                }
             }
         }
 
