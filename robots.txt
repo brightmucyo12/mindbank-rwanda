@@ -1,9 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /dashboard
+Disallow: /mock.html
+Disallow: /SECTIONA.html
+Disallow: /RoadSigns.html
 
-# Block crawlers from indexing private app pages
-Disallow: /dashboard.html
-Disallow: /quiz.html
-
-# Point crawlers directly to your sitemap
 Sitemap: https://izidrive.site/sitemap.xml
