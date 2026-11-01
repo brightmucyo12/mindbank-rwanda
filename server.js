@@ -8,6 +8,17 @@ const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
 
+// --- ADD THIS DOMAIN MIGRATION REDIRECT MIDDLEWARE FIRST ---
+app.use((req, res, next) => {
+  const host = req.get('host') || '';
+  if (host.includes('izidrive.site')) {
+    const newUrl = `https://izidriverwa.com${req.url}`;
+    return res.redirect(301, newUrl);
+  }
+  next();
+});
+// -----------------------------------------------------------
+
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
