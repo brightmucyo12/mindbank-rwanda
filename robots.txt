@@ -5,4 +5,4 @@ Disallow: /mock.html
 Disallow: /SECTIONA.html
 Disallow: /RoadSigns.html
 
-Sitemap: https://izidrive.site/sitemap.xml
+Sitemap: https://izidriverwa.com/sitemap.xml
