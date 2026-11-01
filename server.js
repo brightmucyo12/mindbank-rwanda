@@ -8,7 +8,10 @@ const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
 
-// --- ADD THIS DOMAIN MIGRATION REDIRECT MIDDLEWARE FIRST ---
+// Required on Render so Express correctly reads incoming proxy/host headers
+app.set('trust proxy', true);
+
+// --- DOMAIN MIGRATION REDIRECT MIDDLEWARE ---
 app.use((req, res, next) => {
   const host = req.get('host') || '';
   if (host.includes('izidrive.site')) {
@@ -17,7 +20,7 @@ app.use((req, res, next) => {
   }
   next();
 });
-// -----------------------------------------------------------
+// -------------------------------------------
 
 app.use(cors({
   origin: '*',
