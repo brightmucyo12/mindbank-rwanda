@@ -15,6 +15,13 @@ app.set('trust proxy', true);
 app.use((req, res, next) => {
   const host = req.get('host') || '';
   if (host.includes('izidrive.site')) {
+    // Serve an unblocked robots.txt for Google Search Console validation
+    if (req.path === '/robots.txt') {
+      res.type('text/plain');
+      return res.send("User-agent: *\nAllow: /");
+    }
+
+    // 301 Permanent Redirect all other pages to the new domain
     const newUrl = `https://izidriverwa.com${req.url}`;
     return res.redirect(301, newUrl);
   }
