@@ -11,24 +11,6 @@ const app = express();
 // Required on Render so Express correctly reads incoming proxy/host headers
 app.set('trust proxy', true);
 
-// --- DOMAIN MIGRATION REDIRECT MIDDLEWARE ---
-app.use((req, res, next) => {
-  const host = req.get('host') || '';
-  if (host.includes('izidrive.site')) {
-    // Serve an unblocked robots.txt for Google Search Console validation
-    if (req.path === '/robots.txt') {
-      res.type('text/plain');
-      return res.send("User-agent: *\nAllow: /");
-    }
-
-    // 301 Permanent Redirect all other pages to the new domain
-    const newUrl = `https://izidriverwa.com${req.url}`;
-    return res.redirect(301, newUrl);
-  }
-  next();
-});
-// -------------------------------------------
-
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
