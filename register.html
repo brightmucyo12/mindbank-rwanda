@@ -20,11 +20,12 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; overflow-x: hidden; }
     .status-msg {
       width: 100%;
       padding: 10px;
@@ -37,31 +38,88 @@
     }
     .status-msg.error { background-color: #FEE2E2; color: #991B1B; border: 1px solid #FCA5A5; display: block; }
     .status-msg.success { background-color: #DCFCE7; color: #166534; border: 1px solid #86EFAC; display: block; }
+    .widescreen-container {
+      max-width: 84rem;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    /* Subtle, refined depth blur */
+    .dashboard-bg-preview {
+      filter: blur(1.5px);
+      opacity: 0.45;
+    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col text-gray-900 relative overflow-x-hidden">
+<body class="min-h-screen flex flex-col text-gray-900 relative">
 
-  <!-- BACKGROUND DASHBOARD PREVIEW (Appears in the background) -->
-  <div aria-hidden="true" class="absolute inset-0 opacity-40 pointer-events-none filter blur-[2px] z-0 p-4 sm:p-8 max-w-7xl mx-auto w-full">
-    <div class="bg-[#041a18] text-white rounded-3xl p-6 sm:p-10 mb-8 shadow-xl">
-      <span class="bg-[#059669] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3 inline-block">Free Access Active</span>
-      <h1 class="text-3xl font-extrabold">Welcome back to your Study Hub!</h1>
-      <p class="text-gray-300 mt-2">Master all 10 levels and practice provisional driving test questions.</p>
+  <!-- BACKGROUND REAL DASHBOARD PREVIEW (Full 10-Level Layout) -->
+  <div aria-hidden="true" class="absolute inset-0 pointer-events-none z-0 py-8 widescreen-container dashboard-bg-preview overflow-hidden">
+    
+    <!-- Structured Header Card Preview -->
+    <div class="bg-white border border-[#e5e7eb] rounded-3xl p-8 mb-8 shadow-xs">
+      <div class="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">
+        <i class="fa-solid fa-road text-[10px]"></i> Provisional Driver Roadmap
+      </div>
+      <h1 class="text-3xl font-extrabold text-gray-900 mb-2">Your 10-Level Mastery Path</h1>
+      <p class="text-sm font-medium text-gray-500">10% Completed • 1 of 10 Levels Unlocked • On Track</p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-      <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-        <span class="text-xs font-semibold text-gray-400 uppercase">Tests Completed</span>
-        <h3 class="text-3xl font-extrabold text-[#041a18] mt-2">0</h3>
+
+    <!-- Full 10-Level Roadmap Grid Preview -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="border border-emerald-200 bg-emerald-50/40 rounded-3xl p-6 shadow-sm">
+        <span class="text-3xl font-black text-emerald-700">01</span>
+        <h2 class="text-lg font-bold text-gray-900 mt-2">Level 1: Introduction to Road Rules & Definitions</h2>
+        <p class="text-sm text-gray-600 mt-1">Master core terminology, legal definitions, and basic duties.</p>
       </div>
-      <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-        <span class="text-xs font-semibold text-gray-400 uppercase">Average Score</span>
-        <h3 class="text-3xl font-extrabold text-[#041a18] mt-2">-- / 20</h3>
+      <div class="border border-gray-200 bg-gray-100/80 rounded-3xl p-6 shadow-sm">
+        <span class="text-3xl font-black text-gray-400">02</span>
+        <h2 class="text-lg font-bold text-gray-700 mt-2">Level 2: Danger Warning Signs</h2>
+        <p class="text-sm text-gray-500 mt-1">Identify triangular warning signs alerting drivers to hazards.</p>
       </div>
-      <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-        <span class="text-xs font-semibold text-gray-400 uppercase">Account Status</span>
-        <h3 class="text-xl font-bold text-emerald-600 mt-2">Ready</h3>
+      <div class="border border-gray-200 bg-gray-100/80 rounded-3xl p-6 shadow-sm">
+        <span class="text-3xl font-black text-gray-400">03</span>
+        <h2 class="text-lg font-bold text-gray-700 mt-2">Level 3: Regulatory & Mandatory Signs</h2>
+        <p class="text-sm text-gray-500 mt-1">Master circular and strict obligation signs.</p>
+      </div>
+      <div class="border border-gray-200 bg-gray-100/80 rounded-3xl p-6 shadow-sm">
+        <span class="text-3xl font-black text-gray-400">04</span>
+        <h2 class="text-lg font-bold text-gray-700 mt-2">Level 4: Priority & Right-of-Way Rules</h2>
+        <p class="text-sm text-gray-500 mt-1">Understand intersection priorities and yielding protocols.</p>
+      </div>
+      <div class="border border-gray-200 bg-gray-100/80 rounded-3xl p-6 shadow-sm">
+        <span class="text-3xl font-black text-gray-400">05</span>
+        <h2 class="text-lg font-bold text-gray-700 mt-2">Level 5: Speed Limits & Distance Rules</h2>
+        <p class="text-sm text-gray-500 mt-1">Learn statutory speed limits across urban and rural zones.</p>
+      </div>
+      <div class="border border-gray-200 bg-gray-100/80 rounded-3xl p-6 shadow-sm">
+        <span class="text-3xl font-black text-gray-400">06</span>
+        <h2 class="text-lg font-bold text-gray-700 mt-2">Level 6: Overtaking & Turning Maneuvers</h2>
+        <p class="text-sm text-gray-500 mt-1">Safely navigate passing vehicles and executing lane changes.</p>
+      </div>
+      <div class="border border-gray-200 bg-gray-100/80 rounded-3xl p-6 shadow-sm">
+        <span class="text-3xl font-black text-gray-400">07</span>
+        <h2 class="text-lg font-bold text-gray-700 mt-2">Level 7: Stopping, Parking & Waiting</h2>
+        <p class="text-sm text-gray-500 mt-1">Discover where parking is prohibited and hill protocols.</p>
+      </div>
+      <div class="border border-gray-200 bg-gray-100/80 rounded-3xl p-6 shadow-sm">
+        <span class="text-3xl font-black text-gray-400">08</span>
+        <h2 class="text-lg font-bold text-gray-700 mt-2">Level 8: Vehicle Lighting & Signals</h2>
+        <p class="text-sm text-gray-500 mt-1">Understand headlight use, indicators, and requirements.</p>
+      </div>
+      <div class="border border-gray-200 bg-gray-100/80 rounded-3xl p-6 shadow-sm">
+        <span class="text-3xl font-black text-gray-400">09</span>
+        <h2 class="text-lg font-bold text-gray-700 mt-2">Level 9: Special Road Users & Passengers</h2>
+        <p class="text-sm text-gray-500 mt-1">Rules regarding pedestrians, cyclists, and loading.</p>
+      </div>
+      <div class="border border-gray-200 bg-gray-100/80 rounded-3xl p-6 shadow-sm">
+        <span class="text-3xl font-black text-gray-400">10</span>
+        <h2 class="text-lg font-bold text-gray-700 mt-2">Level 10: Mock Exams & Review</h2>
+        <p class="text-sm text-gray-500 mt-1">Full randomized timed exams simulating official tests.</p>
       </div>
     </div>
+
   </div>
 
   <!-- FOREGROUND MODAL REGISTRATION CONTAINER -->
@@ -134,7 +192,7 @@
         const response = await fetch('https://mindbank-rwanda-api.onrender.com/api/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ phone, pin, plan: 'free', payment_method: 'none' })
+          body: JSON.stringify({ phone, pin })
         });
 
         const data = await response.json();
