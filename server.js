@@ -43,10 +43,9 @@ async function testConnection() {
 testConnection();
 
 app.post('/api/register', async (req, res) => {
-  const { phone, pin, plan, payment_method } = req.body;
+  const { phone, pin } = req.body;
   if (!/^\d{10}$/.test(phone)) return res.status(400).json({ error: 'Phone number must be exactly 10 digits.' });
   if (!/^\d{4}$/.test(pin)) return res.status(400).json({ error: 'PIN must be exactly 4 digits.' });
-  if (!['daily', 'monthly'].includes(plan)) return res.status(400).json({ error: 'Invalid subscription plan.' });
 
   try {
     const { data: existingUsers } = await supabase.from('users').select('id').eq('phone_number', phone);
@@ -56,13 +55,13 @@ app.post('/api/register', async (req, res) => {
     const { error: insertError } = await supabase.from('users').insert([{
       phone_number: phone,
       pin_hash: pinHash,
-      plan: plan,
-      payment_method: payment_method || 'mtn',
-      payment_status: 'pending'
+      plan: 'free',
+      payment_method: 'none',
+      payment_status: 'active'
     }]);
 
     if (insertError) throw insertError;
-    return res.status(201).json({ success: true, message: 'Account created!', plan: plan });
+    return res.status(201).json({ success: true, message: 'Account created!', plan: 'free' });
   } catch (err) {
     console.error('Registration Error:', err);
     return res.status(500).json({ error: 'Internal server error.' });
