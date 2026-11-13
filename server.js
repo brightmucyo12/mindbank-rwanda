@@ -20,8 +20,11 @@ app.use(cors({
 
 app.use(express.json());
 
-// Serve static files from the 'public' directory (fixes output.css 404 error)
-app.use(express.static(path.join(__dirname, 'public'), {
+// 1. Serve files inside 'public' (so /output.css loads properly)
+app.use(express.static(path.join(__dirname, 'public')));
+
+// 2. Serve your HTML, JSON, and image files from the root directory
+app.use(express.static(path.join(__dirname), {
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html')) {
       res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
@@ -91,7 +94,7 @@ app.post('/api/login', async (req, res) => {
 });
 
 app.get('/dashboard', (req, res) => res.sendFile(path.join(__dirname, 'dashboard-index.html')));
-app.get('/SectionA.html', (req, res) => res.sendFile(path.join(__dirname, 'SECTIONA.html')));
+app.get('/SectionA.html', (req, res) => res.sendFile(path.join(__dirname, 'SectionA.html')));
 app.get('/roadsigns.html', (req, res) => res.sendFile(path.join(__dirname, 'RoadSigns.html')));
 app.get('/RoadSigns.html', (req, res) => res.sendFile(path.join(__dirname, 'RoadSigns.html')));
 app.get('/mock.html', (req, res) => res.sendFile(path.join(__dirname, 'mock.html')));
