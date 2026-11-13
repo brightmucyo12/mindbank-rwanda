@@ -20,7 +20,8 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname), {
+// Serve static files from the 'public' directory (fixes output.css 404 error)
+app.use(express.static(path.join(__dirname, 'public'), {
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html')) {
       res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
