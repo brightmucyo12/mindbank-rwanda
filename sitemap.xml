@@ -32,21 +32,5 @@
     <lastmod>2026-10-31</lastmod>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://izidriverwa.com/forgotpin.html</loc>
-    <lastmod>2026-10-31</lastmod>
-    <priority>0.5</priority>
-  </url>
-
-  <!-- Legal Pages -->
-  <url>
-    <loc>https://izidriverwa.com/privacypage.html</loc>
-    <lastmod>2026-10-31</lastmod>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://izidriverwa.com/terms.html</loc>
-    <lastmod>2026-10-31</lastmod>
-    <priority>0.3</priority>
-  </url>
+  
 </urlset>
