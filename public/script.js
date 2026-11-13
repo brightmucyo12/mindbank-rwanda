@@ -2,13 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const htmlElement = document.documentElement;
     const themeToggleBtn = document.getElementById('theme-toggle');
 
-    // Initialize theme based on local storage or system preference
+    // 1. Initialize theme based on local storage or system preference
     if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         htmlElement.classList.add('dark');
     } else {
         htmlElement.classList.remove('dark');
     }
 
+    // 2. Dark mode button click handler
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
             if (htmlElement.classList.contains('dark')) {
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // FAQ Toggle Logic
+    // 3. FAQ Accordion Toggle Logic
     document.querySelectorAll('.faq-toggle').forEach(item => {
         item.addEventListener('click', () => {
             const content = item.nextElementSibling;
