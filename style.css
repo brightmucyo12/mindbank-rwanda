@@ -17,6 +17,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Dark mode fallback for pages utilizing style.css directly */
+.dark body {
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(3, 7, 18, 0.98) 100%);
+  color: #f3f4f6;
+}
+
 .header-bar {
   width: 100%;
   padding: 30px 20px 10px 40px;
@@ -34,6 +40,10 @@ body {
   text-decoration: none;
 }
 
+.dark .brand-logo {
+  color: #ffffff;
+}
+
 .register-title {
   font-size: 24px;
   font-weight: 800;
@@ -41,6 +51,10 @@ body {
   text-align: center;
   margin-bottom: 25px;
   color: #000000;
+}
+
+.dark .register-title {
+  color: #ffffff;
 }
 
 .register-container {
@@ -62,6 +76,11 @@ body {
   align-items: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   border-radius: 4px;
+}
+
+.dark .register-card {
+  background-color: #1f2937;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .form-group {
@@ -90,6 +109,10 @@ body {
   text-align: center;
 }
 
+.dark .form-label {
+  color: #f3f4f6;
+}
+
 .form-input {
   width: 100%;
   height: 48px;
@@ -101,6 +124,12 @@ body {
   color: #000000;
   outline: none;
   text-align: center;
+}
+
+.dark .form-input {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #ffffff;
 }
 
 .form-input::placeholder {
@@ -119,11 +148,19 @@ body {
   margin-bottom: 18px;
 }
 
+.dark .pin-helper-text {
+  color: #9ca3af;
+}
+
 .divider {
   width: 100%;
   height: 1px;
   background-color: #D1D5DB;
   margin: 20px 0 25px;
+}
+
+.dark .divider {
+  background-color: #4b5563;
 }
 
 .plan-grid {
@@ -157,9 +194,20 @@ body {
   justify-content: center;
 }
 
+.dark .plan-box {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #ffffff;
+}
+
 .plan-option input[type="radio"]:checked + .plan-box {
   border-color: #006400;
   background-color: #F0FDF4;
+}
+
+.dark .plan-option input[type="radio"]:checked + .plan-box {
+  border-color: #10b981;
+  background-color: rgba(6, 78, 59, 0.4);
 }
 
 .plan-name {
@@ -174,6 +222,10 @@ body {
   font-size: 16px;
   font-weight: 900;
   color: #006400;
+}
+
+.dark .plan-price {
+  color: #34d399;
 }
 
 .payment-grid {
@@ -206,10 +258,22 @@ body {
   font-style: italic;
 }
 
+.dark .payment-box {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #f3f4f6;
+}
+
 .payment-option input[type="radio"]:checked + .payment-box {
   border-color: #006400;
   background-color: #F0FDF4;
   color: #006400;
+}
+
+.dark .payment-option input[type="radio"]:checked + .payment-box {
+  border-color: #10b981;
+  background-color: rgba(6, 78, 59, 0.4);
+  color: #34d399;
 }
 
 .register-btn {
@@ -242,6 +306,14 @@ body {
   text-align: center;
 }
 
+.dark .login-link {
+  color: #f87171;
+}
+
 .login-link:hover {
   color: #600000;
+}
+
+.dark .login-link:hover {
+  color: #fca5a5;
 }
